@@ -164,9 +164,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128290255}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!224 &135757662 stripped
 RectTransform:
@@ -185,7 +185,6 @@ GameObject:
   - component: {fileID: 223655482}
   - component: {fileID: 223655481}
   - component: {fileID: 223655480}
-  - component: {fileID: 223655483}
   m_Layer: 5
   m_Name: Cassette_Menu_Transition
   m_TagString: Untagged
@@ -272,25 +271,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223655478}
   m_CullTransparentMesh: 1
---- !u!114 &223655483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223655478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270310f4b34c2bd45b38bfc63a4617d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _trasitionAnimator: {fileID: 223655480}
-  _cassette_One: {fileID: 135757662}
-  _cassette_Two: {fileID: 2016171640}
-  _cassette_Three: {fileID: 1567632232}
-  _cassette_Four: {fileID: 2069626359}
-  _cassette_Five: {fileID: 1398311266}
-  _cassette_Six: {fileID: 557881122}
 --- !u!1 &296822497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,9 +1447,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560000236}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &1567632231
 PrefabInstance:
@@ -1602,6 +1582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637285177}
+  - component: {fileID: 1637285178}
   m_Layer: 0
   m_Name: Menu Transition Controller
   m_TagString: Untagged
@@ -1624,6 +1605,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 296822501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637285178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637285176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270310f4b34c2bd45b38bfc63a4617d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trasitionAnimator: {fileID: 223655480}
+  _mainCamera: {fileID: 330585545}
+  _cassette_One: {fileID: 135757662}
+  _cassette_Two: {fileID: 2016171640}
+  _cassette_Three: {fileID: 1567632232}
+  _cassette_Four: {fileID: 2069626359}
+  _cassette_Five: {fileID: 1398311266}
+  _cassette_Six: {fileID: 557881122}
 --- !u!1 &1675035086
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuTransitionController : MonoBehaviour
 {
     [SerializeField] Animator _trasitionAnimator;
+    [SerializeField] Camera _mainCamera;
 
     [SerializeField] Transform _cassette_One;
     [SerializeField] Transform _cassette_Two;
@@ -35,7 +36,7 @@ public class MenuTransitionController : MonoBehaviour
     private void MoveCassettesOffScreen()
     {
         float _offscreenX = 250f;
-        float _moveDuration = 1f;
+        float _moveDuration = 0.25f;
 
         Sequence _exitSequence;
 
@@ -74,7 +75,14 @@ public class MenuTransitionController : MonoBehaviour
 
     private void StartTransition()
     {
+        Sequence _transitionSequence = DOTween.Sequence();
+        _transitionSequence.SetDelay(0.15f); // Delay before the transition starts to let the animation play.
+        _transitionSequence.Append
+        (
+            _mainCamera.transform.DOShakePosition(3f, 0.5f, 10, 70f, false, true)
+        );
         _trasitionAnimator.SetTrigger("BoomBox"); // Starts the "BoomBox" transition animation.
+        _transitionSequence.Play();
     }
 }
 
