@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Cassette_Anim_Control : MonoBehaviour
 {
     [SerializeField] Cassette_Anim_Obj _thisCassette_Anim_Obj;
     [SerializeField] Animator _thisCassette_Animator;
+
 
     private void Start()
     {
@@ -56,9 +58,20 @@ public class Cassette_Anim_Control : MonoBehaviour
 
     public void SelectCassette()
     {
+        // Cant select the cassette if it is not unlocked yet.
+        if (_thisCassette_Anim_Obj.IsUnlocked == false) 
+        {
+            Debug.LogWarning("Cassette is not unlocked yet: " + _thisCassette_Anim_Obj.ThisCassetteName);
+            return;
+        }
+
         // Cant select the cassette if it is a Silhouette.
         if (_thisCassette_Anim_Obj.GetAnim() != CassetteAnimation.Silhouette)
         {
+            Debug.Log("Cassette Selected: " + _thisCassette_Anim_Obj.ThisCassetteName);
+            TransitionEvents.RaiseCassetteSelected(this); // Event to notify transition when a cassette is selected.
+
+            // Then the specific Cassette is set up.
             _thisCassette_Anim_Obj.OnThisCassetteSelected();
         }
     }
