@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MenuTransitionController : MonoBehaviour
@@ -14,6 +15,11 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] Transform _cassette_Five;
     [SerializeField] Transform _cassette_Six;
 
+    [SerializeField] CanvasGroup _mainMenu_Group;
+    [SerializeField] CanvasGroup _cassettesMenu_Group;
+    [SerializeField] CanvasGroup _cassettes_Background_Group;
+    [SerializeField] CanvasGroup _grill_Group;
+    [SerializeField] CanvasGroup _meat_Table_Group;
 
 
     private void OnEnable()
@@ -82,17 +88,83 @@ public class MenuTransitionController : MonoBehaviour
             _mainCamera.transform.DOShakePosition(3f, 0.5f, 10, 70f, false, true)
         );
         _trasitionAnimator.SetTrigger("BoomBox"); // Starts the "BoomBox" transition animation.
-        _transitionSequence.Play();
+        _transitionSequence.Play()
+            .OnComplete(() =>
+            {
+                StartCoroutine(WaitForAnimation(_trasitionAnimator, "BoomBox"));
+            });
     }
-}
 
-// A message broker for talking between the Cassette_Anim_Control buttons and the MenuTransitionController.
-public static class TransitionEvents
-{
-    public static event Action<Cassette_Anim_Control> CassetteSelected;
-
-    public static void RaiseCassetteSelected(Cassette_Anim_Control cassette)
+    private IEnumerator WaitForAnimation(Animator animator, string stateName)
     {
-        CassetteSelected?.Invoke(cassette);
+        // Wait until the animation starts playing
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            yield return null;
+
+        // Wait until it's done playing
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.98f)
+            yield return null;
+
+        MoveToGamePlayScreen();
+    }
+
+    /**
+    [SerializeField] CanvasGroup _mainMenu_Group;
+    [SerializeField] CanvasGroup _cassettesMenu_Group;
+    [SerializeField] CanvasGroup _grill_Group;
+    [SerializeField] CanvasGroup _meat_Table_Group;
+     * **/
+
+    private void MoveToGamePlayScreen()
+    {
+        // Ensure the main menu is at the bottom of the hierarchy so it can be seen
+        // above the screens that are now being activated.
+        _cassettesMenu_Group.transform.SetAsLastSibling();
+
+        _mainMenu_Group.alpha = 0;
+        _mainMenu_Group.interactable = false;
+        _mainMenu_Group.blocksRaycasts = false;
+
+        _grill_Group.alpha = 1;
+        _grill_Group.interactable = true;
+        _grill_Group.blocksRaycasts = true;
+
+        _meat_Table_Group.alpha = 1;
+        _meat_Table_Group.interactable = true;
+        _meat_Table_Group.blocksRaycasts = true;
+
+        // Ensures the blue background is removed before the fade.
+        _cassettes_Background_Group.alpha = 0;
+        _cassettes_Background_Group.interactable = false;
+        _cassettes_Background_Group.blocksRaycasts = false;
+
+        Sequence TransitionFromBlack = DOTween.Sequence();
+
+        TransitionFromBlack.Append
+        (
+            _cassettesMenu_Group.DOFade(0, 3f)
+        );
+
+        TransitionFromBlack.Play().OnComplete
+        (
+            () =>
+            {
+                _cassettesMenu_Group.alpha = 0;
+                _cassettesMenu_Group.interactable = false;
+                _cassettesMenu_Group.blocksRaycasts = false;
+            }
+        );
     }
 }
+
+    // A message broker for talking between the Cassette_Anim_Control buttons and the MenuTransitionController.
+    public static class TransitionEvents
+    {
+        public static event Action<Cassette_Anim_Control> CassetteSelected;
+
+        public static void RaiseCassetteSelected(Cassette_Anim_Control selectedCassette)
+        {
+            CassetteSelected?.Invoke(selectedCassette);
+        }
+    }
+

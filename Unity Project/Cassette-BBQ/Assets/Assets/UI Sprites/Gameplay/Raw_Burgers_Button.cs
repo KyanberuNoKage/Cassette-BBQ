@@ -6,6 +6,8 @@ public class Raw_Burgers_Button : MonoBehaviour
     public void SelectRawBurger()
     {
         DoSelectionAnim();
+
+        GrillingEvents.AddRawBurger_ToGrill();
     }
 
     private void DoSelectionAnim()

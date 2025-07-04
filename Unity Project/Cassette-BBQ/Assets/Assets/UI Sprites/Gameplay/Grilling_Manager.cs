@@ -9,12 +9,14 @@ public class Grilling_Manager : MonoBehaviour
     #region Events/Actions
     private void OnEnable()
     {
-        GrillingEvents.OnBurgerDestroyed += ChangeGrillItemCount;
+        GrillingEvents.OnGrillItemDestroyed += ChangeGrillItemCount;
+        GrillingEvents.OnBurgerAdded += AddBurgerToGrill;
     }
 
     private void OnDisable()
     {
-        GrillingEvents.OnBurgerDestroyed -= ChangeGrillItemCount;
+        GrillingEvents.OnGrillItemDestroyed -= ChangeGrillItemCount;
+        GrillingEvents.OnBurgerAdded -= AddBurgerToGrill;
     }
     #endregion
 
@@ -129,11 +131,11 @@ public class Grilling_Manager : MonoBehaviour
     {
         if (isIncrease)
         {
-            _maxItemsOnGrill += 1;
+            _currentItemsOnGrill += 1;
         }
         else
         {
-            _maxItemsOnGrill -= 1;
+            _currentItemsOnGrill -= 1;
         }
     }
 
@@ -169,11 +171,18 @@ public class Grilling_Manager : MonoBehaviour
 public static class GrillingEvents
 {
     #region Burgers
-    public static event Action<bool> OnBurgerDestroyed;
+    public static event Action<bool> OnGrillItemDestroyed;
 
-    public static void BurgerDestroyed()
+    public static void GrillItemDestroyed()
     {
-        OnBurgerDestroyed?.Invoke(false); // Lower the grill item count.
+        OnGrillItemDestroyed?.Invoke(false); // Lower the grill item count.
+    }
+
+    public static event Action OnBurgerAdded;
+
+    public static void AddRawBurger_ToGrill()
+    {
+        OnBurgerAdded?.Invoke(); // Add burger to grill
     }
     #endregion
 }

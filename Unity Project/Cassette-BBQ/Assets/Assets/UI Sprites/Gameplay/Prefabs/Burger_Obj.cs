@@ -79,6 +79,7 @@ public class Burger_Obj : MonoBehaviour
         {
             Debug.Log("Burger has been collected!");
             StopAllCoroutines();
+            GrillingEvents.GrillItemDestroyed(); // Notify that there is one less item on grill.
             Destroy(this.gameObject);
             return;
         }
@@ -86,7 +87,7 @@ public class Burger_Obj : MonoBehaviour
         {
             Debug.Log("Burger has been thrown away!");
             StopAllCoroutines();
-            GrillingEvents.BurgerDestroyed();
+            GrillingEvents.GrillItemDestroyed();
             Destroy(this.gameObject);
             return;
         }

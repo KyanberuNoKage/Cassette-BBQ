@@ -297,9 +297,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128290255}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!224 &135757662 stripped
 RectTransform:
@@ -717,9 +717,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336802794}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &361022011
 GameObject:
@@ -1032,6 +1032,7 @@ GameObject:
   - component: {fileID: 538844243}
   - component: {fileID: 538844246}
   - component: {fileID: 538844245}
+  - component: {fileID: 538844247}
   m_Layer: 5
   m_Name: Cassette_Menu_Background
   m_TagString: Untagged
@@ -1102,6 +1103,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538844242}
   m_CullTransparentMesh: 1
+--- !u!225 &538844247
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538844242}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &557881121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2180,6 +2193,11 @@ MonoBehaviour:
   _cassette_Four: {fileID: 2069626359}
   _cassette_Five: {fileID: 1398311266}
   _cassette_Six: {fileID: 557881122}
+  _mainMenu_Group: {fileID: 128290257}
+  _cassettesMenu_Group: {fileID: 1560000238}
+  _cassettes_Background_Group: {fileID: 538844247}
+  _grill_Group: {fileID: 1720032683}
+  _meat_Table_Group: {fileID: 336802796}
 --- !u!1 &1675035086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,9 +2363,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720032681}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1790490536
 GameObject:
