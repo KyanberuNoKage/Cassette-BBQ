@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f77722e453a13354b987cbf80751af6a
+guid: eacdb933b65a3294296160ad6823e3ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,353 +123,463 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_0
+      name: Cooked Burger Flipped_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 810
+        y: 1405
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38710600d8e83e746935d1254e7d0f6f
-      internalID: 387545920
+      spriteID: c9eec23db2522fb40bde878f746f15c7
+      internalID: 1712857064
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_1
+      name: Cooked Burger Flipped_1
       rect:
         serializedVersion: 2
         x: 480
-        y: 810
+        y: 1405
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 473ca6f51c11d214298cef5a8eacc4e4
-      internalID: -1392364993
+      spriteID: 5db3d48641c6fa84e89f13b2eca3ceac
+      internalID: 708621325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_2
+      name: Cooked Burger Flipped_2
       rect:
         serializedVersion: 2
         x: 960
-        y: 810
+        y: 1405
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8677db43fc2ae6d4ebebe765691f41cd
-      internalID: -2032158281
+      spriteID: e97959b32a057c841a8654111359dba4
+      internalID: 599858368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_3
+      name: Cooked Burger Flipped_3
       rect:
         serializedVersion: 2
         x: 1440
-        y: 810
+        y: 1403
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eeaf03eb83b0e9846aad14dda7fec05f
-      internalID: -211260854
+      spriteID: e72b9e4df4b895a43b96b338482513dd
+      internalID: -49750934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_4
+      name: Cooked Burger Flipped_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 540
+        y: 1124
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b4d6cb803e1994eabf972d2aa87b4f
-      internalID: 1562412423
+      spriteID: 86880a15ff1dc184eb80314f2a1a4571
+      internalID: 1307620819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_5
+      name: Cooked Burger Flipped_5
       rect:
         serializedVersion: 2
         x: 480
-        y: 540
+        y: 1124
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab0e01eeb12cf5f49b355b33381b20ee
-      internalID: 1165671423
+      spriteID: c6fa93368d0c692469115a05f0485271
+      internalID: 641158613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_6
+      name: Cooked Burger Flipped_6
       rect:
         serializedVersion: 2
         x: 960
-        y: 540
+        y: 1124
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ff34ab7f6f5f25409118e5d1c61f609
-      internalID: -516111202
+      spriteID: 0eb54c5cbded3144fac2de1f7055c9d5
+      internalID: -837037033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_7
+      name: Cooked Burger Flipped_7
       rect:
         serializedVersion: 2
         x: 1440
-        y: 540
+        y: 1124
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3e2c0b161d53db44993fe404cc0ef6f
-      internalID: -1072848459
+      spriteID: 982bf0ab56b31254d819463b56578a8f
+      internalID: -2006028964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_8
+      name: Cooked Burger Flipped_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
+        y: 843
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbab3a15d06f41c4792c92984ef289cb
-      internalID: -867109357
+      spriteID: 4a9d15c311713234f94e9d26f13f1971
+      internalID: 388822809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_9
+      name: Cooked Burger Flipped_9
       rect:
         serializedVersion: 2
         x: 480
-        y: 270
+        y: 843
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 559a2fbf6c371b640afcea808083be19
-      internalID: 1735422471
+      spriteID: ba2cb2392b52cb449800b7d0be5c3e7d
+      internalID: -1094335269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_10
+      name: Cooked Burger Flipped_10
       rect:
         serializedVersion: 2
         x: 960
-        y: 270
+        y: 843
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 265}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 537e27b34176edd44af60744d45e9fa2
-      internalID: 42725580
+      spriteID: e728ac3a998e24847925af9dc41582cc
+      internalID: -1515870504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_11
+      name: Cooked Burger Flipped_11
       rect:
         serializedVersion: 2
         x: 1440
-        y: 270
+        y: 843
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36fcdd3895f544041a26dc24eb723735
-      internalID: 987969669
+      spriteID: 2fa9c6580ac303944b0e2bd178848da9
+      internalID: -701215527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_12
+      name: Cooked Burger Flipped_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 562
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98f555270a61f3429d2d7d9993c4456
+      internalID: -1284616566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_13
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 562
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc34766c2cba9f41a4616d58fa5f029
+      internalID: -1036216855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_14
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 562
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c476bf4ba5db5c4479d681c1388bd77f
+      internalID: -550526074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 561
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7b759f4fbcc6764d995b86d292d37a9
+      internalID: 1145569872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 281
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081cb0ad16a82244e9cd3d624025ead2
+      internalID: -284370605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_17
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 281
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4775934d75d5f3c469f54103fd095c09
+      internalID: 1774573650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_18
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 281
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e5300488ee6f24a93269032b73f8a0
+      internalID: 802846220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_19
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 276
+        width: 480
+        height: 281
+      alignment: 9
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f48c3fafe9016b34e87378ae6c21925b
+      internalID: 347035469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cooked Burger Flipped_20
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 480
-        height: 270
+        height: 281
       alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.4894043, y: 0.2984046}
+      border: {x: 155, y: 16, z: 164, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a48ba101231ac54abc8de43f3603ae6
-      internalID: 730835828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_13
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 480
-        height: 270
-      alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7abc9b93ba5870b42a81967d161f0e7d
-      internalID: 1345650027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 0
-        width: 480
-        height: 270
-      alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2de61d1dd9cfb443bf80002f2f05356
-      internalID: 1682132463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cooked Burger Flipped - Sprite Sheet_15
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 480
-        height: 270
-      alignment: 9
-      pivot: {x: 0.4894043, y: 0.3571807}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2d15e4562cbc494aae05f5c7720d9d0
-      internalID: 1600423076
+      spriteID: 97491db48b3f60845afd84d5d7cdd554
+      internalID: -1419401775
       vertices: []
       indices: 
       edges: []
@@ -478,7 +588,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0b6af40cbf4e35f47b7feef758ca82f4
+    spriteID: 1ad8db1d8c61687418980fdd1f4ba31d
     internalID: 0
     vertices: []
     indices: 
@@ -488,22 +598,27 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cooked Burger Flipped - Sprite Sheet_0: 387545920
-      Cooked Burger Flipped - Sprite Sheet_1: -1392364993
-      Cooked Burger Flipped - Sprite Sheet_10: 42725580
-      Cooked Burger Flipped - Sprite Sheet_11: 987969669
-      Cooked Burger Flipped - Sprite Sheet_12: 730835828
-      Cooked Burger Flipped - Sprite Sheet_13: 1345650027
-      Cooked Burger Flipped - Sprite Sheet_14: 1682132463
-      Cooked Burger Flipped - Sprite Sheet_15: 1600423076
-      Cooked Burger Flipped - Sprite Sheet_2: -2032158281
-      Cooked Burger Flipped - Sprite Sheet_3: -211260854
-      Cooked Burger Flipped - Sprite Sheet_4: 1562412423
-      Cooked Burger Flipped - Sprite Sheet_5: 1165671423
-      Cooked Burger Flipped - Sprite Sheet_6: -516111202
-      Cooked Burger Flipped - Sprite Sheet_7: -1072848459
-      Cooked Burger Flipped - Sprite Sheet_8: -867109357
-      Cooked Burger Flipped - Sprite Sheet_9: 1735422471
+      Cooked Burger Flipped_0: 1712857064
+      Cooked Burger Flipped_1: 708621325
+      Cooked Burger Flipped_10: -1515870504
+      Cooked Burger Flipped_11: -701215527
+      Cooked Burger Flipped_12: -1284616566
+      Cooked Burger Flipped_13: -1036216855
+      Cooked Burger Flipped_14: -550526074
+      Cooked Burger Flipped_15: 1145569872
+      Cooked Burger Flipped_16: -284370605
+      Cooked Burger Flipped_17: 1774573650
+      Cooked Burger Flipped_18: 802846220
+      Cooked Burger Flipped_19: 347035469
+      Cooked Burger Flipped_2: 599858368
+      Cooked Burger Flipped_20: -1419401775
+      Cooked Burger Flipped_3: -49750934
+      Cooked Burger Flipped_4: 1307620819
+      Cooked Burger Flipped_5: 641158613
+      Cooked Burger Flipped_6: -837037033
+      Cooked Burger Flipped_7: -2006028964
+      Cooked Burger Flipped_8: 388822809
+      Cooked Burger Flipped_9: -1094335269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
