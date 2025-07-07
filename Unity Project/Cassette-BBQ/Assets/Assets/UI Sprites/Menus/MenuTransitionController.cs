@@ -21,7 +21,6 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] CanvasGroup _grill_Group;
     [SerializeField] CanvasGroup _meat_Table_Group;
 
-
     private void OnEnable()
     {
         TransitionEvents.CassetteSelected += StartTransition;

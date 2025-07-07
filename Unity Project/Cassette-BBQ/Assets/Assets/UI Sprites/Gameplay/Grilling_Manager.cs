@@ -1,7 +1,10 @@
 using DG.Tweening;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
 public class Grilling_Manager : MonoBehaviour
@@ -9,14 +12,16 @@ public class Grilling_Manager : MonoBehaviour
     #region Events/Actions
     private void OnEnable()
     {
-        GrillingEvents.OnGrillItemDestroyed += ChangeGrillItemCount;
+        GrillingEvents.OnGrillItemDestroyed += RemoveItemFromGrid;
         GrillingEvents.OnBurgerAdded += AddBurgerToGrill;
+        GrillingEvents.OnSausageAdded += AddSausageToGrill;
     }
 
     private void OnDisable()
     {
-        GrillingEvents.OnGrillItemDestroyed -= ChangeGrillItemCount;
+        GrillingEvents.OnGrillItemDestroyed -= RemoveItemFromGrid;
         GrillingEvents.OnBurgerAdded -= AddBurgerToGrill;
+        GrillingEvents.OnSausageAdded -= AddSausageToGrill;
     }
     #endregion
 
@@ -28,11 +33,32 @@ public class Grilling_Manager : MonoBehaviour
     [SerializeField] GridLayoutGroup _grillGridGroup;
 
     [SerializeField] GameObject _burgerPrefab;
-    //[SerializeField] GameObject _saussagePrefab;
+    [SerializeField] GameObject _sausagePrefab;
 
-    [SerializeField] int _maxItemsOnGrill = 4;
-    [SerializeField] int _currentItemsOnGrill = 0;
+    [Space, Header("Grill Grid")]
+    // All positions for the grill grid items to be placed in are shifted
+    // between empty and full lists based on the grilling state.
+    [SerializeField] List<Grill_Position> _GrillPositions;
+    [SerializeField] int _numOfGrillPositions = 4; // Number of grill positions available.
 
+    private void Start()
+    {
+        for(int i = 0; i < _numOfGrillPositions; i++)
+        {
+            // Create an empty with a rect transform component (for UI integration),
+            // Then ensure it has a Grill_Position script component attached.
+            Grill_Position newGrillPosition_Instance = 
+                new GameObject
+                (
+                    $"Grill_Position{i}", 
+                    typeof(RectTransform)
+                )
+                .AddComponent<Grill_Position>();
+
+            newGrillPosition_Instance.transform.SetParent(_grillGridGroup.transform, false);
+            _GrillPositions.Add(newGrillPosition_Instance);
+        }
+    }
 
     public void SwitchStation()
     {
@@ -110,33 +136,82 @@ public class Grilling_Manager : MonoBehaviour
 
     private void AddBurgerToGrill()
     {
-        if (_currentItemsOnGrill < _maxItemsOnGrill)
+        List<Grill_Position> _emptyGrillPositions = new List<Grill_Position>();
+
+        foreach (Grill_Position position in _GrillPositions)
         {
-            ChangeGrillItemCount();
-            Instantiate(_burgerPrefab, _grillGridGroup.transform, false);
+            if (!position.IsFilled)
+            {
+                _emptyGrillPositions.Add(position);
+            }
         }
-        else
+
+        if (_emptyGrillPositions.Count > 0)
         {
-            Debug.Log
+            // Get random empty grill position.
+            Grill_Position chosenPosition = _emptyGrillPositions[Random.Range(0, _emptyGrillPositions.Count)];
+
+            // Create a burger instance at the chosen position.
+            GameObject burgerInstance =
+            Instantiate
                 (
-                    $"No more room on grill..." +
-                    $"\nMaximum items on grill: {_maxItemsOnGrill}" +
-                    $"\nCurrent items on grill: {_currentItemsOnGrill}"
+                    _burgerPrefab,
+                    chosenPosition.transform,
+                    false
                 );
+
+            // Give the Grill_Position class a reference to the new object.
+            // (This sets the position to "Filled" in its class)
+            chosenPosition.SetGrillItem(burgerInstance);
         }
     }
 
-
-    private void ChangeGrillItemCount(bool isIncrease = true)
+    private void AddSausageToGrill()
     {
-        if (isIncrease)
+        List<Grill_Position> _emptyGrillPositions = new List<Grill_Position>();
+
+        foreach (Grill_Position position in _GrillPositions)
         {
-            _currentItemsOnGrill += 1;
+            if (!position.IsFilled)
+            {
+                _emptyGrillPositions.Add(position);
+            }
         }
-        else
+
+        if (_emptyGrillPositions.Count > 0)
         {
-            _currentItemsOnGrill -= 1;
+            // Get random empty grill position.
+            Grill_Position chosenPosition = _emptyGrillPositions[Random.Range(0, _emptyGrillPositions.Count)];
+
+            // Create a burger instance at the chosen position.
+            GameObject sausageInstance =
+            Instantiate
+                (
+                    _sausagePrefab,
+                    chosenPosition.transform,
+                    false
+                );
+
+            // Give the Grill_Position class a reference to the new object.
+            // (This sets the position to "Filled" in its class)
+            chosenPosition.SetGrillItem(sausageInstance);
         }
+    }
+
+    private void RemoveItemFromGrid(GameObject itemToBeRemoved)
+    {
+        foreach (Grill_Position position in _GrillPositions)
+        {
+            if (position.ThisGrillItem == itemToBeRemoved)
+            {
+                // Clear the reference in the Grill_Position.
+                // (Sets the position to empty if null is given)
+                position.SetGrillItem(null);
+                break; // Exit early if found.
+            }
+        }
+
+        Destroy(itemToBeRemoved);
     }
 
 
@@ -171,11 +246,11 @@ public class Grilling_Manager : MonoBehaviour
 public static class GrillingEvents
 {
     #region Burgers
-    public static event Action<bool> OnGrillItemDestroyed;
+    public static event Action<GameObject> OnGrillItemDestroyed;
 
-    public static void GrillItemDestroyed()
+    public static void DestroyGrill_Obj(GameObject itemToBeRemoved)
     {
-        OnGrillItemDestroyed?.Invoke(false); // Lower the grill item count.
+        OnGrillItemDestroyed?.Invoke(itemToBeRemoved); // Lower the grill item count.
     }
 
     public static event Action OnBurgerAdded;
@@ -183,6 +258,13 @@ public static class GrillingEvents
     public static void AddRawBurger_ToGrill()
     {
         OnBurgerAdded?.Invoke(); // Add burger to grill
+    }
+
+    public static event Action OnSausageAdded;
+
+    public static void AddRawSausage_ToGrill()
+    {
+        OnSausageAdded?.Invoke(); // Add sausage to grill
     }
     #endregion
 }

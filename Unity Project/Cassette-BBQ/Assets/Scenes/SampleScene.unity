@@ -155,9 +155,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 364.80005, y: 129.59998}
   m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.69, y: 0.62}
 --- !u!114 &105578403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 105578404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 105578406}
+        m_TargetAssemblyTypeName: Raw_Sausages__Button, Assembly-CSharp
+        m_MethodName: SelectRawSausage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &105578404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,9 +309,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128290255}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!224 &135757662 stripped
 RectTransform:
@@ -666,7 +678,7 @@ MonoBehaviour:
   m_RefResolutionY: 240
   m_CropFrame: 4
   m_GridSnapping: 1
-  m_FilterMode: 0
+  m_FilterMode: 1
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -717,9 +729,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336802794}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &361022011
 GameObject:
@@ -1481,8 +1493,9 @@ MonoBehaviour:
   _meatTablePanel: {fileID: 336802794}
   _grillGridGroup: {fileID: 1960187818}
   _burgerPrefab: {fileID: 1884337983823714203, guid: 9f8626e377bd07c4ca3069dddb953310, type: 3}
-  _maxItemsOnGrill: 4
-  _currentItemsOnGrill: 0
+  _sausagePrefab: {fileID: 31344238218527395, guid: 75607474c820cb3469f137444f98b25c, type: 3}
+  _GrillPositions: []
+  _numOfGrillPositions: 4
 --- !u!1 &924030239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1749,7 @@ GameObject:
   - component: {fileID: 1439316342}
   - component: {fileID: 1439316345}
   - component: {fileID: 1439316344}
-  - component: {fileID: 1439316343}
+  - component: {fileID: 1439316346}
   m_Layer: 5
   m_Name: Grill
   m_TagString: Untagged
@@ -1764,28 +1777,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1439316343
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439316341}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2505c15b2b17bd540bc0e991ce85607f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1439316344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,7 +1797,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1011604205, guid: 0d23b6d14ff29f447a84d66f6f938768, type: 3}
+  m_Sprite: {fileID: -1306487027, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1824,6 +1815,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439316341}
   m_CullTransparentMesh: 1
+--- !u!114 &1439316346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439316341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268ef339bc9fd024b87c62a146ba97cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grillAnimSprites:
+  - {fileID: -1306487027, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
+  - {fileID: -312834118, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
+  - {fileID: 25131135, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
+  - {fileID: 479601382, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
+  - {fileID: 271660978, guid: 5c9a61732545f2d4fbadf5c4a07623a1, type: 3}
+  _spriteImage: {fileID: 1439316344}
+  _animationSpeed: 1.5
 --- !u!1 &1501048557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1904,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 1231802825, guid: dc96c8a7f67dabd4b9c3c01b635c51f5, type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 1231802825, guid: dc96c8a7f67dabd4b9c3c01b635c51f5, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -2363,9 +2374,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720032681}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1790490536
 GameObject:
@@ -2592,7 +2603,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960187816}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2601,7 +2612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.130066, y: -72}
+  m_AnchoredPosition: {x: 247, y: 58}
   m_SizeDelta: {x: -762.3002, y: -369.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960187818

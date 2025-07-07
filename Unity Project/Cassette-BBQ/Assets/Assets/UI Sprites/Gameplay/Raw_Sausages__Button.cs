@@ -1,11 +1,14 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Raw_Sausages__Button : MonoBehaviour
 {
     public void SelectRawSausage()
     {
         DoSelectionAnim();
+
+        GrillingEvents.AddRawSausage_ToGrill();
     }
 
     private void DoSelectionAnim()
@@ -24,5 +27,9 @@ public class Raw_Sausages__Button : MonoBehaviour
                         0.10f
                     )
             );
+
+        // Reset the selected sprite to nothing so the event system doesn't get
+        // confused and stop the button from being re-highlighted.
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

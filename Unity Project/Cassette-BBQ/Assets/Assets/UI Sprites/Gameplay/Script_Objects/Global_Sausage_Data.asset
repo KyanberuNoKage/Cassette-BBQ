@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877711cadfe2cfc419508fda8b1f9332, type: 3}
+  m_Name: Global_Sausage_Data
+  m_EditorClassIdentifier: 
+  _SausageCookTimeMin: 3
+  _SausageCookTimeMax: 5
+  _SausageBurnTimeMin: 7
+  _SausageBurnTimeMax: 8
+  _SausageFlipTime: 2
+  _rawSausageSprite: {fileID: 21300000, guid: 79088b3d48ebec048a90b0cc1f8e5aca, type: 3}
+  _cookedSausageSpriteOne: {fileID: 21300000, guid: 2eb3cd715db0d5c46975377ac160691c, type: 3}
+  _cookedSausageSpriteTwo: {fileID: 21300000, guid: 02e6025c762897a4d8a7c3141c712e4e, type: 3}
+  _burntSausageSprite: {fileID: 21300000, guid: 7d4a3c138da58f646a04bb981f32f20d, type: 3}
+  _oilSplashPrefab: {fileID: 594623951183036546, guid: 21a3241799f4b064585f0d76e7acd0e0, type: 3}
+  _flipSmokePrefab: {fileID: 7215438668708269713, guid: a4796331a18b79145a98ffed743b8eec, type: 3}
+  _finishedSparklePrefab: {fileID: 707306199778591199, guid: c105dc4e21c726a4193a645728045dfe, type: 3}
+  _oilOffFrame: {fileID: -1123677953, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  _oilOnFrame: {fileID: 1079561557, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  _SausageFlipSprites:
+  - {fileID: -38370958, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: 1630925115, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: 167396969, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -209152479, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -2047606539, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -328952792, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1369069232, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: 2005249391, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -52528489, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1123677953, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1699299238, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -2009897331, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1106092243, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1514989781, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: 1079561557, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  - {fileID: -1420588072, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  _timeBetweenFrames: 0.05

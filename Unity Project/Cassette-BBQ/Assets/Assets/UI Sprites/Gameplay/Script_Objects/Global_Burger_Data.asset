@@ -23,6 +23,8 @@ MonoBehaviour:
   _oilSplashPrefab: {fileID: 7482198614250433098, guid: 6e5f7a05a67df7749b6e74d8b50909e9, type: 3}
   _flipSmokePrefab: {fileID: 7215438668708269713, guid: a4796331a18b79145a98ffed743b8eec, type: 3}
   _finishedSparklePrefab: {fileID: 707306199778591199, guid: c105dc4e21c726a4193a645728045dfe, type: 3}
+  _oilOffFrame: {fileID: -2006028964, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
+  _oilOnFrame: {fileID: 1145569872, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
   _burgerFlipSprites:
   - {fileID: 1712857064, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
   - {fileID: 708621325, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
@@ -45,4 +47,4 @@ MonoBehaviour:
   - {fileID: 802846220, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
   - {fileID: 347035469, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
   - {fileID: -1419401775, guid: eacdb933b65a3294296160ad6823e3ca, type: 3}
-  _timeBetweenFrames: 0.1
+  _timeBetweenFrames: 0.05

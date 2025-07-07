@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,9 @@ public class Burger_Obj : MonoBehaviour
     private GameObject _oilSplash_Obj;
     private GameObject _smokeEffect_Obj;
     private GameObject _sparkleEffect_Obj;
+
+    Sprite oilOffSprite;
+    Sprite oilOnSprite;
 
     private void Start()
     {
@@ -53,6 +57,9 @@ public class Burger_Obj : MonoBehaviour
         // Ensure burger image is raw to begin with.
         _burgerImage.sprite = _globalBurgerData.RawBurgerSprite;
 
+        oilOffSprite = _globalBurgerData.OilOffFrame;
+        oilOnSprite = _globalBurgerData.OilOnFrame;
+
         // Get randomized cook and burn times for this burger with ScriptableObject data.
         _burgerCookTime = _globalBurgerData.GetRandomCookTime();
         _burgerBurnTime = _globalBurgerData.GetRandomBurnTime();
@@ -79,16 +86,14 @@ public class Burger_Obj : MonoBehaviour
         {
             Debug.Log("Burger has been collected!");
             StopAllCoroutines();
-            GrillingEvents.GrillItemDestroyed(); // Notify that there is one less item on grill.
-            Destroy(this.gameObject);
+            GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
             return;
         }
         else if (_isBurnt)
         {
             Debug.Log("Burger has been thrown away!");
             StopAllCoroutines();
-            GrillingEvents.GrillItemDestroyed();
-            Destroy(this.gameObject);
+            GrillingEvents.DestroyGrill_Obj(this.gameObject);
             return;
         }
 
@@ -183,8 +188,18 @@ public class Burger_Obj : MonoBehaviour
 
     private IEnumerator FlipBurgerAnimation()
     {
-        foreach(Sprite flipAnimFrame in _globalBurgerData.BurgerFlipSprites)
+
+        foreach (Sprite flipAnimFrame in _globalBurgerData.BurgerFlipSprites)
         {
+            // Signal to hide and show oil based on given frames.
+            if (flipAnimFrame == oilOffSprite)
+                FadeInOil(false);
+
+
+            else if (flipAnimFrame == oilOnSprite)
+                FadeInOil(true);
+
+
             _burgerImage.sprite = flipAnimFrame;
             yield return new WaitForSeconds(_globalBurgerData.TimeBetweenFrames);
         }
@@ -193,5 +208,17 @@ public class Burger_Obj : MonoBehaviour
         _burgerImage.sprite = _globalBurgerData.CookedBurgerSprite;
 
         yield return null;
+    }
+
+    private void FadeInOil(bool fadeIn = true)
+    {
+        if (fadeIn)
+        {
+            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(1f, 0.03f);
+        }
+        else 
+        {
+            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(0f, 0.20f);
+        }
     }
 }

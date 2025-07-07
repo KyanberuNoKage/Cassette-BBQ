@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1884337983823714203
+--- !u!1 &31344238218527395
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8671097807332532765}
-  - component: {fileID: 300195158909445305}
+  - component: {fileID: 470328490114856082}
+  - component: {fileID: 8053563525829133914}
   m_Layer: 5
-  m_Name: Burger_Prefab
+  m_Name: Sausage_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8671097807332532765
+--- !u!224 &470328490114856082
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884337983823714203}
+  m_GameObject: {fileID: 31344238218527395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8414378915389501447}
+  - {fileID: 6036172932327777081}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 48.666687, y: 14.333313}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &300195158909445305
+--- !u!114 &8053563525829133914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884337983823714203}
+  m_GameObject: {fileID: 31344238218527395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a976a5213943df4f9288e11caa9c3e5, type: 3}
+  m_Script: {fileID: 11500000, guid: ea15235d4a10b864f98956aad2c5cd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _globalBurgerData: {fileID: 11400000, guid: 592feb4861711f749a9fa866a77974c4, type: 2}
-  _burgerImage: {fileID: 3059343580019160647}
-  _burgerButton: {fileID: 7907373907662409160}
-  _thisBurgerTransform: {fileID: 8671097807332532765}
---- !u!1 &5005797771516576181
+  _globalSausageData: {fileID: 11400000, guid: a13f78e284dd78347aeed876a2818c88, type: 2}
+  _sausageImage: {fileID: 5404714737296880985}
+  _sausageButton: {fileID: 4364643372824977090}
+  _thisSausageTransform: {fileID: 470328490114856082}
+--- !u!1 &6677534658718453575
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,51 +61,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8414378915389501447}
-  - component: {fileID: 6195691822633884225}
-  - component: {fileID: 3059343580019160647}
-  - component: {fileID: 7907373907662409160}
+  - component: {fileID: 6036172932327777081}
+  - component: {fileID: 929857414154050888}
+  - component: {fileID: 5404714737296880985}
+  - component: {fileID: 4364643372824977090}
   m_Layer: 5
-  m_Name: Burger
+  m_Name: Sausage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8414378915389501447
+--- !u!224 &6036172932327777081
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005797771516576181}
+  m_GameObject: {fileID: 6677534658718453575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8671097807332532765}
+  m_Father: {fileID: 470328490114856082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 87}
-  m_SizeDelta: {x: 469.27, y: 497.5}
+  m_AnchoredPosition: {x: -40.5, y: 94.7}
+  m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6195691822633884225
+--- !u!222 &929857414154050888
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005797771516576181}
+  m_GameObject: {fileID: 6677534658718453575}
   m_CullTransparentMesh: 1
---- !u!114 &3059343580019160647
+--- !u!114 &5404714737296880985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005797771516576181}
+  m_GameObject: {fileID: 6677534658718453575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -114,13 +114,13 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 235}
+  m_RaycastPadding: {x: 281.02, y: 95.79, z: 296, w: 339.01}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad13751569936fc44a5f20269f0896b9, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 79088b3d48ebec048a90b0cc1f8e5aca, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -129,13 +129,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7907373907662409160
+--- !u!114 &4364643372824977090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005797771516576181}
+  m_GameObject: {fileID: 6677534658718453575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -169,13 +169,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3059343580019160647}
+  m_TargetGraphic: {fileID: 5404714737296880985}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 300195158909445305}
-        m_TargetAssemblyTypeName: Burger_Obj, Assembly-CSharp
-        m_MethodName: FlipBurger
+      - m_Target: {fileID: 8053563525829133914}
+        m_TargetAssemblyTypeName: Sausage_Obj, Assembly-CSharp
+        m_MethodName: FlipSausage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
