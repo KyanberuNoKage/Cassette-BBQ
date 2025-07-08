@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -233,11 +232,6 @@ public class Grilling_Manager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D) && _isGrillingActive)
         {
             Debug.Log("Can't move further right!");
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            AddBurgerToGrill();
         }
     }
 }
