@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -138,8 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f870072d38ffad41b51de5902ed0e1c
-      internalID: -1661116368
+      spriteID: 1934011d790943d4aa2f8e8bceea3d41
+      internalID: -1995658588
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80db569c37dbf304791b2f5da9fa3eaa
-      internalID: 471191602
+      spriteID: 1f0770ca235b8524aa9568786bb86431
+      internalID: 1445219
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3bb2a14017c9c1c4a9f85d3e6efe8579
+    spriteID: 30bc026dab5b44a429a87a92bda3ef4b
     internalID: 0
     vertices: []
     indices: 
@@ -180,8 +180,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Orders_UICard_0: -1661116368
-      Orders_UICard_1: 471191602
+      Orders_UICard_0: -1995658588
+      Orders_UICard_1: 1445219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
