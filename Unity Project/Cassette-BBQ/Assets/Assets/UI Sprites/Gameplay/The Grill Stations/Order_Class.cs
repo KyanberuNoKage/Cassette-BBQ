@@ -18,6 +18,9 @@ public class Order_Class : MonoBehaviour
     [Space, Header("Sprites")]
     [SerializeField] GameObject _burgerSprite_Prefab;
     [SerializeField] GameObject _sausageSprite_Prefab;
+
+    private float _spawnTime;
+    private float _fulfillTime;
     #endregion
 
     #region UI
@@ -55,6 +58,8 @@ public class Order_Class : MonoBehaviour
         }
 
         UpdateUI();
+
+        _spawnTime = Time.time;
     }
 
     private void OnValidate()
@@ -76,6 +81,9 @@ public class Order_Class : MonoBehaviour
             // Prevent accidental object deletion in editor
             if (Application.isPlaying)
             {
+                _fulfillTime = Time.time;
+                float elapsed = _fulfillTime - _spawnTime;
+                ScoreEvents.IncreaseScore(elapsed);
                 RemoveOrder();
             }
         }
