@@ -78,14 +78,13 @@ public class Burger_Obj : MonoBehaviour
 
     public void FlipBurger()
     {
-        Debug.Log("BUTTON WORKS!!!");
-
         // Currently both burning and finishing the burgers will do almost
         // the same thing, until the score system is built.
         if (_isFinished)
         {
             Debug.Log("Burger has been collected!");
             StopAllCoroutines();
+            OrderEvents.FillOrder(true); // Notify that a burger has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
             return;
         }

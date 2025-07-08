@@ -245,7 +245,6 @@ public class Grilling_Manager : MonoBehaviour
 
 public static class GrillingEvents
 {
-    #region Burgers
     public static event Action<GameObject> OnGrillItemDestroyed;
 
     public static void DestroyGrill_Obj(GameObject itemToBeRemoved)
@@ -266,5 +265,4 @@ public static class GrillingEvents
     {
         OnSausageAdded?.Invoke(); // Add sausage to grill
     }
-    #endregion
 }

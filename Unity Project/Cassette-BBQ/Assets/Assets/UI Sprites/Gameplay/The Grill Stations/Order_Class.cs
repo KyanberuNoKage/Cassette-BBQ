@@ -8,7 +8,7 @@ public class Order_Class : MonoBehaviour
     #region Data
     // if not a burger, then its a sausage.
     [SerializeField, Header("Data")] 
-    private bool _isBurger;
+    private bool _isBurger; public bool IsBurger => _isBurger;
 
     // How many of the item are needed.
     [SerializeField] private int _orderSize = 1;
@@ -26,7 +26,7 @@ public class Order_Class : MonoBehaviour
     [SerializeField] Image _filledOrderSprite;
     #endregion
 
-    Order_Class(bool isBurger = true, int orderSize = 1)
+    public void Set_OrderClass_Data(bool isBurger = true, int orderSize = 1)
     {
         _isBurger = isBurger;
         _orderSize = orderSize;
@@ -57,42 +57,82 @@ public class Order_Class : MonoBehaviour
         UpdateUI();
     }
 
-    private void Update()
+    private void OnValidate()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            _currentOrderSizeFuffilled++;
-
-            UpdateUI();
-        }
+        UpdateUI();
     }
 
     private void UpdateUI()
     {
-        // update text to show current score.
+        // Update text to show how many items are left
         if (_currentOrderSizeFuffilled < _orderSize)
         {
-            // Update the UI to show how many items are left to fulfill the order.
             _OrderSize_UI.text = $"{_orderSize - _currentOrderSizeFuffilled}";
         }
-        else if(_currentOrderSizeFuffilled >= _orderSize)
+        else if (_currentOrderSizeFuffilled >= _orderSize)
         {
             Debug.LogWarning("Order Fulfilled, Destroying Order Card");
-            Destroy(gameObject);
+
+            // Prevent accidental object deletion in editor
+            if (Application.isPlaying)
+            {
+                RemoveOrder();
+            }
         }
 
-        // Update Orders fill amount.
         float fillAmount = CalculateOrderFillAmount();
 
-        _filledOrderSprite.DOFillAmount(fillAmount, 0.25f)
-            .OnComplete(() => 
-            {
-                _filledOrderSprite.fillAmount = fillAmount;
-            });
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            // Direct assignment in Editor mode
+            _filledOrderSprite.fillAmount = fillAmount;
+            UnityEditor.EditorUtility.SetDirty(_filledOrderSprite);
+        }
+        else
+#endif
+        {
+            // Tweening only at runtime
+            _filledOrderSprite.DOFillAmount(fillAmount, 0.25f)
+                .OnComplete(() =>
+                {
+                    _filledOrderSprite.fillAmount = fillAmount;
+                });
+        }
+    }
+
+    private void RemoveOrder()
+    {
+        Sequence removalSequence = DOTween.Sequence();
+
+        removalSequence.Append
+            (
+                gameObject.transform.DOScale(1.1f, 0.05f)
+            );
+
+        removalSequence.Append
+            (
+                gameObject.transform.DOScale(0f, 0.1f)
+            );
+
+        removalSequence.Play().OnComplete
+            (
+                () =>
+                {
+                    OrderEvents.RemoveOrderFromList(gameObject);
+                }
+            );
     }
 
     private float CalculateOrderFillAmount()
     {
         return (float)_currentOrderSizeFuffilled / _orderSize;
+    }
+
+    public void AddToFilledOrder_Count()
+    {
+        _currentOrderSizeFuffilled++;
+        
+        UpdateUI();
     }
 }

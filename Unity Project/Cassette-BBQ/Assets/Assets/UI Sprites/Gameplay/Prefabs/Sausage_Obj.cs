@@ -84,6 +84,7 @@ public class Sausage_Obj : MonoBehaviour
         {
             Debug.Log("Sausage has been collected!");
             StopAllCoroutines();
+            OrderEvents.FillOrder(false); // Notify that a Sausage has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
             return;
         }
