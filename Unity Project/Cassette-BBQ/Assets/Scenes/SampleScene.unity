@@ -1531,6 +1531,52 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!1 &654023903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654023904}
+  - component: {fileID: 654023905}
+  m_Layer: 0
+  m_Name: Screen_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &654023904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654023903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654023905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654023903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4127e6fbbb624c875bff79233ee29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grillManager: {fileID: 877237011}
+  _oneHandedMode: 0
 --- !u!1 &776429516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,10 +1823,10 @@ MonoBehaviour:
   _orderHolder_GridComponent: {fileID: 1960187818}
   _areOrdersActive: 1
   _maxorder_SpawnTime: 9
-  _minOrder_SpawnTime: 3
+  _minOrder_SpawnTime: 2
   _maxNumOfItems: 2
   _minNumOfItems: 1
-  _maxNumOfOrders: 5
+  _maxNumOfOrders: 4
 --- !u!1 &877237009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,8 +2088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd9e9f9f6fa9ca4594c9f03149842bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreClimbSpeed: 0.001
+  baseScore: 1000
+  _foodWastePenalty: 100
+  _foodWasteCount: 0
   _scoreText: {fileID: 587998738}
+  _scoreClimbSpeed: 0.001
 --- !u!1001 &1398311265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3554,3 +3603,4 @@ SceneRoots:
   - {fileID: 877237010}
   - {fileID: 875495655}
   - {fileID: 1298163861}
+  - {fileID: 654023904}

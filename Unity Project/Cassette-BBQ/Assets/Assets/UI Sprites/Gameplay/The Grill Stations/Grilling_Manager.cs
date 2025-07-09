@@ -24,10 +24,12 @@ public class Grilling_Manager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] GameObject _grillPanel;
-    [SerializeField] GameObject _meatTablePanel;
+    [SerializeField] GameObject _grillPanel; public GameObject GrillPanel => _grillPanel;
+    [SerializeField] GameObject _meatTablePanel; public GameObject MeatTablePanel => _meatTablePanel;
 
-    private bool _isGrillingActive = true; // Player starts on grill panel.
+    // Player starts on grill panel.
+    public bool _isGrillingActive { get; private set; } = true; 
+    public void SetGrillingActive(bool isGrillStationActive) { _isGrillingActive = isGrillStationActive; }
 
     [SerializeField] GridLayoutGroup _grillGridGroup;
 
@@ -56,80 +58,6 @@ public class Grilling_Manager : MonoBehaviour
 
             newGrillPosition_Instance.transform.SetParent(_grillGridGroup.transform, false);
             _GrillPositions.Add(newGrillPosition_Instance);
-        }
-    }
-
-    public void SwitchStation()
-    {
-        if (_isGrillingActive)
-        {
-            Sequence moveSequence = DOTween.Sequence();
-
-            moveSequence.Append
-                (
-                    _grillPanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        2025f,
-                        0.15f
-                    )
-                );
-            moveSequence.Join
-                (
-                    _meatTablePanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        150f,
-                        0.15f
-                    )
-                );
-            moveSequence.Append
-                (
-                    _meatTablePanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        0f,
-                        0.15f
-                    )
-                );
-
-            moveSequence.Play();
-
-            _isGrillingActive = false;
-            return;
-        }
-        else
-        {
-            Sequence moveSequence = DOTween.Sequence();
-
-            moveSequence.Append
-                (
-                    _grillPanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        -110f,
-                        0.15f
-                    )
-                );
-
-            moveSequence.Join
-                (
-                    _meatTablePanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        -1893f,
-                        0.15f
-                    )
-                );
-
-            moveSequence.Append
-                (
-                    _grillPanel.GetComponent<RectTransform>().DOAnchorPosX
-                    (
-                        0f,
-                        0.15f
-                    )
-                );
-
-            moveSequence.Play();
-
-            _isGrillingActive = true;
-            return;
         }
     }
 
@@ -211,28 +139,6 @@ public class Grilling_Manager : MonoBehaviour
         }
 
         Destroy(itemToBeRemoved);
-    }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A) && _isGrillingActive)
-        {
-            SwitchStation();
-        }
-        else if (Input.GetKeyDown(KeyCode.A) && !_isGrillingActive)
-        {
-            Debug.Log("Can't move further left!");
-        }
-
-        if (Input.GetKeyDown(KeyCode.D) && !_isGrillingActive)
-        {
-            SwitchStation();
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && _isGrillingActive)
-        {
-            Debug.Log("Can't move further right!");
-        }
     }
 }
 
