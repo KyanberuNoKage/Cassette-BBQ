@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Order_Manager : MonoBehaviour
 {
@@ -56,19 +57,25 @@ public class Order_Manager : MonoBehaviour
         if (ListOfOrders.Count <= 0)
         {
             Debug.Log("No Orders To Fill, Deducting Points For Food Waste");
-            /**
-             * NEEDS TO BE IMPLIMENTED WHEN SCORE SYSTEM IS UP AND RUNNING.
-             * **/
+            ScoreEvents.ItemWaste_DecreaseScore();
         }
         else
         {
+            bool orderFound = false;
+
             foreach (Order_Class order in ListOfOrders)
             {
                 if (order.IsBurger == IsBurger) // If the order item type matches that of the item.
                 {
                     order.AddToFilledOrder_Count(); // Fulfill an item on the order.
+                    orderFound = true;
                     break;
                 }
+            }
+
+            if (!orderFound)
+            {
+                ScoreEvents.ItemWaste_DecreaseScore();
             }
         }
     }
@@ -134,6 +141,10 @@ public class Order_Manager : MonoBehaviour
                 );
 
             StartCoroutine(Start_RandomOrders()); // Repeat the process.
+        }
+        else if (_areOrdersActive && ListOfOrders.Count >= _maxNumOfOrders)
+        {
+            yield return new WaitForSeconds(Random.Range(1, 6));
         }
     }
 

@@ -80,19 +80,21 @@ public class Sausage_Obj : MonoBehaviour
     {
         // Currently both burning and finishing the Sausages will do almost
         // the same thing, until the score system is built.
+        if (_isBurnt)
+        {
+            Debug.Log("Sausage has been thrown away!");
+            StopAllCoroutines();
+            ScoreEvents.ItemWaste_DecreaseScore();
+            GrillingEvents.DestroyGrill_Obj(this.gameObject);
+            return;
+        }
+        else
         if (_isFinished)
         {
             Debug.Log("Sausage has been collected!");
             StopAllCoroutines();
             OrderEvents.FillOrder(false); // Notify that a Sausage has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
-            return;
-        }
-        else if (_isBurnt)
-        {
-            Debug.Log("Sausage has been thrown away!");
-            StopAllCoroutines();
-            GrillingEvents.DestroyGrill_Obj(this.gameObject);
             return;
         }
 

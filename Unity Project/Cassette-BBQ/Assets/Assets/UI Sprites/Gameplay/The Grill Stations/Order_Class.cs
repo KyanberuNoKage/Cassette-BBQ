@@ -83,7 +83,7 @@ public class Order_Class : MonoBehaviour
             {
                 _fulfillTime = Time.time;
                 float elapsed = _fulfillTime - _spawnTime;
-                ScoreEvents.IncreaseScore(elapsed);
+                ScoreEvents.IncreaseScore_Order(elapsed);
                 RemoveOrder();
             }
         }

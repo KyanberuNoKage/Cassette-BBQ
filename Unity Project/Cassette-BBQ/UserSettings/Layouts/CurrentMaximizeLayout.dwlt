@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 18405
+  controlID: 20064
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -94,7 +94,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 18406
+  controlID: 20065
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 18407
+  controlID: 20066
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 18408
+  controlID: 20067
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -270,9 +270,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dc100100
-      m_LastClickedID: 69852
-      m_ExpandedIDs: e6f8fdff8277ffff1cfbffff72a60000b0a60000d0a60000fca6000006a700000ea700003ea7000056a7000060a70000
+      m_SelectedIDs: e6100100
+      m_LastClickedID: 69862
+      m_ExpandedIDs: e6f8fdff8277ffff1cfbffff72a60000b0a60000d0a60000fca6000006a700000ea700003ea7000056a7000060a7000052100100a8100100d6100100e61001001e110100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -931,9 +931,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 65.70703, y: 55.04034, z: 124.38466}
+    m_Target: {x: -109.969666, y: 93.01928, z: 48.95182}
     speed: 2
-    m_Value: {x: 65.70703, y: 55.04034, z: 124.38466}
+    m_Value: {x: -109.969666, y: 93.01928, z: 48.95182}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -979,13 +979,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.04535078, y: -0.2461717, z: 0.011528023, w: 0.9681056}
+    m_Target: {x: 0.04673589, y: -0.049430605, z: 0.0023117897, w: 0.9976901}
     speed: 2
-    m_Value: {x: 0.045350358, y: -0.2461694, z: 0.0115279155, w: 0.9680966}
+    m_Value: {x: -0.04673589, y: 0.049430605, z: -0.0023117897, w: -0.9976901}
   m_Size:
-    m_Target: 202.95073
+    m_Target: 137.99794
     speed: 2
-    m_Value: 202.95073
+    m_Value: 137.99794
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1258,7 +1258,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets/UI Sprites/Gameplay/Score
+    - Assets/Assets/UI Sprites/Fonts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1268,15 +1268,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Assets/UI Sprites/Gameplay/Score
+  - Assets/Assets/UI Sprites/Fonts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\GitHub\Repos\Cassette-BBQ\Cassette-BBQ\Unity Project\Cassette-BBQ
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 8af50000
-    m_LastClickedID: 62858
+    m_SelectedIDs: 34ac0000
+    m_LastClickedID: 44084
     m_ExpandedIDs: 00000000a6a80000d0a80000e2a80000bcab0000beab0000c0ab0000c2ab0000c4ab0000c6ab000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1332,8 +1332,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: dc100100
-    m_LastClickedInstanceID: 69852
+    m_SelectedInstanceIDs: e6100100
+    m_LastClickedInstanceID: 69862
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000220a01000e2f0100966e0000e6700000a4760000067b00002c7200005e85000000b900000000000080a70000d8c50000b4c7000066ac000082ac000002a800002eac000030ac000034ac0000
     m_RenameOverlay:

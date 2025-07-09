@@ -80,19 +80,20 @@ public class Burger_Obj : MonoBehaviour
     {
         // Currently both burning and finishing the burgers will do almost
         // the same thing, until the score system is built.
-        if (_isFinished)
+        if (_isBurnt)
+        {
+            Debug.Log("Burger has been thrown away!");
+            StopAllCoroutines();
+            ScoreEvents.ItemWaste_DecreaseScore();
+            GrillingEvents.DestroyGrill_Obj(this.gameObject);
+            return;
+        }
+        else if (_isFinished)
         {
             Debug.Log("Burger has been collected!");
             StopAllCoroutines();
             OrderEvents.FillOrder(true); // Notify that a burger has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
-            return;
-        }
-        else if (_isBurnt)
-        {
-            Debug.Log("Burger has been thrown away!");
-            StopAllCoroutines();
-            GrillingEvents.DestroyGrill_Obj(this.gameObject);
             return;
         }
 
