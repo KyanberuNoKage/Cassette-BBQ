@@ -4412,11 +4412,11 @@ MonoBehaviour:
   _music_AudioSource: {fileID: 1465448405}
   _soundEffects_AudioSource: {fileID: 1664517101}
   _music_List:
+  - {fileID: 8300000, guid: a751963550ba8e94fb34c6b36148a272, type: 3}
   - {fileID: 8300000, guid: 09e0052bad9c33d4b915f9259ea2cbab, type: 3}
   - {fileID: 8300000, guid: 5f7eea38ba349df4b9dc202aba4470e8, type: 3}
   - {fileID: 8300000, guid: bb86e5bf93650354187dd89edc73d5f5, type: 3}
   - {fileID: 8300000, guid: 395dde7a5a6dff9449ef58c4e444d0af, type: 3}
-  - {fileID: 8300000, guid: a751963550ba8e94fb34c6b36148a272, type: 3}
   - {fileID: 8300000, guid: 14c5c815428c2dc4eb2301f572358327, type: 3}
   - {fileID: 8300000, guid: 6a13e7fa200cc8140a2dc356df074655, type: 3}
   - {fileID: 8300000, guid: 8117362a507cbda44ad43169794eb2b1, type: 3}
@@ -5394,6 +5394,7 @@ MonoBehaviour:
   _cassettes_Background_Group: {fileID: 538844247}
   _grill_Group: {fileID: 1720032683}
   _meat_Table_Group: {fileID: 336802796}
+  _scoreCounter_Group: {fileID: 980949432}
 --- !u!1 &1664517099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6087,7 +6088,7 @@ MonoBehaviour:
   _numberDysplay: {fileID: 1183145885}
   _textPrefix: $
   _textSuffix: .99
-  _soundOptionType: 0
+  _soundOptionType: 1
 --- !u!1 &1790490536
 GameObject:
   m_ObjectHideFlags: 0
@@ -6891,8 +6892,7 @@ MonoBehaviour:
   _soundEffects_Volume: 0
   _default_Music_Volume: 0.9
   _default_SoundEffects_Volume: 0.9
-  _music_AudioSource: {fileID: 0}
-  _soundEffects_AudioSource: {fileID: 0}
+  _audioManager: {fileID: 1445583164}
 --- !u!1001 &2069626358
 PrefabInstance:
   m_ObjectHideFlags: 0

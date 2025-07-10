@@ -26,6 +26,12 @@ public class OnSlider_UpdateText : MonoBehaviour
 
     private void UpdateSound_UI(float musicVolume, float soundEffectsVolume)
     {
+        if (_slider == null)
+        {
+            Debug.LogWarning("Slider not assigned.");
+            return;
+        }
+
         if (_soundOptionType == SoundOptionType.SoundEffects)
         {
             _slider.value = soundEffectsVolume;

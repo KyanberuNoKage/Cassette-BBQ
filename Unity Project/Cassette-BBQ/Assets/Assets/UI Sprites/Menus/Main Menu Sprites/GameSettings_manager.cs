@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameSettings_manager : MonoBehaviour
@@ -11,8 +12,7 @@ public class GameSettings_manager : MonoBehaviour
     [SerializeField, Range(0, 1)] private float _default_SoundEffects_Volume = 0.9f;
 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource _music_AudioSource;
-    [SerializeField] private AudioSource _soundEffects_AudioSource;
+    [SerializeField] Audio_Manager _audioManager;
 
     private void OnEnable()
     {
@@ -41,7 +41,11 @@ public class GameSettings_manager : MonoBehaviour
         _music_Volume = _default_Music_Volume; // Default music volume
         _soundEffects_Volume = _default_SoundEffects_Volume; // Default sound effects volume
 
+        _audioManager.SetMusic(_music_Volume);
+        _audioManager.SetSoundEffects(_soundEffects_Volume);
+
         GamesSettingsEvents.SoundSetup_Start(_music_Volume, _soundEffects_Volume);
+        GamesSettingsEvents.InformAudioChanged();
     }
 
     public void UpdateSoundLevels(float Volume, SoundOptionType SentFrom)
@@ -49,10 +53,14 @@ public class GameSettings_manager : MonoBehaviour
         if (SentFrom == SoundOptionType.SoundEffects)
         {
             _soundEffects_Volume = Volume;
+            _audioManager.SetSoundEffects(_soundEffects_Volume);
+            GamesSettingsEvents.InformAudioChanged();
         }
         else if (SentFrom == SoundOptionType.Music)
         {
             _music_Volume = Volume;
+            _audioManager.SetMusic(_music_Volume);
+            GamesSettingsEvents.InformAudioChanged();
         }
     }
 }
@@ -83,5 +91,12 @@ public static class  GamesSettingsEvents
     public static void SoundLevelChanged(float volume, SoundOptionType volumeFrom)
     {
         OnSoundLevelChanged?.Invoke(volume, volumeFrom);
+    }
+
+    public static event Action OnAudioChanged;
+
+    public static void InformAudioChanged()
+    {
+        OnAudioChanged?.Invoke();
     }
 }       

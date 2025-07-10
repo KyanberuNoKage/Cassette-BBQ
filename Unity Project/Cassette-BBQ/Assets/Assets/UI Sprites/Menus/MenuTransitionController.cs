@@ -31,6 +31,7 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] CanvasGroup _cassettes_Background_Group;
     [SerializeField] CanvasGroup _grill_Group;
     [SerializeField] CanvasGroup _meat_Table_Group;
+    [SerializeField] CanvasGroup _scoreCounter_Group;
 
     private void OnEnable()
     {
@@ -178,6 +179,8 @@ public class MenuTransitionController : MonoBehaviour
 
     private void StartTransition()
     {
+        AudioEvents.FadeOutMusic(); // Fade out the music before the transition.
+
         Sequence _transitionSequence = DOTween.Sequence();
         _transitionSequence.SetDelay(0.15f); // Delay before the transition starts to let the animation play.
         _transitionSequence.Append
@@ -212,9 +215,21 @@ public class MenuTransitionController : MonoBehaviour
         // above the screens that are now being activated.
         _cassettesMenu_Group.transform.SetAsLastSibling();
 
-        _menu_Holder_Group.alpha = 0;
-        _menu_Holder_Group.interactable = false;
-        _menu_Holder_Group.blocksRaycasts = false;
+        foreach (CanvasGroup group in _mainMenuGroups)
+        {
+            if (group != _cassettesMenu_Group)
+            {
+                // Disable all main menu groups.
+                group.alpha = 0;
+                group.interactable = false;
+                group.blocksRaycasts = false;
+            }
+        }
+
+        // Ensure blue cassette background is gone before fade from black.
+        _cassettes_Background_Group.alpha = 0;
+        _cassettes_Background_Group.interactable = false;
+        _cassettes_Background_Group.blocksRaycasts = false;
 
         _grill_Group.alpha = 1;
         _grill_Group.interactable = true;
@@ -224,10 +239,10 @@ public class MenuTransitionController : MonoBehaviour
         _meat_Table_Group.interactable = true;
         _meat_Table_Group.blocksRaycasts = true;
 
-        // Ensures the blue background is removed before the fade.
-        _cassettes_Background_Group.alpha = 0;
-        _cassettes_Background_Group.interactable = false;
-        _cassettes_Background_Group.blocksRaycasts = false;
+        // Score is only visible, not intractable.
+        _scoreCounter_Group.alpha = 1;
+        _scoreCounter_Group.interactable = false;
+        _scoreCounter_Group.blocksRaycasts = false;
 
         Sequence TransitionFromBlack = DOTween.Sequence();
 
@@ -235,6 +250,8 @@ public class MenuTransitionController : MonoBehaviour
         (
             _cassettesMenu_Group.DOFade(0, 3f)
         );
+
+        AudioEvents.ChangeMusic(); // Change the music and it in for the gameplay.
 
         TransitionFromBlack.Play().OnComplete
         (
