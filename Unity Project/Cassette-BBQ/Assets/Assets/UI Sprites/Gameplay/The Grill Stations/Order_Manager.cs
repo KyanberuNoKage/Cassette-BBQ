@@ -34,21 +34,23 @@ public class Order_Manager : MonoBehaviour
 
     private bool _canServeFood = true;
 
-    private void Start()
-    {
-        StartCoroutine(Start_RandomOrders());
-    }
-
     private void OnEnable()
     {
         OrderEvents.OnGrillItem_Finished += Try_FulfillOrder;
         OrderEvents.RemoveOrder += SmoothlyReOrder_OrderListGame;
+        OrderEvents.OnStartOrderSystem += StartGame;
     }
 
     private void OnDisable()
     {
         OrderEvents.OnGrillItem_Finished -= Try_FulfillOrder;
         OrderEvents.RemoveOrder -= SmoothlyReOrder_OrderListGame;
+        OrderEvents.OnStartOrderSystem -= StartGame;
+    }
+
+    private void StartGame()
+    {
+        StartCoroutine(Start_RandomOrders());
     }
 
     private void Try_FulfillOrder(bool IsBurger)
@@ -174,5 +176,12 @@ public static class OrderEvents
     public static void RemoveOrderFromList(GameObject orderToRemove)
     {
         RemoveOrder?.Invoke(orderToRemove); // Notify that an order has been removed.
+    }
+
+    public static event Action OnStartOrderSystem;
+
+    public static void StartOrderSystem()
+    {
+        OnStartOrderSystem?.Invoke();
     }
 }
