@@ -142,9 +142,19 @@ public class Order_Manager : MonoBehaviour
 
             StartCoroutine(Start_RandomOrders()); // Repeat the process.
         }
-        else if (_areOrdersActive && ListOfOrders.Count >= _maxNumOfOrders)
+        else if (ListOfOrders.Count >= _maxNumOfOrders)
         {
-            yield return new WaitForSeconds(Random.Range(1, 6));
+            _areOrdersActive = false;
+
+            while (ListOfOrders.Count >= _maxNumOfOrders)
+            {
+                Debug.Log("Max number of orders reached, waiting for orders to be fulfilled.");
+                yield return new WaitForSeconds(Random.Range(1, 6));
+            }
+
+            _areOrdersActive = true;
+
+            StartCoroutine(Start_RandomOrders()); // Restart the order spawning process.
         }
     }
 

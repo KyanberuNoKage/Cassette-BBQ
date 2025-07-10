@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2826bd2c257b9cc45b5e9f13d52e3213
+guid: 66ede325d8e659347a0097e344022492
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_0
+      name: MouseOnly_Lable_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 63
+        width: 88
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da771d02ea7d4604280967ace0ae5a4b
-      internalID: -349620501
+      spriteID: 0508306868863e6478276652418d56c0
+      internalID: -2147126063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_2
+      name: MouseOnly_Lable_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 63
+        width: 88
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -160,19 +160,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6baaa3134c613f6448a7f25d9e0eee98
-      internalID: 1667122775
+      spriteID: 26e510e8cdd40b14384a625cd206ce52
+      internalID: -330555612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_4
+      name: MouseOnly_Lable_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 63
+        width: 88
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -182,19 +182,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bfe2103bc2c3d34282e72a361aac84a
-      internalID: -787214257
+      spriteID: c8ce8d9e4d2b98f47b10b3f782631484
+      internalID: -1781788485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_6
+      name: MouseOnly_Lable_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 63
+        width: 88
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -204,19 +204,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b047b00cddd3469d42b83c91e1687
-      internalID: -929907633
+      spriteID: c227b9fae8ccf554e8c7dc50829c0f4f
+      internalID: -1890779236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_8
+      name: MouseOnly_Lable_SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63
+        width: 88
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5f4bedfd4a244440b3a7c83cb3be7a1
-      internalID: -640345211
+      spriteID: f2f50dc701cd279478ba9cca636d36b6
+      internalID: -1162116570
       vertices: []
       indices: 
       edges: []
@@ -236,7 +236,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 994fe498d6a771449bbd63022288f5ac
+    spriteID: e8d348128a4026849981102c016a3c73
     internalID: 0
     vertices: []
     indices: 
@@ -246,16 +246,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Options_Button_SpriteSheet_0: -349620501
-      Options_Button_SpriteSheet_1: 1988071959
-      Options_Button_SpriteSheet_2: 1667122775
-      Options_Button_SpriteSheet_3: 962299781
-      Options_Button_SpriteSheet_4: -787214257
-      Options_Button_SpriteSheet_5: -583623681
-      Options_Button_SpriteSheet_6: -929907633
-      Options_Button_SpriteSheet_7: 331099976
-      Options_Button_SpriteSheet_8: -640345211
-      Options_Button_SpriteSheet_9: -1616054420
+      MouseOnly_Lable_SpriteSheet_0: -2147126063
+      MouseOnly_Lable_SpriteSheet_1: -1196575914
+      MouseOnly_Lable_SpriteSheet_2: -330555612
+      MouseOnly_Lable_SpriteSheet_3: 634613177
+      MouseOnly_Lable_SpriteSheet_4: -1781788485
+      MouseOnly_Lable_SpriteSheet_5: -737427993
+      MouseOnly_Lable_SpriteSheet_6: -1890779236
+      MouseOnly_Lable_SpriteSheet_7: -1815894206
+      MouseOnly_Lable_SpriteSheet_8: -1162116570
+      MouseOnly_Lable_SpriteSheet_9: -1685474451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,6 +8,18 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] Animator _trasitionAnimator;
     [SerializeField] Camera _mainCamera;
 
+    [Space, Header("Main Menu Croups")]
+    [SerializeField] CanvasGroup _menu_Holder_Group;
+    [SerializeField] CanvasGroup _mainMenu_Group;
+    [SerializeField] CanvasGroup _optionsMenu_Group;
+    [SerializeField] CanvasGroup _leaderboardMenu_Group;
+    [SerializeField] CanvasGroup _soundOptions_CanvasGroup;
+    [SerializeField] CanvasGroup _controlsOptions_CanvasGroup;
+    [SerializeField] CanvasGroup _cassettesMenu_Group;
+
+    private CanvasGroup[] _mainMenuGroups;
+
+    [Space, Header("Cassette Transforms")]
     [SerializeField] Transform _cassette_One;
     [SerializeField] Transform _cassette_Two;
     [SerializeField] Transform _cassette_Three;
@@ -15,8 +27,7 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] Transform _cassette_Five;
     [SerializeField] Transform _cassette_Six;
 
-    [SerializeField] CanvasGroup _mainMenu_Group;
-    [SerializeField] CanvasGroup _cassettesMenu_Group;
+    [Space, Header("Game Menu Groups")]
     [SerializeField] CanvasGroup _cassettes_Background_Group;
     [SerializeField] CanvasGroup _grill_Group;
     [SerializeField] CanvasGroup _meat_Table_Group;
@@ -30,6 +41,93 @@ public class MenuTransitionController : MonoBehaviour
     {
         TransitionEvents.CassetteSelected -= StartTransition;
     }
+
+    private void Start()
+    {
+        _mainMenuGroups = new CanvasGroup[]
+        {
+            _mainMenu_Group,
+            _menu_Holder_Group,
+            _optionsMenu_Group,
+            _leaderboardMenu_Group,
+            _soundOptions_CanvasGroup,
+            _controlsOptions_CanvasGroup,
+            _cassettesMenu_Group
+        };
+    }
+
+    #region Button Connectors
+    public void MainMenu_Holder() => MoveMenuScreen(MenuScreens.MainMenu_Holder);
+    public void MainMenu() => MoveMenuScreen(MenuScreens.MainMenu);
+    public void OptionsMenu() => MoveMenuScreen(MenuScreens.OptionsMenu);
+    public void LeaderBoardMenu() => MoveMenuScreen(MenuScreens.LeaderboardMenu);
+    public void SoundOptions() => MoveMenuScreen(MenuScreens.SoundOptions);
+    public void ControlsOptions() => MoveMenuScreen(MenuScreens.ControlsOptions);
+    public void CassettesMenu() => MoveMenuScreen(MenuScreens.CassettesMenu);
+
+    public void ResetData()
+    {
+        // IMPLIMENT RESET DATA FEATURES
+        Debug.Log("Resetting game data...");
+    }
+
+    public void LeaveGame()
+    {
+        // IMPLIMENT SAVE GAME FEATURES
+        Application.Quit();
+    }
+    #endregion
+
+    private void MoveMenuScreen(MenuScreens newScreen)
+    {
+        CanvasGroup ScreenToEnable;
+
+        switch (newScreen)
+        {
+            case MenuScreens.MainMenu_Holder:
+                ScreenToEnable = _menu_Holder_Group;
+                break;
+            case MenuScreens.MainMenu:
+                ScreenToEnable = _mainMenu_Group;
+                break;
+            case MenuScreens.OptionsMenu:
+                ScreenToEnable = _optionsMenu_Group;
+                break;
+            case MenuScreens.LeaderboardMenu:
+                ScreenToEnable = _leaderboardMenu_Group;
+                break;
+            case MenuScreens.SoundOptions:
+                ScreenToEnable = _soundOptions_CanvasGroup;
+                break;
+            case MenuScreens.ControlsOptions:
+                ScreenToEnable = _controlsOptions_CanvasGroup;
+                break;
+            case MenuScreens.CassettesMenu:
+                ScreenToEnable = _cassettesMenu_Group;
+                break;
+            default:
+                Debug.LogError("Invalid screen type: " + newScreen);
+                ScreenToEnable = null;
+                break;
+        }
+
+        foreach (CanvasGroup group in _mainMenuGroups)
+        {
+            if (group == ScreenToEnable || group == _menu_Holder_Group)
+            {
+                group.alpha = 1;
+                group.interactable = true;
+                group.blocksRaycasts = true;
+            }
+            else
+            {
+                group.alpha = 0;
+                group.interactable = false;
+                group.blocksRaycasts = false;
+            }
+        }
+    }
+
 
     private void StartTransition(Cassette_Anim_Control selectedCassette)
     {
@@ -107,12 +205,6 @@ public class MenuTransitionController : MonoBehaviour
         MoveToGamePlayScreen();
     }
 
-    /**
-    [SerializeField] CanvasGroup _mainMenu_Group;
-    [SerializeField] CanvasGroup _cassettesMenu_Group;
-    [SerializeField] CanvasGroup _grill_Group;
-    [SerializeField] CanvasGroup _meat_Table_Group;
-     * **/
 
     private void MoveToGamePlayScreen()
     {
@@ -120,9 +212,9 @@ public class MenuTransitionController : MonoBehaviour
         // above the screens that are now being activated.
         _cassettesMenu_Group.transform.SetAsLastSibling();
 
-        _mainMenu_Group.alpha = 0;
-        _mainMenu_Group.interactable = false;
-        _mainMenu_Group.blocksRaycasts = false;
+        _menu_Holder_Group.alpha = 0;
+        _menu_Holder_Group.interactable = false;
+        _menu_Holder_Group.blocksRaycasts = false;
 
         _grill_Group.alpha = 1;
         _grill_Group.interactable = true;
@@ -153,6 +245,17 @@ public class MenuTransitionController : MonoBehaviour
                 _cassettesMenu_Group.blocksRaycasts = false;
             }
         );
+    }
+
+    public enum MenuScreens
+    {
+        MainMenu_Holder,
+        MainMenu,
+        OptionsMenu,
+        LeaderboardMenu,
+        SoundOptions,
+        ControlsOptions,
+        CassettesMenu
     }
 }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2826bd2c257b9cc45b5e9f13d52e3213
+guid: 82d2c4ac561cc764a8b0756284d4e3ac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_0
+      name: Music_Button_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 63
+        width: 43
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da771d02ea7d4604280967ace0ae5a4b
-      internalID: -349620501
+      spriteID: 391fe4ece42690d4693dddf1c2996bb9
+      internalID: -1458767749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_2
+      name: Music_Button_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 63
+        width: 43
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -160,19 +160,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6baaa3134c613f6448a7f25d9e0eee98
-      internalID: 1667122775
+      spriteID: 2f0626edc4971724383153488b36b53f
+      internalID: 408910417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_4
+      name: Music_Button_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 63
+        width: 43
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -182,19 +182,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bfe2103bc2c3d34282e72a361aac84a
-      internalID: -787214257
+      spriteID: 6d563b616d537474083d1da201ca0144
+      internalID: 326462936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_6
+      name: Music_Button_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 63
+        width: 43
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -204,19 +204,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b047b00cddd3469d42b83c91e1687
-      internalID: -929907633
+      spriteID: 39f23d5b9c717004f868d65daa3995f1
+      internalID: -192293185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_8
+      name: Music_Button_SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63
+        width: 43
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5f4bedfd4a244440b3a7c83cb3be7a1
-      internalID: -640345211
+      spriteID: 97548c5f6f07d6644b353b1567fac18b
+      internalID: 1319528657
       vertices: []
       indices: 
       edges: []
@@ -236,7 +236,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 994fe498d6a771449bbd63022288f5ac
+    spriteID: 502af660c52c43a439ab4cd67042d5c9
     internalID: 0
     vertices: []
     indices: 
@@ -246,16 +246,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Options_Button_SpriteSheet_0: -349620501
-      Options_Button_SpriteSheet_1: 1988071959
-      Options_Button_SpriteSheet_2: 1667122775
-      Options_Button_SpriteSheet_3: 962299781
-      Options_Button_SpriteSheet_4: -787214257
-      Options_Button_SpriteSheet_5: -583623681
-      Options_Button_SpriteSheet_6: -929907633
-      Options_Button_SpriteSheet_7: 331099976
-      Options_Button_SpriteSheet_8: -640345211
-      Options_Button_SpriteSheet_9: -1616054420
+      Music_Button_SpriteSheet_0: -1458767749
+      Music_Button_SpriteSheet_1: -654869714
+      Music_Button_SpriteSheet_2: 408910417
+      Music_Button_SpriteSheet_3: 1067167097
+      Music_Button_SpriteSheet_4: 326462936
+      Music_Button_SpriteSheet_5: 505576376
+      Music_Button_SpriteSheet_6: -192293185
+      Music_Button_SpriteSheet_7: -1932385002
+      Music_Button_SpriteSheet_8: 1319528657
+      Music_Button_SpriteSheet_9: -1128028900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

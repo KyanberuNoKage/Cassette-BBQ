@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2826bd2c257b9cc45b5e9f13d52e3213
+guid: fcbff66121adf13429c8348350210993
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_0
+      name: Controls_Button_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 63
+        width: 73
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da771d02ea7d4604280967ace0ae5a4b
-      internalID: -349620501
+      spriteID: 3191572320a13364ea13b24ba912a3fb
+      internalID: -442661815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_2
+      name: Controls_Button_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 63
+        width: 73
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -160,19 +160,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6baaa3134c613f6448a7f25d9e0eee98
-      internalID: 1667122775
+      spriteID: df13ce7679ad82d49b763b5e78db5a19
+      internalID: -1709011068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_4
+      name: Controls_Button_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 63
+        width: 73
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -182,19 +182,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bfe2103bc2c3d34282e72a361aac84a
-      internalID: -787214257
+      spriteID: 2e616f776db72af4abc1693d04f042f0
+      internalID: -1703796466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_6
+      name: Controls_Button_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 63
+        width: 73
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -204,19 +204,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b047b00cddd3469d42b83c91e1687
-      internalID: -929907633
+      spriteID: 6c8cc17f92456b94fa1e62edeb5e7e55
+      internalID: 13347706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Options_Button_SpriteSheet_8
+      name: Controls_Button_SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63
+        width: 73
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5f4bedfd4a244440b3a7c83cb3be7a1
-      internalID: -640345211
+      spriteID: ffd53e10258e3364da33a84eb38ffb04
+      internalID: -301233477
       vertices: []
       indices: 
       edges: []
@@ -236,7 +236,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 994fe498d6a771449bbd63022288f5ac
+    spriteID: 229feb9a2dcf8b744bef5715271be0cd
     internalID: 0
     vertices: []
     indices: 
@@ -246,16 +246,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Options_Button_SpriteSheet_0: -349620501
-      Options_Button_SpriteSheet_1: 1988071959
-      Options_Button_SpriteSheet_2: 1667122775
-      Options_Button_SpriteSheet_3: 962299781
-      Options_Button_SpriteSheet_4: -787214257
-      Options_Button_SpriteSheet_5: -583623681
-      Options_Button_SpriteSheet_6: -929907633
-      Options_Button_SpriteSheet_7: 331099976
-      Options_Button_SpriteSheet_8: -640345211
-      Options_Button_SpriteSheet_9: -1616054420
+      Controls_Button_SpriteSheet_0: -442661815
+      Controls_Button_SpriteSheet_1: -318056400
+      Controls_Button_SpriteSheet_2: -1709011068
+      Controls_Button_SpriteSheet_3: 2004209612
+      Controls_Button_SpriteSheet_4: -1703796466
+      Controls_Button_SpriteSheet_5: 624418808
+      Controls_Button_SpriteSheet_6: 13347706
+      Controls_Button_SpriteSheet_7: 1879090912
+      Controls_Button_SpriteSheet_8: -301233477
+      Controls_Button_SpriteSheet_9: -2013248617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
