@@ -193,12 +193,15 @@ public class Burger_Obj : MonoBehaviour
         {
             // Signal to hide and show oil based on given frames.
             if (flipAnimFrame == oilOffSprite)
+            {
                 FadeInOil(false);
-
+            }
 
             else if (flipAnimFrame == oilOnSprite)
+            {
                 FadeInOil(true);
-
+                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+            }
 
             _burgerImage.sprite = flipAnimFrame;
             yield return new WaitForSeconds(_globalBurgerData.TimeBetweenFrames);

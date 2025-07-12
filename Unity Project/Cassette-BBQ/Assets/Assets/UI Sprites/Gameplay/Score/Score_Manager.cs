@@ -64,7 +64,9 @@ public class Score_Manager : MonoBehaviour
 
         Debug.Log($"Time taken: {timeTaken}\nAfter grace period/Effective Time: {timeTaken - gracePeriod} / {effectiveTime}\nEnd Score: {score}");
 
-        IncreaseScore(Mathf.Max(minScore, Mathf.RoundToInt(score)), false);
+        int finalScore = Mathf.Max(minScore, Mathf.RoundToInt(score));
+
+        IncreaseScore(finalScore, isDecrease: false);
     }
 
     private void CalculateFoodWaste_Score()
@@ -72,7 +74,7 @@ public class Score_Manager : MonoBehaviour
         _foodWasteCount++;
         int scoreDecrease = _foodWastePenalty * _foodWasteCount;
 
-        IncreaseScore(scoreDecrease, true);
+        IncreaseScore(scoreDecrease, isDecrease: true);
     }
 
     private void IncreaseScore(int amount, bool isDecrease)
@@ -82,6 +84,7 @@ public class Score_Manager : MonoBehaviour
         if (isDecrease)
         {
             _currentScore -= amount;
+            AudioEvents.PlayEffect(SoundEffects.Error_6);
             StartScoreShake(_currentScore - previousScore);
         }
         else

@@ -58,6 +58,8 @@ public class Cassette_Anim_Control : MonoBehaviour
 
     public void SelectCassette()
     {
+        AudioEvents.PlayEffect(SoundEffects.Click_1);
+
         // Cant select the cassette if it is not unlocked yet.
         if (_thisCassette_Anim_Obj.IsUnlocked == false) 
         {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Action = System.Action;
 
 public class GameSettings_manager : MonoBehaviour
 {
@@ -17,11 +18,13 @@ public class GameSettings_manager : MonoBehaviour
     private void OnEnable()
     {
         GamesSettingsEvents.OnSoundLevelChanged += UpdateSoundLevels;
+        GamesSettingsEvents.OnGameQuit += QuitGame;
     }
 
     private void OnDisable()
     {
         GamesSettingsEvents.OnSoundLevelChanged -= UpdateSoundLevels;
+        GamesSettingsEvents.OnGameQuit -= QuitGame;
     }
 
     private void Start()
@@ -63,13 +66,28 @@ public class GameSettings_manager : MonoBehaviour
             GamesSettingsEvents.InformAudioChanged();
         }
     }
+
+    public void QuitGame()
+    {
+        // Handles any game quit logic, such as saving settings or cleaning up.
+        GamesSettingsEvents.GameQuit();
+
+        Application.Quit();
+    }
 }
 
 
 
 public static class  GamesSettingsEvents
 {
-    public static event System.Action<float, float> OnSoundSetup_Start;
+    public static event Action OnGameQuit;
+
+    public static void GameQuit()
+    {
+        OnGameQuit?.Invoke();
+    }
+
+    public static event Action<float, float> OnSoundSetup_Start;
 
     /// <summary>
     /// For when the game starts and the audio levels are set up. Sets either default for saved levels.
@@ -81,7 +99,7 @@ public static class  GamesSettingsEvents
         OnSoundSetup_Start?.Invoke(musicVolume, soundEffectsVolume);
     }
 
-    public static event System.Action<float, SoundOptionType> OnSoundLevelChanged;
+    public static event Action<float, SoundOptionType> OnSoundLevelChanged;
 
     /// <summary>
     /// For when player has set the audio levels in the options menu. Will be saved on exit.

@@ -42,6 +42,9 @@ public class Grilling_Manager : MonoBehaviour
     [SerializeField] List<Grill_Position> _GrillPositions;
     [SerializeField] int _numOfGrillPositions = 4; // Number of grill positions available.
 
+    [SerializeField] List<GameObject> _grillItems; // All items currently on the grill.
+    bool _isListCountUpToDate = false;
+
     private void Start()
     {
         for(int i = 0; i < _numOfGrillPositions; i++)
@@ -58,6 +61,19 @@ public class Grilling_Manager : MonoBehaviour
 
             newGrillPosition_Instance.transform.SetParent(_grillGridGroup.transform, false);
             _GrillPositions.Add(newGrillPosition_Instance);
+        }
+    }
+
+    private void Update()
+    {
+        if (!_isListCountUpToDate)
+        {
+            if (_grillItems.Count <= 0)
+            {
+                AudioEvents.StopLoopedEffect(SoundEffects.Bacon_Sizzle);
+            }
+
+            _isListCountUpToDate = true;
         }
     }
 
@@ -90,6 +106,9 @@ public class Grilling_Manager : MonoBehaviour
             // Give the Grill_Position class a reference to the new object.
             // (This sets the position to "Filled" in its class)
             chosenPosition.SetGrillItem(burgerInstance);
+            _grillItems.Add(burgerInstance);
+
+            AudioEvents.PlayLoopedEffect(SoundEffects.Bacon_Sizzle, true);
         }
     }
 
@@ -122,6 +141,8 @@ public class Grilling_Manager : MonoBehaviour
             // Give the Grill_Position class a reference to the new object.
             // (This sets the position to "Filled" in its class)
             chosenPosition.SetGrillItem(sausageInstance);
+            _grillItems.Add(sausageInstance);
+            AudioEvents.PlayLoopedEffect(SoundEffects.Bacon_Sizzle, true);
         }
     }
 
@@ -132,13 +153,25 @@ public class Grilling_Manager : MonoBehaviour
             if (position.ThisGrillItem == itemToBeRemoved)
             {
                 // Clear the reference in the Grill_Position.
-                // (Sets the position to empty if null is given)
                 position.SetGrillItem(null);
+                // Then stops one of the grill sizzle sound effects.
+                break; // Exit early if found.
+            }
+        }
+
+        foreach (GameObject grillItem in _grillItems)
+        {
+            if (grillItem == itemToBeRemoved)
+            {
+                _grillItems.Remove(grillItem);
+                AudioEvents.StopLoopedEffect(SoundEffects.Bacon_Sizzle);
                 break; // Exit early if found.
             }
         }
 
         Destroy(itemToBeRemoved);
+        // Reset _isListCountUpToDate to be updated next frame.
+        _isListCountUpToDate = false; 
     }
 }
 

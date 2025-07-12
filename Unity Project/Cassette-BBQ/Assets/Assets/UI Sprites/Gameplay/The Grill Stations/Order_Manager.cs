@@ -32,8 +32,6 @@ public class Order_Manager : MonoBehaviour
     [SerializeField, Tooltip("Max number of orders at once.")]
     private int _maxNumOfOrders = 10;
 
-    private bool _canServeFood = true;
-
     private void OnEnable()
     {
         OrderEvents.OnGrillItem_Finished += Try_FulfillOrder;
@@ -70,6 +68,7 @@ public class Order_Manager : MonoBehaviour
                 if (order.IsBurger == IsBurger) // If the order item type matches that of the item.
                 {
                     order.AddToFilledOrder_Count(); // Fulfill an item on the order.
+                    AudioEvents.PlayEffect(SoundEffects.Confirmation);
                     orderFound = true;
                     break;
                 }

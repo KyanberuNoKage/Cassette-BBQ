@@ -170,4 +170,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisCassette_Anim_Obj: {fileID: 0}
   _thisCassette_Animator: {fileID: 4087062124242963512}
-  _transitionAnimator: {fileID: 4087062124242963512}

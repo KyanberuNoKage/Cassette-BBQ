@@ -13,6 +13,8 @@ public class Move_To_Cassettes : MonoBehaviour
         _mainMenu_Group.alpha = 0;
         _mainMenu_Group.interactable = false;
         _mainMenu_Group.blocksRaycasts = false;
+
+        AudioEvents.FadeOutMusic(); // Fade out the music when going to cassette menu.
     }
 
     public void SwitchToMainMenu()

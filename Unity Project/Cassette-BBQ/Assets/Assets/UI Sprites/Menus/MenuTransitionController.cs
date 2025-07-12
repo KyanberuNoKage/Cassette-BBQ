@@ -179,15 +179,24 @@ public class MenuTransitionController : MonoBehaviour
 
     private void StartTransition()
     {
-        AudioEvents.FadeOutMusic(); // Fade out the music before the transition.
-
         Sequence _transitionSequence = DOTween.Sequence();
-        _transitionSequence.SetDelay(0.15f); // Delay before the transition starts to let the animation play.
+
+        _transitionSequence.AppendCallback(() =>
+        {
+            // Set the transition animator to the BoomBox animation.
+            _trasitionAnimator.SetTrigger("BoomBox");
+        });
+
+        // Delay before the transition starts to let the animation play.
+        _transitionSequence.SetDelay(0.15f); 
         _transitionSequence.Append
         (
+            // Add shake to the part of the animation where the BoomBox 'lands' to add impact.
             _mainCamera.transform.DOShakePosition(3f, 0.5f, 10, 70f, false, true)
         );
-        _trasitionAnimator.SetTrigger("BoomBox"); // Starts the "BoomBox" transition animation.
+        // Play the BoomBox landing sound effect.;
+        _transitionSequence.JoinCallback(() => AudioEvents.PlayEffect(SoundEffects.Impact_Plate));
+        
         _transitionSequence.Play()
             .OnComplete(() =>
             {
@@ -252,6 +261,8 @@ public class MenuTransitionController : MonoBehaviour
         );
 
         AudioEvents.ChangeMusic(); // Change the music and it in for the gameplay.
+        // Notify the audio manager to start grill background sound.
+        AudioEvents.SetGrillScreen(true);
 
         TransitionFromBlack.Play().OnComplete
         (
