@@ -25,6 +25,7 @@ public class Base_Burger_Data : ScriptableObject
 
     [SerializeField] Sprite _oilOffFrame; public Sprite OilOffFrame => _oilOffFrame;
     [SerializeField] Sprite _oilOnFrame; public Sprite OilOnFrame => _oilOnFrame;
+    [SerializeField] Sprite _wooshStartFrame; public Sprite WooshStartFrame => _wooshStartFrame;
 
     // Way to have a one off anim without needing to create an animator or controller for it.
     [SerializeField] Sprite[] _burgerFlipSprites; public Sprite[] BurgerFlipSprites => _burgerFlipSprites;

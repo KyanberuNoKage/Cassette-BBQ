@@ -40,6 +40,7 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect += PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped += StopLoopedEffect;
         AudioEvents.OnGrillScreen += GrillBackground;
+        AudioEvents.OnWooshPlayed += PlayRandomWooshEffect;
     }
 
     private void OnDisable()
@@ -51,13 +52,15 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect -= PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped -= StopLoopedEffect;
         AudioEvents.OnGrillScreen -= GrillBackground;
+        AudioEvents.OnWooshPlayed -= PlayRandomWooshEffect;
     }
 
     private void Start()
     {
         if (_music_List.Length > 0)
         {
-            PlayMusic(_music_List[Random.Range(0, _music_List.Length)]);
+            // First track is the menu music.
+            PlayMusic(_music_List[0]);
         }
 
         GameObject audioHolder = new GameObject("AudioPoolHolder");
@@ -242,6 +245,25 @@ public class Audio_Manager : MonoBehaviour
             });
         }
     }
+
+    private void PlayRandomWooshEffect()
+    {
+        int randomIndex = Random.Range(0,2);
+
+        switch (randomIndex)
+        {
+            case 0:
+                PlaySoundEffect(SoundEffects.woosh);
+                break;
+            case 1:
+                PlaySoundEffect(SoundEffects.fast_woosh);
+                break;
+            default:
+                Debug.LogWarning("Random index out of range, defaulting to woosh sound effect.");
+                PlaySoundEffect(SoundEffects.woosh);
+                break;
+        }
+    }
 }
 
 
@@ -288,6 +310,13 @@ public static class AudioEvents
     {
         OnGrillScreen?.Invoke(IsOn);
     }
+
+    public static event Action OnWooshPlayed;
+
+    public static void PlayRandomWoosh()
+    {
+        OnWooshPlayed?.Invoke();
+    }
 }
 
 
@@ -307,4 +336,7 @@ public enum SoundEffects
     Cloth_1,
     Cloth_2,
     Cloth_3,
+    swoosh,
+    woosh,
+    fast_woosh,
 }

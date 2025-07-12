@@ -24,6 +24,7 @@ public class Burger_Obj : MonoBehaviour
 
     Sprite oilOffSprite;
     Sprite oilOnSprite;
+    private Sprite _wooshOnSprite;
 
     private void Start()
     {
@@ -59,9 +60,10 @@ public class Burger_Obj : MonoBehaviour
 
         oilOffSprite = _globalBurgerData.OilOffFrame;
         oilOnSprite = _globalBurgerData.OilOnFrame;
+        _wooshOnSprite = _globalBurgerData.WooshStartFrame;
 
-        // Get randomized cook and burn times for this burger with ScriptableObject data.
-        _burgerCookTime = _globalBurgerData.GetRandomCookTime();
+    // Get randomized cook and burn times for this burger with ScriptableObject data.
+    _burgerCookTime = _globalBurgerData.GetRandomCookTime();
         _burgerBurnTime = _globalBurgerData.GetRandomBurnTime();
 
         _oilSplash_Obj = Instantiate
@@ -201,6 +203,11 @@ public class Burger_Obj : MonoBehaviour
             {
                 FadeInOil(true);
                 AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+            }
+
+            else if (flipAnimFrame == _wooshOnSprite)
+            {
+                AudioEvents.PlayRandomWoosh();
             }
 
             _burgerImage.sprite = flipAnimFrame;

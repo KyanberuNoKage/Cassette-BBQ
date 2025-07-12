@@ -24,6 +24,7 @@ public class Sausage_Obj : MonoBehaviour
 
     private Sprite oilOffSprite;
     private Sprite oilOnSprite;
+    private Sprite _wooshOnSprite;
 
     private void Start()
     {
@@ -59,6 +60,7 @@ public class Sausage_Obj : MonoBehaviour
 
         oilOnSprite = _globalSausageData.OilOnFrame;
         oilOffSprite = _globalSausageData.OilOffFrame;
+        _wooshOnSprite = _globalSausageData.WooshStartFrame;
 
         // Get randomized cook and burn times for this Sausage with ScriptableObject data.
         _sausageCookTime = _globalSausageData.GetRandomCookTime();
@@ -198,10 +200,15 @@ public class Sausage_Obj : MonoBehaviour
                 FadeInOil(false);
             }
 
-            else if (flipAnimFrame == oilOnSprite)
+            if (flipAnimFrame == oilOnSprite)
             { 
                 FadeInOil(true);
                 AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+            }
+
+            if (flipAnimFrame == _wooshOnSprite)
+            {
+                AudioEvents.PlayRandomWoosh();
             }
 
             _sausageImage.sprite = flipAnimFrame;

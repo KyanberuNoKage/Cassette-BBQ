@@ -26,6 +26,7 @@ MonoBehaviour:
   _finishedSparklePrefab: {fileID: 707306199778591199, guid: c105dc4e21c726a4193a645728045dfe, type: 3}
   _oilOffFrame: {fileID: -1123677953, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
   _oilOnFrame: {fileID: 1079561557, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
+  _wooshStartFrame: {fileID: -1369069232, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
   _SausageFlipSprites:
   - {fileID: -38370958, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}
   - {fileID: 1630925115, guid: 40c9e71ab411b6f4e8f2b8499ed47779, type: 3}

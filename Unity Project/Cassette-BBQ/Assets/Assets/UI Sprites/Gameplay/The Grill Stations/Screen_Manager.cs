@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 public class Screen_Manager : MonoBehaviour
@@ -91,7 +90,3 @@ public class Screen_Manager : MonoBehaviour
     }
 }
 
-public static class ScreenEvents
-{
-    
-}
