@@ -15,7 +15,7 @@ public class Order_Manager : MonoBehaviour
     [SerializeField] private Transform _orderHolder;
     [SerializeField] private GridLayoutGroup _orderHolder_GridComponent;
 
-    [SerializeField] private bool _areOrdersActive = true;
+    [SerializeField] private bool _areOrdersActive = false;
 
     [SerializeField, Tooltip("Max time between order spawns.")] 
     private int _maxorder_SpawnTime = 9;
@@ -32,11 +32,14 @@ public class Order_Manager : MonoBehaviour
     [SerializeField, Tooltip("Max number of orders at once.")]
     private int _maxNumOfOrders = 10;
 
+    private Coroutine _ordersCoroutine;
+
     private void OnEnable()
     {
         OrderEvents.OnGrillItem_Finished += Try_FulfillOrder;
         OrderEvents.RemoveOrder += SmoothlyReOrder_OrderListGame;
         OrderEvents.OnStartOrderSystem += StartGame;
+        TimerEvents.OnTimerFinished += EndOrders;
     }
 
     private void OnDisable()
@@ -44,11 +47,14 @@ public class Order_Manager : MonoBehaviour
         OrderEvents.OnGrillItem_Finished -= Try_FulfillOrder;
         OrderEvents.RemoveOrder -= SmoothlyReOrder_OrderListGame;
         OrderEvents.OnStartOrderSystem -= StartGame;
+        TimerEvents.OnTimerFinished -= EndOrders;
     }
 
     private void StartGame()
     {
-        StartCoroutine(Start_RandomOrders());
+        _areOrdersActive = true;
+
+        _ordersCoroutine = StartCoroutine(Start_RandomOrders());
     }
 
     private void Try_FulfillOrder(bool IsBurger)
@@ -111,52 +117,61 @@ public class Order_Manager : MonoBehaviour
 
     private IEnumerator Start_RandomOrders()
     {
-        if (_areOrdersActive && ListOfOrders.Count < _maxNumOfOrders)
+        while (true)
         {
-            GameObject newOrder = Instantiate
-                (
-                    Order_Prefab, 
-                    _orderHolder, 
-                    false
-                );
+            if (_areOrdersActive && ListOfOrders.Count < _maxNumOfOrders)
+            {
+                GameObject newOrder = Instantiate(Order_Prefab, _orderHolder, false);
+                var newOrder_Data = newOrder.GetComponent<Order_Class>();
+                newOrder_Data.Set_OrderClass_Data
+                    (
+                        Random.Range(0, 2) == 0, 
+                        Random.Range(_minNumOfItems, 
+                        _maxNumOfItems + 1
+                    ));
+                ListOfOrders.Add(newOrder_Data);
+            }
 
-            Order_Class newOrder_Data = newOrder.GetComponent<Order_Class>();
+            if (ListOfOrders.Count >= _maxNumOfOrders)
+            {
+                _areOrdersActive = false;
 
-            newOrder_Data.Set_OrderClass_Data
-                (
-                    // Randomly choose if the order is a burger or sausage.
-                    UnityEngine.Random.Range(0, 2) == 0, 
-                    // +1 to ensure the max number is included in the range.
-                    UnityEngine.Random.Range(_minNumOfItems, _maxNumOfItems + 1)
-                );
+                while (ListOfOrders.Count >= _maxNumOfOrders)
+                {
+                    yield return new WaitForSeconds(Random.Range(1, 6));
+                }
 
-            ListOfOrders.Add(newOrder_Data);
+                _areOrdersActive = true;
+            }
 
             yield return new WaitForSeconds
                 (
-                    UnityEngine.Random.Range
+                    Random.Range
                     (
-                        _minOrder_SpawnTime,
-                        _maxorder_SpawnTime + 1 // +1 to ensure the max time is included in the range.
+                        _minOrder_SpawnTime, _maxorder_SpawnTime + 1
                     )
                 );
-
-            StartCoroutine(Start_RandomOrders()); // Repeat the process.
         }
-        else if (ListOfOrders.Count >= _maxNumOfOrders)
+    }
+
+    private void EndOrders()
+    {
+        if (_ordersCoroutine != null) 
         {
-            _areOrdersActive = false;
-
-            while (ListOfOrders.Count >= _maxNumOfOrders)
-            {
-                Debug.Log("Max number of orders reached, waiting for orders to be fulfilled.");
-                yield return new WaitForSeconds(Random.Range(1, 6));
-            }
-
-            _areOrdersActive = true;
-
-            StartCoroutine(Start_RandomOrders()); // Restart the order spawning process.
+            StopCoroutine(_ordersCoroutine); 
         }
+
+        StopCoroutine(Start_RandomOrders());
+        _areOrdersActive = false;
+
+        List<Order_Class> tempList = new List<Order_Class>();
+
+        foreach (Order_Class order in ListOfOrders)
+        {
+            Destroy(order.gameObject);
+        }
+
+        ListOfOrders.Clear();
     }
 
 }

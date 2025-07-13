@@ -1,28 +1,36 @@
 using DG.Tweening;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
+using Unity.Android.Types;
 using UnityEngine;
 
 public class Score_Manager : MonoBehaviour
 {
-    private int _currentScore;
+    [SerializeField] public int _currentScore { get;  private set; }
 
     [Header("Score Increase Variables")]
     // For Order Score Calculation
     [SerializeField, Tooltip("Base score for finishing an order, decreases by decayRate over time.")]
     int baseScore = 2000;
     [SerializeField, Tooltip("Grace period before the decay begins, to ensure score is somewhat obtainable")] 
-    const float gracePeriod = 3f;
+    float gracePeriod = 3f;
     [SerializeField, Tooltip("How harsh the penalty is over time for not completing an order.")]
-    const float decayRate = 25f;
+    float decayRate = 25f;
     [SerializeField, Tooltip("Minimum score that can be awarded, for if the order is completed very late.")]
     const int minScore = 100;
 
     [Space, Header("Score Decrease Variables")]
     [SerializeField, Tooltip("How much score is lost on wasted food.")]
     private int _foodWastePenalty = 250;
-    [SerializeField,Tooltip("Number of times player has waisted food.")]
-    private int _foodWasteCount = 0;
+
+    [Space, Header("Score Info")]
+    [SerializeField, Tooltip("Number of times player has waisted food.")] int _numberOfWastedFoodItems = 0;
+    [SerializeField] int _numberOfCompletedOrders = 0;
+    [SerializeField] float _averageTimeTaken_PerOrder = 0;
+    [SerializeField] List<float> _listOf_timeTaken_PerOrder = new List<float>();
 
 
     #region UI
@@ -37,12 +45,14 @@ public class Score_Manager : MonoBehaviour
     {
         ScoreEvents.OnOrder_ScoreIncreased += CalculateFoodOrder_Score;
         ScoreEvents.OnFoodWasted_ScoreDecreased += CalculateFoodWaste_Score;
+        ScoreEvents.OnRequestScoreData += ReturnScoreData;
     }
 
     private void OnDisable()
     {
         ScoreEvents.OnOrder_ScoreIncreased -= CalculateFoodOrder_Score;
         ScoreEvents.OnFoodWasted_ScoreDecreased -= CalculateFoodWaste_Score;
+        ScoreEvents.OnRequestScoreData -= ReturnScoreData;
     }
 
     void Start()
@@ -59,6 +69,9 @@ public class Score_Manager : MonoBehaviour
 
     private void CalculateFoodOrder_Score(float timeTaken)
     { 
+        _listOf_timeTaken_PerOrder.Add(timeTaken);
+        _numberOfCompletedOrders++;
+
         float effectiveTime = Mathf.Max(0, timeTaken - gracePeriod);
         float score = baseScore - (effectiveTime * decayRate);
 
@@ -71,8 +84,8 @@ public class Score_Manager : MonoBehaviour
 
     private void CalculateFoodWaste_Score()
     {
-        _foodWasteCount++;
-        int scoreDecrease = _foodWastePenalty * _foodWasteCount;
+        _numberOfWastedFoodItems++;
+        int scoreDecrease = _foodWastePenalty * _numberOfWastedFoodItems;
 
         IncreaseScore(scoreDecrease, isDecrease: true);
     }
@@ -165,6 +178,44 @@ public class Score_Manager : MonoBehaviour
         _scoreText.rectTransform.DOKill(); // stop all tweens on the rectTransform
         _scoreText.rectTransform.localScale = Vector3.one; // reset scale
     }
+
+    public class ScoreData
+    {
+        public int NumberOfWastedFoodItems;
+        public int NumberOfCompletedOrders;
+        public float AverageOrderCompleteTime;
+        public int CurrentScore;
+
+        public ScoreData(int wastedFoodItems, int completedOrders, float averageTime, int currentScore)
+        {
+            NumberOfWastedFoodItems = wastedFoodItems;
+            NumberOfCompletedOrders = completedOrders;
+            AverageOrderCompleteTime = averageTime;
+            CurrentScore = currentScore;
+        }
+    }
+
+    private ScoreData ReturnScoreData()
+    {
+        float average = 0;
+
+        foreach (float time in _listOf_timeTaken_PerOrder)
+        {
+            average += time;
+        }
+
+        _averageTimeTaken_PerOrder = average / _listOf_timeTaken_PerOrder.Count;
+
+        ScoreData scoreData = new ScoreData
+        (
+            _numberOfWastedFoodItems,
+            _numberOfCompletedOrders,
+            _averageTimeTaken_PerOrder,
+            _currentScore
+        );
+
+        return scoreData;
+    }
 }
 
 public static class ScoreEvents
@@ -182,4 +233,20 @@ public static class ScoreEvents
     {
         OnFoodWasted_ScoreDecreased?.Invoke();
     }
+
+    public static event Action OnAddHighScore;
+
+    public static void AddHighScore()
+    {
+        OnAddHighScore?.Invoke();
+    }
+
+    public static event Action OnUpdateScoreBoard;
+
+    public static void UpdateScoreBoard()
+    {
+        OnUpdateScoreBoard?.Invoke();
+    }
+
+    public static Func<Score_Manager.ScoreData> OnRequestScoreData;
 }

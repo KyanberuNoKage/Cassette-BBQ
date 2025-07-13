@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Action = System.Action;
 
 public class GameSettings_manager : MonoBehaviour
@@ -7,6 +8,7 @@ public class GameSettings_manager : MonoBehaviour
     [Header("Options Menu Settings")]
     [SerializeField] private float _music_Volume;
     [SerializeField] private float _soundEffects_Volume;
+    [SerializeField] private bool _isOneHanded = false;
 
     [Header("Default Game Settings")]
     [SerializeField, Range(0, 1)] private float _default_Music_Volume = 0.9f;
@@ -67,6 +69,13 @@ public class GameSettings_manager : MonoBehaviour
         }
     }
 
+    public void ToggleOneHandedMode(Toggle oneHandToggle_UI)
+    {
+        _isOneHanded = oneHandToggle_UI.isOn;
+        // Update the script with OneHanded Input check.
+        GamesSettingsEvents.ToggleOneHanded(_isOneHanded);
+    }
+
     public void QuitGame()
     {
         // Handles any game quit logic, such as saving settings or cleaning up.
@@ -80,6 +89,13 @@ public class GameSettings_manager : MonoBehaviour
 
 public static class  GamesSettingsEvents
 {
+    public static event Action<bool> OnOneHandedToggled;
+
+    public static void ToggleOneHanded(bool isToggledOn)
+    {
+        OnOneHandedToggled?.Invoke(isToggledOn);
+    }
+
     public static event Action OnGameQuit;
 
     public static void GameQuit()

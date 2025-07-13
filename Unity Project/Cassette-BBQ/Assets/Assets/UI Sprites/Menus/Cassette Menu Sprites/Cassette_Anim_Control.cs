@@ -24,9 +24,9 @@ public class Cassette_Anim_Control : MonoBehaviour
     }
 
 
-    public void RevealCassette(bool ReviealTheCassette) // reveals or hides the cassette in menu.
+    public void RevealCassette(bool RevealTheCassette) // reveals or hides the cassette in menu.
     {
-        if (ReviealTheCassette)
+        if (RevealTheCassette)
         {
             /**
              * All the cassette's animations are in their shared Animation Controller Component, 

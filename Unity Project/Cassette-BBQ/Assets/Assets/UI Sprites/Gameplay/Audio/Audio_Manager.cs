@@ -41,6 +41,9 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnLoopedEffectStopped += StopLoopedEffect;
         AudioEvents.OnGrillScreen += GrillBackground;
         AudioEvents.OnWooshPlayed += PlayRandomWooshEffect;
+
+        SaveData_MessageBus.OnRequestMusicVolume += () => _music_Volume; // Send _musicVolume
+        SaveData_MessageBus.OnRequestSoundEffectsVolume += () => _soundEffects_Volume; // Send _soundEffectsVolume
     }
 
     private void OnDisable()
@@ -53,6 +56,9 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnLoopedEffectStopped -= StopLoopedEffect;
         AudioEvents.OnGrillScreen -= GrillBackground;
         AudioEvents.OnWooshPlayed -= PlayRandomWooshEffect;
+
+        SaveData_MessageBus.OnRequestMusicVolume -= () => _music_Volume; // Send _musicVolume
+        SaveData_MessageBus.OnRequestSoundEffectsVolume -= () => _soundEffects_Volume; // Send _soundEffectsVolume
     }
 
     private void Start()

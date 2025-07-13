@@ -1,6 +1,9 @@
 ﻿using DG.Tweening;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class MenuTransitionController : MonoBehaviour
@@ -32,15 +35,24 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] CanvasGroup _grill_Group;
     [SerializeField] CanvasGroup _meat_Table_Group;
     [SerializeField] CanvasGroup _scoreCounter_Group;
+    [SerializeField] CanvasGroup _gameOverScreen_Group;
+
+    [Space, Header("Game Over Screen Data")]
+    [SerializeField] TextMeshProUGUI _ordersCompleted_Count;
+    [SerializeField] TextMeshProUGUI _foodWasted_Count;
+    [SerializeField] TextMeshProUGUI _AverageOrderTime_Text;
+    [SerializeField] TextMeshProUGUI _totalScore_Text;
 
     private void OnEnable()
     {
         TransitionEvents.CassetteSelected += StartTransition;
+        TimerEvents.OnTimerFinished += EnableEndScreen;
     }
 
     private void OnDisable()
     {
         TransitionEvents.CassetteSelected -= StartTransition;
+        TimerEvents.OnTimerFinished -= EnableEndScreen;
     }
 
     private void Start()
@@ -53,7 +65,8 @@ public class MenuTransitionController : MonoBehaviour
             _leaderboardMenu_Group,
             _soundOptions_CanvasGroup,
             _controlsOptions_CanvasGroup,
-            _cassettesMenu_Group
+            _cassettesMenu_Group,
+            _gameOverScreen_Group
         };
     }
 
@@ -96,6 +109,7 @@ public class MenuTransitionController : MonoBehaviour
                 break;
             case MenuScreens.LeaderboardMenu:
                 ScreenToEnable = _leaderboardMenu_Group;
+                ScoreEvents.UpdateScoreBoard();
                 break;
             case MenuScreens.SoundOptions:
                 ScreenToEnable = _soundOptions_CanvasGroup;
@@ -105,6 +119,9 @@ public class MenuTransitionController : MonoBehaviour
                 break;
             case MenuScreens.CassettesMenu:
                 ScreenToEnable = _cassettesMenu_Group;
+                break;
+            case MenuScreens.GameOverScreen:
+                ScreenToEnable = _gameOverScreen_Group;
                 break;
             default:
                 Debug.LogError("Invalid screen type: " + newScreen);
@@ -127,6 +144,7 @@ public class MenuTransitionController : MonoBehaviour
                 group.blocksRaycasts = false;
             }
         }
+
     }
 
 
@@ -277,6 +295,114 @@ public class MenuTransitionController : MonoBehaviour
         );
     }
 
+    private void EnableEndScreen()
+    {
+        // Disable all menu screens.
+        MoveMenuScreen(MenuScreens.GameOverScreen);
+
+        // Get the score data from the Score_Manager.
+        Score_Manager.ScoreData scoreData = ScoreEvents.OnRequestScoreData?.Invoke() ?? new Score_Manager.ScoreData(0, 0, 0, 0);
+
+        if (scoreData.CurrentScore == 0 && scoreData.AverageOrderCompleteTime == 0)
+        {
+            Debug.LogError("SOMETHING IS WRONG - ScoreData not returned correctly, values all 0");
+        }
+
+        _ordersCompleted_Count.text = scoreData.NumberOfCompletedOrders.ToString();
+        _ordersCompleted_Count.alpha = 0f;
+        _ordersCompleted_Count.gameObject.transform.localScale = Vector3.zero;
+
+        _foodWasted_Count.text = scoreData.NumberOfWastedFoodItems.ToString();
+        _foodWasted_Count.alpha = 0f;
+        _foodWasted_Count.gameObject.transform.localScale = Vector3.zero;
+
+        _AverageOrderTime_Text.text = MathF.Round(scoreData.AverageOrderCompleteTime).ToString() + "s";
+        _AverageOrderTime_Text.alpha = 0f;
+        _AverageOrderTime_Text.gameObject.transform.localScale = Vector3.zero;
+
+        _totalScore_Text.text = scoreData.CurrentScore.ToString();
+        _totalScore_Text.alpha = 0f;
+        _totalScore_Text.gameObject.transform.localScale = Vector3.zero;
+
+        Sequence scoreRevealSequence = DOTween.Sequence();
+
+        float fadeScale_Time = 0.25f;
+        float shakeDuration = 0.5f;
+        float punchDuration = 0.4f;
+
+        scoreRevealSequence.Append(_ordersCompleted_Count.DOFade(1, fadeScale_Time));
+        scoreRevealSequence.Join(_ordersCompleted_Count.transform.DOScale(Vector3.one, fadeScale_Time));
+        scoreRevealSequence.Join(_ordersCompleted_Count.transform.DOShakePosition(shakeDuration, strength: 70, randomness: 80, fadeOut: true));
+        
+        scoreRevealSequence.Append(_foodWasted_Count.DOFade(1, fadeScale_Time));
+        scoreRevealSequence.Join(_foodWasted_Count.transform.DOScale(Vector3.one, fadeScale_Time));
+        scoreRevealSequence.Join(_foodWasted_Count.transform.DOShakePosition(shakeDuration, strength: 70, randomness: 80, fadeOut: true));
+
+        scoreRevealSequence.Append(_AverageOrderTime_Text.DOFade(1, fadeScale_Time));
+        scoreRevealSequence.Join(_AverageOrderTime_Text.transform.DOScale(Vector3.one, fadeScale_Time));
+        scoreRevealSequence.Join(_AverageOrderTime_Text.transform.DOShakePosition(shakeDuration, strength: 70, randomness: 80, fadeOut: true));
+
+        scoreRevealSequence.Append(_totalScore_Text.DOFade(1, fadeScale_Time));
+        scoreRevealSequence.Join(_totalScore_Text.transform.DOScale(Vector3.one, fadeScale_Time));
+        scoreRevealSequence.Join(_totalScore_Text.transform.DOShakePosition(shakeDuration, strength: 70,randomness: 80, fadeOut: true));
+
+        scoreRevealSequence.Append(_ordersCompleted_Count.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
+        scoreRevealSequence.Append(_foodWasted_Count.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
+        scoreRevealSequence.Append(_AverageOrderTime_Text.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
+        scoreRevealSequence.Append(_totalScore_Text.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
+
+        scoreRevealSequence.Play();
+
+        // Disable meat_Table and score groups.
+        _meat_Table_Group.alpha = 0;
+        _meat_Table_Group.interactable = false;
+        _meat_Table_Group.blocksRaycasts = false;
+
+        _scoreCounter_Group.alpha = 0;
+        _scoreCounter_Group.interactable = false;
+        _scoreCounter_Group.blocksRaycasts = false;
+    }
+
+    public void EndToMainMenu()
+    {
+        RectTransform rect = _mainMenu_Group.GetComponent<RectTransform>();
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.AppendCallback(() =>
+        {
+            _grill_Group.DOFade(0, 1f).onComplete += () =>
+            {
+                _grill_Group.interactable = false;
+                _grill_Group.blocksRaycasts = false;
+            };
+            AudioEvents.SetGrillScreen(false);
+            AudioEvents.FadeOutMusic();
+        });
+
+        sequence.AppendInterval(0.5f);
+
+        sequence.AppendCallback(() =>
+        {
+            rect.SetAsLastSibling();
+            rect.DOAnchorPos(new Vector2(0, 1098.66f), 1f).SetEase(Ease.InCubic);
+        });
+
+        sequence.AppendCallback(() =>
+        {
+            rect.DOAnchorPos(new Vector2(0, -80f), 1f).SetEase(Ease.OutCubic);
+        });
+
+        sequence.AppendCallback(() =>
+        {
+            rect.DOAnchorPos(new Vector2(0, 0f), 1f).SetEase(Ease.OutCubic);
+        });
+
+        sequence.Play();
+
+        MoveMenuScreen(MenuScreens.MainMenu);
+
+    }
+
     public enum MenuScreens
     {
         MainMenu_Holder,
@@ -285,7 +411,8 @@ public class MenuTransitionController : MonoBehaviour
         LeaderboardMenu,
         SoundOptions,
         ControlsOptions,
-        CassettesMenu
+        CassettesMenu,
+        GameOverScreen,
     }
 }
 

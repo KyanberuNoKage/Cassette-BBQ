@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +37,7 @@ public class OilTimer : MonoBehaviour
 
         // Inform others that the game timer has finished.
         TimerEvents.TimerFinished();
+        ScoreEvents.AddHighScore();
     }
 
     private void UpdateTimerUI()

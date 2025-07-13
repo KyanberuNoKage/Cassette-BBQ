@@ -14,6 +14,7 @@ public class Grilling_Manager : MonoBehaviour
         GrillingEvents.OnGrillItemDestroyed += RemoveItemFromGrid;
         GrillingEvents.OnBurgerAdded += AddBurgerToGrill;
         GrillingEvents.OnSausageAdded += AddSausageToGrill;
+        TimerEvents.OnTimerFinished += ClearGrill;
     }
 
     private void OnDisable()
@@ -21,6 +22,7 @@ public class Grilling_Manager : MonoBehaviour
         GrillingEvents.OnGrillItemDestroyed -= RemoveItemFromGrid;
         GrillingEvents.OnBurgerAdded -= AddBurgerToGrill;
         GrillingEvents.OnSausageAdded -= AddSausageToGrill;
+        TimerEvents.OnTimerFinished -= ClearGrill;
     }
     #endregion
 
@@ -172,6 +174,21 @@ public class Grilling_Manager : MonoBehaviour
         Destroy(itemToBeRemoved);
         // Reset _isListCountUpToDate to be updated next frame.
         _isListCountUpToDate = false; 
+    }
+
+    private void ClearGrill()
+    {
+        foreach (GameObject grillItem in _grillItems)
+        {
+            Destroy(grillItem);
+        }
+        _grillItems.Clear();
+        AudioEvents.StopLoopedEffect(SoundEffects.Bacon_Sizzle);
+        // Reset all grill positions.
+        foreach (Grill_Position position in _GrillPositions)
+        {
+            position.SetGrillItem(null);
+        }
     }
 }
 

@@ -7,9 +7,33 @@ public class Screen_Manager : MonoBehaviour
 
     [SerializeField] private bool _oneHandedMode = false;
 
+    private void OnEnable()
+    {
+        SaveData_MessageBus.OnRequestIsOneHanded += () => _oneHandedMode;
+        GamesSettingsEvents.OnOneHandedToggled += SetOneHanded;
+    }
+
+    private void OnDisable()
+    {
+        SaveData_MessageBus.OnRequestIsOneHanded -= () => _oneHandedMode;
+        GamesSettingsEvents.OnOneHandedToggled -= SetOneHanded;
+    }
+
     private void Update()
     {
         HandleInput();
+    }
+
+    private void SetOneHanded(bool isToggledOn)
+    {
+        if (isToggledOn)
+        {
+            _oneHandedMode = true;
+        }
+        else
+        {
+            _oneHandedMode = false;
+        }
     }
 
     private void HandleInput()
