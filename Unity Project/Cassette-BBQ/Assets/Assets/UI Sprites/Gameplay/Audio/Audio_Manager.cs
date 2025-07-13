@@ -86,16 +86,22 @@ public class Audio_Manager : MonoBehaviour
         _music_AudioSource.Play();
     }
 
+    float mutedVolume_Level = 0.0001f; //0.0001f is -80db which is effectively silent.
+
     // Keeps the actual Audio Source audio levels consistent with UI etc.
     private void UpdateAudioLevels()
     {
+        if (_music_Volume < mutedVolume_Level)
+        {
+            _music_Volume = mutedVolume_Level; // Prevents log10(0) which is undefined.
+        }
+
         // To translate 0-1 percentage to decibels for the Audio Mixer.
-        float musicVolume = Mathf.Clamp(_music_Volume, 0.01f, 1f);
         _audioMixer.SetFloat("Music", Mathf.Log10(_music_Volume) * 20);
 
-        if (_soundEffects_Volume <= 0.01f)
+        if (_soundEffects_Volume < mutedVolume_Level)
         {
-            _soundEffects_Volume = 0.01f; // Prevents log10(0) which is undefined.
+            _soundEffects_Volume = mutedVolume_Level; // Prevents log10(0) which is undefined.
         }
         _audioMixer.SetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20);
 
