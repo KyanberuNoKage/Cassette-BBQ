@@ -1,28 +1,127 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using System.Linq;
+using UnityEditor.Overlays;
 
 public class SaveData_Controller : MonoBehaviour
 {
+    private static string path;
+
     // Data to save:
     [Header("Game Settings")]
     [SerializeField] float _musicVolume, _soundEffectsVolume;
     [SerializeField] bool _isOneHanded;
 
     [Header("Cassettes")]
-    [SerializeField] List<Cassette_Anim_Control> RevealedCassettes;
+    [SerializeField] List<string> _revealedCassettes;
 
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
 
-    private void SaveGame()
+    [Space, Header("Default Values")]
+    [SerializeField] float _defaultSound_Volume = 0.8f;
+    [SerializeField] bool _default_isOneHandedMode = false;
+
+    private void Awake()
     {
-        RequestData();
+        path = Path.Combine(Application.persistentDataPath, "saveData.json");
     }
 
-    private void TryLoadGame()
+    private void OnEnable()
     {
+        SaveDataEvents.OnTryLoadGameData += LoadAndSetupGame;
+    }
 
+    private void OnDisable()
+    {
+        SaveDataEvents.OnTryLoadGameData -= LoadAndSetupGame;
+    }  
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
+    public void SaveGame()
+    {
+        RequestData();
+
+        // Create serializable object to save data.
+        GameData dataToSave = new GameData();
+        dataToSave.AddData
+            (
+                _musicVolume,
+                _soundEffectsVolume,
+                _isOneHanded,
+                _revealedCassettes,
+                _highScores
+            );
+
+        string json = JsonUtility.ToJson( dataToSave );
+        File.WriteAllText(path, json);
+    }
+
+    public bool DoesSaveExist()
+    {
+        if (File.Exists(path))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void LoadAndSetupGame() 
+    {
+        GameData newGameData = TryLoadGameData();
+
+        // Logs the saved data, if there is any,
+        // then updates the required systems with the retrieved information.
+        if (newGameData != null)
+        {
+            _musicVolume = newGameData.musicVolume;
+            _soundEffectsVolume = newGameData.soundEffectsVolume;
+            _isOneHanded = newGameData.isOneHanded;
+
+            _revealedCassettes = newGameData.revealedCassettes;
+
+            // Revert List of high scores back to Dict of high scores.
+            _highScores = newGameData.highScores
+            .OrderByDescending(p => p.score)
+            .ToDictionary(p => p.score, p => p.dateTime);
+
+            SendData();
+        }
+    }
+
+
+    private void SendData()
+    {
+        SaveData_MessageBus.SetMusicVolume( _musicVolume );//connected
+        SaveData_MessageBus.SetSoundEffectsVolume( _soundEffectsVolume );//connected
+        SaveData_MessageBus.SetIsOneHanded( _isOneHanded );//connected
+        SaveData_MessageBus.SetRevealedCassettes( _revealedCassettes );//connected
+        SaveData_MessageBus.SetHighScoreDict( _highScores );//connected
+    }
+
+    private static GameData TryLoadGameData()
+    {
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("No previous save game");
+            return null;
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameData data = JsonUtility.FromJson<GameData>(json);
+
+            return data;
+        }
     }
 
     private void RequestData()
@@ -34,25 +133,159 @@ public class SaveData_Controller : MonoBehaviour
 
         _isOneHanded = SaveData_MessageBus.OnRequestIsOneHanded?.Invoke() ?? false;
 
-        RevealedCassettes = SaveData_MessageBus.OnRequestRevealedCassettes?.Invoke() ?? new List<Cassette_Anim_Control>();
+        _revealedCassettes = SaveData_MessageBus.OnRequestRevealedCassettes?.Invoke() ?? new List<string>();
         
         _highScores = SaveData_MessageBus.OnRequestHighScores?.Invoke() ?? new Dictionary<int, string>();
     }
 
+    public void ResetData()
+    {
+        if (File.Exists(path))
+        {
+            // Delete current save file.
+            File.Delete(path);
 
+            // Create new serializable data for saving.
+            GameData newSaveData = new GameData();
+            // Give it all the default values.
+            newSaveData.AddData
+                (
+                    _musicVolume: _defaultSound_Volume, 
+                    _soundEffectsVolume: _defaultSound_Volume, 
+                    _isOneHanded: _default_isOneHandedMode, 
+                    _revealedCassettes: new List<string>(), 
+                    _highScores: new Dictionary<int, string>()
+                );
+            // Endure the values in the SaveData_Controller are
+            // also at their default values.
+            _musicVolume = newSaveData.musicVolume;
+            _soundEffectsVolume= newSaveData.soundEffectsVolume;
+            _isOneHanded = newSaveData.isOneHanded;
+            _revealedCassettes = new List<string>();
+            _highScores = new Dictionary<int, string>();
+
+            // Send this data out to all areas of the game to be reset.
+            SendData();
+
+            // Save the new default info as to ensure defaults have stuck.
+            string json = JsonUtility.ToJson(newSaveData);
+            File.WriteAllText(path, json);
+        }
+        else
+        {
+            Debug.LogWarning("No save file found to delete.");
+        }
+    }
+}
+
+[Serializable]
+public class ScoreDataPair
+{
+    public int score;
+    public string dateTime;
+}
+
+
+[Serializable]
+public class GameData
+{
+    // Data to save:
+    [Header("Game Settings")]
+    public float musicVolume, soundEffectsVolume;
+    public bool isOneHanded;
+
+    [Header("Cassettes")]
+    public List<string> revealedCassettes;
+
+    [Header("Scores")]/**     Score, Date/Time        **/
+    public List<ScoreDataPair> highScores;
+
+
+    public void AddData
+        (
+            float _musicVolume, 
+            float _soundEffectsVolume,
+            bool _isOneHanded,
+            List<string> _revealedCassettes,
+            Dictionary<int, string> _highScores
+        )
+    {
+        musicVolume = _musicVolume;
+        soundEffectsVolume = _soundEffectsVolume;
+        isOneHanded = _isOneHanded;
+        revealedCassettes = _revealedCassettes;
+        
+        // Convert dict into List to serialize and convert to Json.
+        highScores = new List<ScoreDataPair>();
+        foreach(var pair in _highScores)
+        {
+            ScoreDataPair newPair = new ScoreDataPair();
+            newPair.score = pair.Key;
+            newPair.dateTime = pair.Value;
+
+            highScores.Add(newPair);
+        }
+    }
+
+
+    public void ClearData()
+    {
+        musicVolume = 0f;
+        soundEffectsVolume = 0f;
+        isOneHanded = false;
+        revealedCassettes?.Clear();
+        highScores?.Clear();
+    }
+}
+
+
+public static class SaveDataEvents
+{
+    public static event Action OnTryLoadGameData;
+
+    public static void TryLoadGameData()
+    {
+        OnTryLoadGameData?.Invoke();
+    }
 }
 
 public static class SaveData_MessageBus
 {
+    // Get data.
     public static Func<float> OnRequestMusicVolume;
     public static Func<float> OnRequestSoundEffectsVolume;
-    public static Func<List<Cassette_Anim_Control>> OnRequestRevealedCassettes;
+    public static Func<List<string>> OnRequestRevealedCassettes;
     public static Func<Dictionary<int, string>> OnRequestHighScores;
     public static Func<bool> OnRequestIsOneHanded;
 
+    // Set Data,
     public static Action<float> OnSetMusicVolume;
-    public static Action<float> OnSetSoundEffectsVolume;
-    public static Action<List<Cassette_Anim_Control>> OnSetRevealedCassettes;
-    public static Action<Dictionary<int, string>> OnSetHighScores;
+    public static void SetMusicVolume(float newValue)
+    {
+        OnSetMusicVolume?.Invoke(newValue);
+    }
 
+    public static Action<float> OnSetSoundEffectsVolume;
+    public static void SetSoundEffectsVolume(float newValue)
+    {
+        OnSetSoundEffectsVolume?.Invoke(newValue);
+    }
+
+    public static Action<List<string>> OnSetRevealedCassettes;
+    public static void SetRevealedCassettes(List<string> newList)
+    {
+        OnSetRevealedCassettes?.Invoke(newList);
+    }
+
+    public static Action<Dictionary<int, string>> OnSetHighScoreDict;
+    public static void SetHighScoreDict(Dictionary<int, string> newDict)
+    {
+        OnSetHighScoreDict?.Invoke(newDict);
+    }
+
+    public static Action<bool> OnSetIsOneHanded;
+    public static void SetIsOneHanded(bool isTrue)
+    {
+        OnSetIsOneHanded?.Invoke(isTrue);
+    }
 }

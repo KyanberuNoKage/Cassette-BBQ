@@ -47,6 +47,18 @@ public class Audio_Manager : MonoBehaviour
 
         SaveData_MessageBus.OnRequestMusicVolume += () => _music_Volume; // Send _musicVolume
         SaveData_MessageBus.OnRequestSoundEffectsVolume += () => _soundEffects_Volume; // Send _soundEffectsVolume
+        SaveData_MessageBus.OnSetMusicVolume += SetMusicVolume_FromSaveData;
+        SaveData_MessageBus.OnSetSoundEffectsVolume += SetSoundEffectVolume_FromSaveData;
+    }
+
+    private void SetMusicVolume_FromSaveData(float volume)
+    {
+        _music_Volume = volume;
+    }
+
+    private void SetSoundEffectVolume_FromSaveData(float volume)
+    {
+        _soundEffects_Volume = volume;
     }
 
     private void OnDisable()
@@ -62,6 +74,8 @@ public class Audio_Manager : MonoBehaviour
 
         SaveData_MessageBus.OnRequestMusicVolume -= () => _music_Volume; // Send _musicVolume
         SaveData_MessageBus.OnRequestSoundEffectsVolume -= () => _soundEffects_Volume; // Send _soundEffectsVolume
+        SaveData_MessageBus.OnSetMusicVolume -= SetMusicVolume_FromSaveData;
+        SaveData_MessageBus.OnSetSoundEffectsVolume -= SetSoundEffectVolume_FromSaveData;
     }
 
     private void Start()

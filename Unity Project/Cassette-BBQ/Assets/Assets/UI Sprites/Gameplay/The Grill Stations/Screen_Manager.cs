@@ -53,7 +53,6 @@ public class Screen_Manager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                Debug.Log("Can't move further left!");
                 BumpScreen(toLeft: true);
             }
 
@@ -63,7 +62,6 @@ public class Screen_Manager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                Debug.Log("Can't move further right!");
                 BumpScreen(toLeft: false);
             }
         }

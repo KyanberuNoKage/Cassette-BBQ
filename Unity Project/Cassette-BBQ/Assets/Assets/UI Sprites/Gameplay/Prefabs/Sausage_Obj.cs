@@ -84,7 +84,6 @@ public class Sausage_Obj : MonoBehaviour
         // the same thing, until the score system is built.
         if (_isBurnt)
         {
-            Debug.Log("Sausage has been thrown away!");
             StopAllCoroutines();
             ScoreEvents.ItemWaste_DecreaseScore();
             GrillingEvents.DestroyGrill_Obj(this.gameObject);
@@ -93,7 +92,6 @@ public class Sausage_Obj : MonoBehaviour
         else
         if (_isFinished)
         {
-            Debug.Log("Sausage has been collected!");
             StopAllCoroutines();
             OrderEvents.FillOrder(false); // Notify that a Sausage has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
@@ -103,28 +101,21 @@ public class Sausage_Obj : MonoBehaviour
         if (!_isFlipped)
         {
             _isFlipped = true;
-            Debug.Log("Sausage flipped!");
             Destroy(_smokeEffect_Obj);
 
             // Start the coroutine to finish cooking the Sausage.
             StartCoroutine(FinishCooking());
         }
-        else
-        {
-            Debug.Log("Sausage already flipped!");
-        }
     }
 
     private IEnumerator StartCooking()
     {
-        Debug.Log("Sausage cooking started...");
         while (!_isFlipped && !_isFinished && !_isBurnt)
         {
 
             // Wait for the cook time before changing the sprite to cooked.
             yield return new WaitForSeconds(_sausageCookTime);
             _sausageImage.sprite = _globalSausageData.CookedSausageSpriteOne;
-            Debug.Log("Sausage cooked!");
 
             // Enable the Sausage button to allow flipping.
             _sausageButton.interactable = true;
@@ -145,10 +136,7 @@ public class Sausage_Obj : MonoBehaviour
 
             _sausageImage.sprite = _globalSausageData.BurntSausageSprite;
             _isBurnt = true;
-            Debug.Log("Sausage burnt!");
         }
-
-        Debug.Log("First Sausage cooking coroutine ended.");
 
         yield break;
     }
@@ -161,7 +149,6 @@ public class Sausage_Obj : MonoBehaviour
 
         // Wait for the cook time before changing the sprite to cooked.
         yield return new WaitForSeconds(_sausageCookTime);
-        Debug.Log("Sausage fully cooked!");
 
         // Enable the Sausage button to allow finishing.
         _isFinished = true;
@@ -187,7 +174,6 @@ public class Sausage_Obj : MonoBehaviour
         _isBurnt = true;
         Destroy(_sparkleEffect_Obj);
         Destroy(_oilSplash_Obj);
-        Debug.Log("Sausage burnt!");
     }
 
     private IEnumerator FlipSausageAnimation()

@@ -76,7 +76,6 @@ public class Order_Class : MonoBehaviour
         }
         else if (_currentOrderSizeFuffilled >= _orderSize)
         {
-            Debug.LogWarning("Order Fulfilled, Destroying Order Card");
 
             // Prevent accidental object deletion in editor
             if (Application.isPlaying)

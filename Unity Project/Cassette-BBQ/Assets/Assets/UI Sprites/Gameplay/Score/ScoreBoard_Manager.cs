@@ -24,8 +24,8 @@ public class ScoreBoard_Manager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _dateTimeText_Third;
     [SerializeField] TextMeshProUGUI _dateTimeText_Fourth;
 
-    private List<TextMeshProUGUI> _scores = new List<TextMeshProUGUI>();
-    private List<TextMeshProUGUI> _dateTimes = new List<TextMeshProUGUI>();
+    private List<TextMeshProUGUI> _scores_TableTMP = new List<TextMeshProUGUI>();
+    private List<TextMeshProUGUI> _dateTimes_TableTMP = new List<TextMeshProUGUI>();
 
 
     private void OnEnable()
@@ -34,6 +34,18 @@ public class ScoreBoard_Manager : MonoBehaviour
         ScoreEvents.OnUpdateScoreBoard += UpdateUI;
 
         SaveData_MessageBus.OnRequestHighScores += ProvideScores;
+        SaveData_MessageBus.OnSetHighScoreDict += SetScoreDictionary_FromSaveData;
+    }
+
+    private void SetScoreDictionary_FromSaveData(Dictionary<int, string> highScores)
+    {
+        _highScores.Clear();
+
+        // Put each pair from saved dictionary into the sorted dictionary.
+        foreach (var entry in highScores.OrderByDescending(e => e.Key))
+        {
+            _highScores.Add(entry.Key, entry.Value);
+        }
     }
 
     private void OnDisable()
@@ -42,11 +54,12 @@ public class ScoreBoard_Manager : MonoBehaviour
         ScoreEvents.OnUpdateScoreBoard -= UpdateUI;
 
         SaveData_MessageBus.OnRequestHighScores -= ProvideScores;
+        SaveData_MessageBus.OnSetHighScoreDict -= SetScoreDictionary_FromSaveData;
     }
 
     private void Start()
     {
-        _scores = new List<TextMeshProUGUI>
+        _scores_TableTMP = new List<TextMeshProUGUI>
         {
             _highScoreText_first,
             _highScoreText_second,
@@ -54,7 +67,7 @@ public class ScoreBoard_Manager : MonoBehaviour
             _highScoreText_fourth
         };
 
-        _dateTimes = new List<TextMeshProUGUI>
+        _dateTimes_TableTMP = new List<TextMeshProUGUI>
         {
             _dateTimeText_First,
             _dateTimeText_Second,
@@ -85,18 +98,18 @@ public class ScoreBoard_Manager : MonoBehaviour
 
     private void UpdateUI()
     {
-        for(int i = 0; i < _scores.Count; i++)
+        for(int i = 0; i < _scores_TableTMP.Count; i++)
         {
             if (_highScores.Count > i)
             {
                 var entry = _highScores.ElementAt(i);
-                _scores[i].text = entry.Key.ToString();
-                _dateTimes[i].text = entry.Value;
+                _scores_TableTMP[i].text = entry.Key.ToString();
+                _dateTimes_TableTMP[i].text = entry.Value;
             }
             else
             {
-                _scores[i].text = "0000000";
-                _dateTimes[i].text = "N/A";
+                _scores_TableTMP[i].text = "0000000";
+                _dateTimes_TableTMP[i].text = "N/A";
             }
         }
     }

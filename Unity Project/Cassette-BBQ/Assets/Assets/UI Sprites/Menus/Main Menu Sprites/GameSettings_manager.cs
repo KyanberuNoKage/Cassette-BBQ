@@ -5,6 +5,9 @@ using Action = System.Action;
 
 public class GameSettings_manager : MonoBehaviour
 {
+    [Header("Save Data")]
+    [SerializeField] SaveData_Controller _saveData_Controller;
+
     [Header("Options Menu Settings")]
     [SerializeField] private float _music_Volume;
     [SerializeField] private float _soundEffects_Volume;
@@ -20,20 +23,29 @@ public class GameSettings_manager : MonoBehaviour
     private void OnEnable()
     {
         GamesSettingsEvents.OnSoundLevelChanged += UpdateSoundLevels;
-        GamesSettingsEvents.OnGameQuit += QuitGame;
+        SaveData_MessageBus.OnSetIsOneHanded += SetIsOneHanded_FromSaveData;
+    }
+
+    private void SetIsOneHanded_FromSaveData(bool isOneHanded)
+    {
+        _isOneHanded = isOneHanded;
     }
 
     private void OnDisable()
     {
         GamesSettingsEvents.OnSoundLevelChanged -= UpdateSoundLevels;
-        GamesSettingsEvents.OnGameQuit -= QuitGame;
+        SaveData_MessageBus.OnSetIsOneHanded -= SetIsOneHanded_FromSaveData;
     }
 
     private void Start()
     {
-        if (/**saveGame_Exists = true**/ false)
+        if (_saveData_Controller.DoesSaveExist())
         {
-            //Set up game with save game settings.
+            
+
+            _saveData_Controller.LoadAndSetupGame();
+            GamesSettingsEvents.SoundSetup_Start(_music_Volume, _soundEffects_Volume);
+            GamesSettingsEvents.InformAudioChanged();
         }
         else
         {
@@ -78,9 +90,6 @@ public class GameSettings_manager : MonoBehaviour
 
     public void QuitGame()
     {
-        // Handles any game quit logic, such as saving settings or cleaning up.
-        GamesSettingsEvents.GameQuit();
-
         Application.Quit();
     }
 }
@@ -94,13 +103,6 @@ public static class  GamesSettingsEvents
     public static void ToggleOneHanded(bool isToggledOn)
     {
         OnOneHandedToggled?.Invoke(isToggledOn);
-    }
-
-    public static event Action OnGameQuit;
-
-    public static void GameQuit()
-    {
-        OnGameQuit?.Invoke();
     }
 
     public static event Action<float, float> OnSoundSetup_Start;

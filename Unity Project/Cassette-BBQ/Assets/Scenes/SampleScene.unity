@@ -5644,7 +5644,7 @@ MonoBehaviour:
   _musicVolume: 0
   _soundEffectsVolume: 0
   _isOneHanded: 0
-  RevealedCassettes: []
+  _revealedCassettes: []
 --- !u!4 &1425259634
 Transform:
   m_ObjectHideFlags: 0
@@ -9258,6 +9258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fde556fdd8a07c4394739d4f6581799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveData_Controller: {fileID: 1425259633}
   _music_Volume: 0
   _soundEffects_Volume: 0
   _isOneHanded: 0

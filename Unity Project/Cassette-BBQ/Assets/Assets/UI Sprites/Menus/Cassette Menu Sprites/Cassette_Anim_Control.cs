@@ -3,6 +3,7 @@ using UnityEngine;
 public class Cassette_Anim_Control : MonoBehaviour
 {
     [SerializeField] Cassette_Anim_Obj _thisCassette_Anim_Obj;
+    public string thisCassettesName;
     [SerializeField] Animator _thisCassette_Animator;
 
 
@@ -11,9 +12,12 @@ public class Cassette_Anim_Control : MonoBehaviour
         if (_thisCassette_Anim_Obj == null)
         {
             Debug.LogError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
+            return;
         }
 
-        if(_thisCassette_Anim_Obj.IsUnlocked == true)
+        thisCassettesName = _thisCassette_Animator.name;
+
+        if (_thisCassette_Anim_Obj.IsUnlocked == true)
         {
             RevealCassette(true);
         }
@@ -54,6 +58,7 @@ public class Cassette_Anim_Control : MonoBehaviour
             _thisCassette_Animator.SetTrigger("Silhouette");
         }
     }
+
 
     public void SelectCassette()
     {

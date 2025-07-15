@@ -62,7 +62,6 @@ public class Order_Manager : MonoBehaviour
 
         if (ListOfOrders.Count <= 0)
         {
-            Debug.Log("No Orders To Fill, Deducting Points For Food Waste");
             ScoreEvents.ItemWaste_DecreaseScore();
         }
         else
@@ -89,7 +88,6 @@ public class Order_Manager : MonoBehaviour
 
     private void SmoothlyReOrder_OrderListGame(GameObject OrderToRemove_Obj)
     {
-        Debug.Log($"Object To Remove: {OrderToRemove_Obj}");
         StartCoroutine(RemoveOrderFromList(OrderToRemove_Obj));
     }
 

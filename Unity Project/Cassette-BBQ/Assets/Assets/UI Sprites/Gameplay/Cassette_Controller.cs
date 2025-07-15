@@ -19,35 +19,38 @@ public class Cassette_Controller : MonoBehaviour
         SaveData_MessageBus.OnSetRevealedCassettes -= SetActiveCassettes;
     }
 
-    private List<Cassette_Anim_Control> GetActiveCassettes()
+    private List<string> GetActiveCassettes()
     {
-        return _activatedCassettes;
+        List<string> cassetteNames = new List<string>();
+
+        foreach (Cassette_Anim_Control cassette in _activatedCassettes)
+        {
+            cassetteNames.Add(cassette.thisCassettesName);
+        }
+
+        return cassetteNames;
     }
 
-    private void SetActiveCassettes()
+    private void SetActiveCassettes(List<string> activeCassetteList)
     {
-        _activatedCassettes = new List<Cassette_Anim_Control>();
-        foreach (Cassette_Anim_Control cassette in Cassettes)
+        foreach (var cassette in Cassettes)
         {
-            if (cassette != null)
+            if (activeCassetteList.Contains(cassette.thisCassettesName))
             {
                 cassette.RevealCassette(true);
                 _activatedCassettes.Add(cassette);
             }
-        }
-    }
-
-    private void SetActiveCassettes(List<Cassette_Anim_Control> activeCassetteList)
-    {
-        foreach (var cassette in Cassettes)
-        {
-            if (activeCassetteList.Contains(cassette))
-            {
-                cassette.RevealCassette(true);
-            }
             else
             {
                 cassette.RevealCassette(false);
+
+                foreach(var activeCassette in _activatedCassettes)
+                {
+                    if(activeCassette.thisCassettesName == cassette.thisCassettesName)
+                    {
+                        _activatedCassettes.Remove(activeCassette);
+                    }
+                }
             }
         }
     }

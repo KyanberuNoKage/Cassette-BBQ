@@ -84,7 +84,6 @@ public class Burger_Obj : MonoBehaviour
         // the same thing, until the score system is built.
         if (_isBurnt)
         {
-            Debug.Log("Burger has been thrown away!");
             StopAllCoroutines();
             ScoreEvents.ItemWaste_DecreaseScore();
             GrillingEvents.DestroyGrill_Obj(this.gameObject);
@@ -92,7 +91,6 @@ public class Burger_Obj : MonoBehaviour
         }
         else if (_isFinished)
         {
-            Debug.Log("Burger has been collected!");
             StopAllCoroutines();
             OrderEvents.FillOrder(true); // Notify that a burger has been finished.
             GrillingEvents.DestroyGrill_Obj(this.gameObject); // Notify that there is one less item on grill.
@@ -102,28 +100,21 @@ public class Burger_Obj : MonoBehaviour
         if (!_isFlipped)
         {
             _isFlipped = true;
-            Debug.Log("Burger flipped!");
             Destroy(_smokeEffect_Obj);
 
             // Start the coroutine to finish cooking the burger.
             StartCoroutine(FinishCooking());
         }
-        else
-        {
-            Debug.Log("Burger already flipped!");
-        }
     }
 
     private IEnumerator StartCooking()
     {
-        Debug.Log("Burger cooking started...");
         while (!_isFlipped && !_isFinished && !_isBurnt)
         {
 
             // Wait for the cook time before changing the sprite to cooked.
             yield return new WaitForSeconds(_burgerCookTime);
             _burgerImage.sprite = _globalBurgerData.CookedBurgerSprite;
-            Debug.Log("Burger cooked!");
 
             // Enable the burger button to allow flipping.
             _burgerButton.interactable = true;
@@ -144,10 +135,7 @@ public class Burger_Obj : MonoBehaviour
 
             _burgerImage.sprite = _globalBurgerData.BurntBurgerSprite;
             _isBurnt = true;
-            Debug.Log("Burger burnt!");
         }
-
-        Debug.Log("First Burger cooking coroutine ended.");
 
         yield break;
     }
@@ -160,7 +148,6 @@ public class Burger_Obj : MonoBehaviour
 
         // Wait for the cook time before changing the sprite to cooked.
         yield return new WaitForSeconds(_burgerCookTime);
-        Debug.Log("Burger fully cooked!");
 
         // Enable the burger button to allow finishing.
         _isFinished = true;
@@ -185,7 +172,6 @@ public class Burger_Obj : MonoBehaviour
         _isBurnt = true;
         Destroy(_sparkleEffect_Obj);
         Destroy(_oilSplash_Obj);
-        Debug.Log("Burger burnt!");
     }
 
     private IEnumerator FlipBurgerAnimation()
