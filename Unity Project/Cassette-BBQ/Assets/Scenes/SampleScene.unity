@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerImage: {fileID: 191365445}
-  timerDuration: 2
+  timerDuration: 60
   currentTime: 0
 --- !u!1 &776429516
 GameObject:

@@ -42,6 +42,9 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnGrillScreen += GrillBackground;
         AudioEvents.OnWooshPlayed += PlayRandomWooshEffect;
 
+        TimerEvents.OnTimerFinished += ResetAudio;
+        
+
         SaveData_MessageBus.OnRequestMusicVolume += () => _music_Volume; // Send _musicVolume
         SaveData_MessageBus.OnRequestSoundEffectsVolume += () => _soundEffects_Volume; // Send _soundEffectsVolume
     }
@@ -107,6 +110,26 @@ public class Audio_Manager : MonoBehaviour
 
         // Background sounds slightly quieter than other sound effects.
         _audioMixer.SetFloat("Grill Sound", Mathf.Log10(_soundEffects_Volume) * 20);
+    }
+
+    private void ResetAudio()
+    {
+            // Reset the music volume to the saved value when the timer finishes.
+            FadeOutMusic();
+            foreach (AudioSource source in _effects_AudioSourcePool)
+            {
+                source.DOFade(0, 1f).OnComplete(() =>
+                {
+                    source.Stop();
+                    source.clip = null;
+                });
+            }
+
+            _soundEffects_AudioSource.DOFade(0, 1f).OnComplete(() =>
+            {
+                _soundEffects_AudioSource.Stop();
+                _soundEffects_AudioSource.clip = null;
+            });
     }
 
     private void FadeOutMusic()

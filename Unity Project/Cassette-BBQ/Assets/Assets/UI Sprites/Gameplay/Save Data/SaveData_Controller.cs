@@ -15,6 +15,16 @@ public class SaveData_Controller : MonoBehaviour
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
 
+    private void SaveGame()
+    {
+        RequestData();
+    }
+
+    private void TryLoadGame()
+    {
+
+    }
+
     private void RequestData()
     {
         // Sends requests to the message bus to get data from different scripts.

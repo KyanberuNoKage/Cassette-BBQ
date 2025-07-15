@@ -290,7 +290,7 @@ public class MenuTransitionController : MonoBehaviour
                 _cassettesMenu_Group.interactable = false;
                 _cassettesMenu_Group.blocksRaycasts = false;
 
-                OrderEvents.StartOrderSystem(); // Start the order system for the grill gameplay.
+                OrderEvents.StartGameSystem(); // Start the order system for the grill gameplay.
             }
         );
     }

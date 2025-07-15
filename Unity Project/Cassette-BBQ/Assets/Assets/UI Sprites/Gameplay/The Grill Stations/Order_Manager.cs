@@ -38,7 +38,7 @@ public class Order_Manager : MonoBehaviour
     {
         OrderEvents.OnGrillItem_Finished += Try_FulfillOrder;
         OrderEvents.RemoveOrder += SmoothlyReOrder_OrderListGame;
-        OrderEvents.OnStartOrderSystem += StartGame;
+        OrderEvents.OnStartGame += StartGame;
         TimerEvents.OnTimerFinished += EndOrders;
     }
 
@@ -46,7 +46,7 @@ public class Order_Manager : MonoBehaviour
     {
         OrderEvents.OnGrillItem_Finished -= Try_FulfillOrder;
         OrderEvents.RemoveOrder -= SmoothlyReOrder_OrderListGame;
-        OrderEvents.OnStartOrderSystem -= StartGame;
+        OrderEvents.OnStartGame -= StartGame;
         TimerEvents.OnTimerFinished -= EndOrders;
     }
 
@@ -192,10 +192,10 @@ public static class OrderEvents
         RemoveOrder?.Invoke(orderToRemove); // Notify that an order has been removed.
     }
 
-    public static event Action OnStartOrderSystem;
+    public static event Action OnStartGame;
 
-    public static void StartOrderSystem()
+    public static void StartGameSystem()
     {
-        OnStartOrderSystem?.Invoke();
+        OnStartGame?.Invoke();
     }
 }

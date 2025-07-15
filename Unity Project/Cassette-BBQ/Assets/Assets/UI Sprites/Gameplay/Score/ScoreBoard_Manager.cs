@@ -32,12 +32,16 @@ public class ScoreBoard_Manager : MonoBehaviour
     {
         ScoreEvents.OnAddHighScore += AddHighScore;
         ScoreEvents.OnUpdateScoreBoard += UpdateUI;
+
+        SaveData_MessageBus.OnRequestHighScores += ProvideScores;
     }
 
     private void OnDisable()
     {
         ScoreEvents.OnAddHighScore -= AddHighScore;
         ScoreEvents.OnUpdateScoreBoard -= UpdateUI;
+
+        SaveData_MessageBus.OnRequestHighScores -= ProvideScores;
     }
 
     private void Start()
@@ -69,6 +73,14 @@ public class ScoreBoard_Manager : MonoBehaviour
         // Trim to top N
         while (_highScores.Count > _maxEntries)
             _highScores.Remove(_highScores.Keys.Last());     // last == lowest because DESC
+    }
+
+    private Dictionary<int, string> ProvideScores()
+    {
+        return _highScores
+                .OrderByDescending(entry => entry.Key)
+                .Take(4)
+                .ToDictionary(entry => entry.Key, entry => entry.Value);
     }
 
     private void UpdateUI()

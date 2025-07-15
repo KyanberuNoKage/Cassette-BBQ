@@ -2,9 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
-using Unity.Android.Types;
 using UnityEngine;
 
 public class Score_Manager : MonoBehaviour
@@ -27,7 +25,8 @@ public class Score_Manager : MonoBehaviour
     private int _foodWastePenalty = 250;
 
     [Space, Header("Score Info")]
-    [SerializeField, Tooltip("Number of times player has waisted food.")] int _numberOfWastedFoodItems = 0;
+    [SerializeField, Tooltip("Number of times player has waisted food.")] 
+                     int _numberOfWastedFoodItems = 0;
     [SerializeField] int _numberOfCompletedOrders = 0;
     [SerializeField] float _averageTimeTaken_PerOrder = 0;
     [SerializeField] List<float> _listOf_timeTaken_PerOrder = new List<float>();
@@ -46,6 +45,7 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnOrder_ScoreIncreased += CalculateFoodOrder_Score;
         ScoreEvents.OnFoodWasted_ScoreDecreased += CalculateFoodWaste_Score;
         ScoreEvents.OnRequestScoreData += ReturnScoreData;
+        OrderEvents.OnStartGame += ResetScore;
     }
 
     private void OnDisable()
@@ -53,6 +53,7 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnOrder_ScoreIncreased -= CalculateFoodOrder_Score;
         ScoreEvents.OnFoodWasted_ScoreDecreased -= CalculateFoodWaste_Score;
         ScoreEvents.OnRequestScoreData -= ReturnScoreData;
+        OrderEvents.OnStartGame -= ResetScore;
     }
 
     void Start()
@@ -65,6 +66,16 @@ public class Score_Manager : MonoBehaviour
         _currentScore = 0;
 
         _scoreText.text = _currentScore.ToString("D4");
+    }
+
+    private void ResetScore()
+    {
+        _currentScore = 0;
+        _scoreText.text = _currentScore.ToString("D4");
+        _numberOfCompletedOrders = 0;
+        _numberOfWastedFoodItems = 0;
+        _averageTimeTaken_PerOrder = 0;
+        _listOf_timeTaken_PerOrder.Clear();
     }
 
     private void CalculateFoodOrder_Score(float timeTaken)

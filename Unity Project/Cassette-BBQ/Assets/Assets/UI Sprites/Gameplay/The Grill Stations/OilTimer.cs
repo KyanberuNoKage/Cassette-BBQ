@@ -12,18 +12,27 @@ public class OilTimer : MonoBehaviour
 
     private void OnEnable()
     {
-        OrderEvents.OnStartOrderSystem += StartTimer;
+        OrderEvents.OnStartGame += StartTimer;
     }
 
     private void OnDisable()
     {
-        OrderEvents.OnStartOrderSystem -= StartTimer;
+        OrderEvents.OnStartGame -= StartTimer;
         StopAllCoroutines();
     }
 
     private void StartTimer()
     {
+        ResetTimer();// reset before starting a new timer.
+
         StartCoroutine(TimerCoroutine());
+    }
+
+    private void ResetTimer()
+    {
+        StopAllCoroutines();
+        currentTime = 0;
+        UpdateTimerUI();
     }
 
     private IEnumerator TimerCoroutine()
