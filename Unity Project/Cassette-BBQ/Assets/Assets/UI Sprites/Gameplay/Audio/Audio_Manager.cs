@@ -83,7 +83,7 @@ public class Audio_Manager : MonoBehaviour
         if (_music_List.Length > 0)
         {
             // First track is the menu music.
-            PlayMusic(_music_List[0]);
+            PlayMusic(_music_List[0], true);
         }
 
         GameObject audioHolder = new GameObject("AudioPoolHolder");
@@ -97,8 +97,9 @@ public class Audio_Manager : MonoBehaviour
         }
     }
 
-    private void PlayMusic(AudioClip musicClip)
+    private void PlayMusic(AudioClip musicClip, bool isLooped = false)
     {
+        _music_AudioSource.loop = isLooped;
         _music_AudioSource.clip = musicClip;
         _music_AudioSource.Play();
     }

@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerImage: {fileID: 191365445}
-  timerDuration: 60
+  timerDuration: 90
   currentTime: 0
 --- !u!1 &776429516
 GameObject:
@@ -5645,6 +5645,8 @@ MonoBehaviour:
   _soundEffectsVolume: 0
   _isOneHanded: 0
   _revealedCassettes: []
+  _defaultSound_Volume: 0.8
+  _default_isOneHandedMode: 0
 --- !u!4 &1425259634
 Transform:
   m_ObjectHideFlags: 0
