@@ -52,6 +52,19 @@ public class GameSettings_manager : MonoBehaviour
             SetDefaultValues();
         }
     }
+    
+    public void ResetData(bool resetData)
+    {
+        if (resetData)
+        {
+            // If player is sure.
+            _saveData_Controller.ResetData();
+        }
+        else
+        {
+            // Leave "Are you sure" screen.
+        }
+    }
 
     private void SetDefaultValues()
     {

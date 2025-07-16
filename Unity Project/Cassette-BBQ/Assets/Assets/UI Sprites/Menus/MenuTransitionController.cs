@@ -79,15 +79,8 @@ public class MenuTransitionController : MonoBehaviour
     public void ControlsOptions() => MoveMenuScreen(MenuScreens.ControlsOptions);
     public void CassettesMenu() => MoveMenuScreen(MenuScreens.CassettesMenu);
 
-    public void ResetData()
-    {
-        // IMPLIMENT RESET DATA FEATURES
-        Debug.Log("Resetting game data...");
-    }
-
     public void LeaveGame()
     {
-        // IMPLIMENT SAVE GAME FEATURES
         Application.Quit();
     }
     #endregion
@@ -376,7 +369,7 @@ public class MenuTransitionController : MonoBehaviour
                 _grill_Group.blocksRaycasts = false;
             };
             AudioEvents.SetGrillScreen(false);
-            AudioEvents.FadeOutMusic();
+            AudioEvents.StartMainMenuMusic();
         });
 
         sequence.AppendInterval(0.5f);

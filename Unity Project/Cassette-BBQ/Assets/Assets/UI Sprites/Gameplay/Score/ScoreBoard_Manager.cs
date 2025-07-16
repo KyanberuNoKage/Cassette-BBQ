@@ -35,6 +35,8 @@ public class ScoreBoard_Manager : MonoBehaviour
 
         SaveData_MessageBus.OnRequestHighScores += ProvideScores;
         SaveData_MessageBus.OnSetHighScoreDict += SetScoreDictionary_FromSaveData;
+        ScoreEvents.OnRequestTopScore += ReturnHighestScore;
+        ScoreEvents.OnRequestAverageOfScore += ReturnAverageOfScore;
     }
 
     private void SetScoreDictionary_FromSaveData(Dictionary<int, string> highScores)
@@ -55,6 +57,8 @@ public class ScoreBoard_Manager : MonoBehaviour
 
         SaveData_MessageBus.OnRequestHighScores -= ProvideScores;
         SaveData_MessageBus.OnSetHighScoreDict -= SetScoreDictionary_FromSaveData;
+        ScoreEvents.OnRequestTopScore -= ReturnHighestScore;
+        ScoreEvents.OnRequestAverageOfScore -= ReturnAverageOfScore;
     }
 
     private void Start()
@@ -74,6 +78,25 @@ public class ScoreBoard_Manager : MonoBehaviour
             _dateTimeText_Third,
             _dateTimeText_Fourth
         };
+    }
+
+    private int ReturnHighestScore()
+    {
+        return _highScores.FirstOrDefault().Key;
+    }
+
+    private float ReturnAverageOfScore()
+    {
+        float averageScore = 0;
+
+        foreach(var pair in _highScores)
+        {
+            averageScore += pair.Key;
+        }
+
+        averageScore /= _highScores.Count;
+
+        return averageScore;
     }
 
     private void AddHighScore()

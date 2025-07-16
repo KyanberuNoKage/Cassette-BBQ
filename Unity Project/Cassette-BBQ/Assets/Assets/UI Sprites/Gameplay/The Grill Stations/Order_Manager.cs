@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
 using Random = UnityEngine.Random;
 
 public class Order_Manager : MonoBehaviour
@@ -13,7 +13,6 @@ public class Order_Manager : MonoBehaviour
     [SerializeField] private List<Order_Class> ListOfOrders = new List<Order_Class>();
 
     [SerializeField] private Transform _orderHolder;
-    [SerializeField] private GridLayoutGroup _orderHolder_GridComponent;
 
     [SerializeField] private bool _areOrdersActive = false;
 
@@ -32,6 +31,35 @@ public class Order_Manager : MonoBehaviour
     [SerializeField, Tooltip("Max number of orders at once.")]
     private int _maxNumOfOrders = 10;
 
+    #region Order Positioning
+    [Space, Header("Positioning Settings")]
+    [SerializeField] private Vector2 _columnStartPosition = new Vector2(40, 16);
+    [SerializeField] private RectTransform _orderSpawnPoint;
+    [SerializeField] private float _spacing = 68f; // Pixels between orders
+    [SerializeField] private bool _isHorizontalLayout = true;
+    [SerializeField] private float _reorderDuration = 0.3f; // How long it takes to animate
+
+    private void RepositionOrders()
+    {
+        for (int i = 0; i < ListOfOrders.Count; i++)
+        {
+            Vector2 targetPos;
+
+            if (_isHorizontalLayout)
+            {
+                targetPos = _columnStartPosition + new Vector2(i * _spacing, 0);
+            }
+            else
+            {
+                targetPos = _columnStartPosition + new Vector2(0, -i * _spacing);
+            }
+
+            RectTransform orderRect = ListOfOrders[i].GetComponent<RectTransform>();
+            orderRect.DOAnchorPos(targetPos, _reorderDuration).SetEase(Ease.OutQuad);
+        }
+    }
+
+    #endregion
     private Coroutine _ordersCoroutine;
 
     private void OnEnable()
@@ -109,6 +137,7 @@ public class Order_Manager : MonoBehaviour
         {
             ListOfOrders.Remove(OrderToRemove);
             Destroy(OrderToRemove_Obj);
+            RepositionOrders();
         }
         _areOrdersActive = true; // Re-enable order spawning.
     }
@@ -119,15 +148,28 @@ public class Order_Manager : MonoBehaviour
         {
             if (_areOrdersActive && ListOfOrders.Count < _maxNumOfOrders)
             {
-                GameObject newOrder = Instantiate(Order_Prefab, _orderHolder, false);
+                GameObject newOrder = Instantiate
+                    (
+                        Order_Prefab, 
+                        _orderSpawnPoint.position, 
+                        Quaternion.identity, 
+                        _orderHolder
+                    );
+
                 var newOrder_Data = newOrder.GetComponent<Order_Class>();
+
                 newOrder_Data.Set_OrderClass_Data
                     (
                         Random.Range(0, 2) == 0, 
-                        Random.Range(_minNumOfItems, 
-                        _maxNumOfItems + 1
-                    ));
+                        Random.Range
+                        (
+                            _minNumOfItems, 
+                            _maxNumOfItems + 1
+                        )
+                    );
+
                 ListOfOrders.Add(newOrder_Data);
+                RepositionOrders();
             }
 
             if (ListOfOrders.Count >= _maxNumOfOrders)
@@ -178,16 +220,16 @@ public static class OrderEvents
 {
     public static event Action<bool> OnGrillItem_Finished;
 
-    public static void FillOrder(bool IsBurger) // Is burger (true), or sausage ().
+    public static void FillOrder(bool IsBurger) // Is burger (true), or sausage (false).
     {
-        OnGrillItem_Finished?.Invoke(IsBurger); // Tell orders an item is finished.
+        OnGrillItem_Finished?.Invoke(IsBurger);
     }
 
     public static event Action<GameObject> RemoveOrder;
 
     public static void RemoveOrderFromList(GameObject orderToRemove)
     {
-        RemoveOrder?.Invoke(orderToRemove); // Notify that an order has been removed.
+        RemoveOrder?.Invoke(orderToRemove);
     }
 
     public static event Action OnStartGame;

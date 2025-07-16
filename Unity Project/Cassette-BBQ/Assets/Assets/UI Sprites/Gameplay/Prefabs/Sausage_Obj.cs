@@ -194,7 +194,7 @@ public class Sausage_Obj : MonoBehaviour
 
             if (flipAnimFrame == _wooshOnSprite)
             {
-                AudioEvents.PlayRandomWoosh();
+                AudioEvents.PlayRandomWhoosh();
             }
 
             _sausageImage.sprite = flipAnimFrame;

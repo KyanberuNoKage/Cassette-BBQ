@@ -260,4 +260,7 @@ public static class ScoreEvents
     }
 
     public static Func<Score_Manager.ScoreData> OnRequestScoreData;
+
+    public static Func<int> OnRequestTopScore;
+    public static Func<float> OnRequestAverageOfScore;
 }

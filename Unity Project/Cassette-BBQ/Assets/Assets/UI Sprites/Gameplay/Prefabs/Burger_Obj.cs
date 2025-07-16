@@ -193,7 +193,7 @@ public class Burger_Obj : MonoBehaviour
 
             else if (flipAnimFrame == _wooshOnSprite)
             {
-                AudioEvents.PlayRandomWoosh();
+                AudioEvents.PlayRandomWhoosh();
             }
 
             _burgerImage.sprite = flipAnimFrame;

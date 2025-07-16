@@ -40,7 +40,8 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect += PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped += StopLoopedEffect;
         AudioEvents.OnGrillScreen += GrillBackground;
-        AudioEvents.OnWooshPlayed += PlayRandomWooshEffect;
+        AudioEvents.OnWhooshPlayed += PlayRandomWooshEffect;
+        AudioEvents.OnStartMainMenuMusic += Start_MainMenuMusic;
 
         TimerEvents.OnTimerFinished += ResetAudio;
         
@@ -70,7 +71,10 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect -= PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped -= StopLoopedEffect;
         AudioEvents.OnGrillScreen -= GrillBackground;
-        AudioEvents.OnWooshPlayed -= PlayRandomWooshEffect;
+        AudioEvents.OnWhooshPlayed -= PlayRandomWooshEffect;
+        AudioEvents.OnStartMainMenuMusic -= Start_MainMenuMusic;
+
+        TimerEvents.OnTimerFinished -= ResetAudio;
 
         SaveData_MessageBus.OnRequestMusicVolume -= () => _music_Volume; // Send _musicVolume
         SaveData_MessageBus.OnRequestSoundEffectsVolume -= () => _soundEffects_Volume; // Send _soundEffectsVolume
@@ -82,8 +86,7 @@ public class Audio_Manager : MonoBehaviour
     {
         if (_music_List.Length > 0)
         {
-            // First track is the menu music.
-            PlayMusic(_music_List[0], true);
+            Start_MainMenuMusic();
         }
 
         GameObject audioHolder = new GameObject("AudioPoolHolder");
@@ -129,22 +132,22 @@ public class Audio_Manager : MonoBehaviour
 
     private void ResetAudio()
     {
-            // Reset the music volume to the saved value when the timer finishes.
-            FadeOutMusic();
-            foreach (AudioSource source in _effects_AudioSourcePool)
+        // Fade out pooled effects
+        foreach (AudioSource source in _effects_AudioSourcePool)
+        {
+            source.DOFade(0, 1f).OnComplete(() =>
             {
-                source.DOFade(0, 1f).OnComplete(() =>
-                {
-                    source.Stop();
-                    source.clip = null;
-                });
-            }
-
-            _soundEffects_AudioSource.DOFade(0, 1f).OnComplete(() =>
-            {
-                _soundEffects_AudioSource.Stop();
-                _soundEffects_AudioSource.clip = null;
+                source.Stop();
+                source.clip = null;
             });
+        }
+
+        // Fade out main SFX
+        _soundEffects_AudioSource.DOFade(0, 1f).OnComplete(() =>
+        {
+            _soundEffects_AudioSource.Stop();
+            _soundEffects_AudioSource.clip = null;
+        });
     }
 
     private void FadeOutMusic()
@@ -165,6 +168,19 @@ public class Audio_Manager : MonoBehaviour
             PlayMusic(_music_List[Random.Range(0, _music_List.Length)]);
             _music_AudioSource.DOFade(_music_Volume, 1f);
         });
+    }
+
+    private void Start_MainMenuMusic()
+    {
+        // First track in the music list is the menu music.
+        if (_music_AudioSource.isPlaying)
+        {
+            _music_AudioSource.DOFade(0, 1f).OnComplete(() => PlayMusic(_music_List[0], true));
+        }
+        else
+        {
+            PlayMusic(_music_List[0], true);
+        }  
     }
 
     public void UI_Button_Click()
@@ -215,7 +231,6 @@ public class Audio_Manager : MonoBehaviour
         // If enum and array of effects are  set up to correspond correctly in order;
         // then this will select the correct clip based on their shared index.
         AudioClip effectClip = _soundEffects_List[(int)ChosenEffect];
-
         _soundEffects_AudioSource.PlayOneShot(effectClip);
     }
 
@@ -309,7 +324,7 @@ public class Audio_Manager : MonoBehaviour
                 PlaySoundEffect(SoundEffects.fast_woosh);
                 break;
             default:
-                Debug.LogWarning("Random index out of range, defaulting to woosh sound effect.");
+                Debug.LogWarning("Random index out of range, defaulting to whoosh sound effect.");
                 PlaySoundEffect(SoundEffects.woosh);
                 break;
         }
@@ -354,6 +369,13 @@ public static class AudioEvents
         OnLoopedEffectStopped?.Invoke(effectToStop);
     }
 
+    public static event Action OnStartMainMenuMusic;
+
+    public static void StartMainMenuMusic()
+    {
+        OnStartMainMenuMusic?.Invoke();
+    }
+
     public static event Action<bool> OnGrillScreen;
 
     public static void SetGrillScreen(bool IsOn)
@@ -361,11 +383,11 @@ public static class AudioEvents
         OnGrillScreen?.Invoke(IsOn);
     }
 
-    public static event Action OnWooshPlayed;
+    public static event Action OnWhooshPlayed;
 
-    public static void PlayRandomWoosh()
+    public static void PlayRandomWhoosh()
     {
-        OnWooshPlayed?.Invoke();
+        OnWhooshPlayed?.Invoke();
     }
 }
 
