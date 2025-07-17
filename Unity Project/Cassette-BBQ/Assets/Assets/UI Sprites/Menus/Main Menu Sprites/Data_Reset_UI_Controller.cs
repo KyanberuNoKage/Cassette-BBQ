@@ -3,9 +3,6 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
 using Image = UnityEngine.UI.Image;
 
 public class Data_Reset_UI_Controller : MonoBehaviour
@@ -164,6 +161,11 @@ public class Data_Reset_UI_Controller : MonoBehaviour
         moveReceipt.Append(_receiptRectTransform.DOAnchorPosY(200f, 0.5f));
 
         moveReceipt.AppendInterval(0.05f);
+        
+        moveReceipt.JoinCallback(() =>
+        {
+            AudioEvents.PlayEffect(SoundEffects.fast_woosh);
+        });
 
         moveReceipt.Append(_receiptRectTransform.DOAnchorPosY(-1500, 0.3f));
 
@@ -181,7 +183,10 @@ public class Data_Reset_UI_Controller : MonoBehaviour
             });
         });
 
-        moveReceipt.Play();
+        moveReceipt.Play().OnComplete(() => 
+        { 
+            _recieptImage.sprite = _resetData_Reciept;
+        });
     }
 }
 

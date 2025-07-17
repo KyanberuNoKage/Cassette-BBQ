@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using UnityEditor.Overlays;
+using System.Collections;
 
 public class SaveData_Controller : MonoBehaviour
 {
@@ -77,6 +78,21 @@ public class SaveData_Controller : MonoBehaviour
 
     public void LoadAndSetupGame() 
     {
+        StartCoroutine(StartUpGame());    
+    }
+
+    private IEnumerator StartUpGame()
+    {
+        yield return LoadSaveData();
+
+        yield return SendData();
+
+        GamesSettingsEvents.SoundSetup_Start(_musicVolume, _soundEffectsVolume);
+        GamesSettingsEvents.InformAudioChanged();
+    }
+
+    private IEnumerator LoadSaveData()
+    {
         GameData newGameData = TryLoadGameData();
 
         // Logs the saved data, if there is any,
@@ -93,19 +109,20 @@ public class SaveData_Controller : MonoBehaviour
             _highScores = newGameData.highScores
             .OrderByDescending(p => p.score)
             .ToDictionary(p => p.score, p => p.dateTime);
-
-            SendData();
         }
+
+        yield return null;
     }
 
-
-    private void SendData()
+    private IEnumerator SendData()
     {
         SaveData_MessageBus.SetMusicVolume( _musicVolume );//connected
         SaveData_MessageBus.SetSoundEffectsVolume( _soundEffectsVolume );//connected
         SaveData_MessageBus.SetIsOneHanded( _isOneHanded );//connected
         SaveData_MessageBus.SetRevealedCassettes( _revealedCassettes );//connected
         SaveData_MessageBus.SetHighScoreDict( _highScores );//connected
+
+        yield return null;
     }
 
     private static GameData TryLoadGameData()

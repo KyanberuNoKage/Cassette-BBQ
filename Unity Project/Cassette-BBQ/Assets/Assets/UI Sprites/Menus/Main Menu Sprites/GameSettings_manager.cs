@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Action = System.Action;
@@ -41,16 +42,30 @@ public class GameSettings_manager : MonoBehaviour
     {
         if (_saveData_Controller.DoesSaveExist())
         {
-            
-
             _saveData_Controller.LoadAndSetupGame();
-            GamesSettingsEvents.SoundSetup_Start(_music_Volume, _soundEffects_Volume);
-            GamesSettingsEvents.InformAudioChanged();
         }
         else
         {
             SetDefaultValues();
         }
+    }
+
+    private void SetDefaultValues()
+    {
+        _music_Volume = _default_Music_Volume; // Default music volume
+        _soundEffects_Volume = _default_SoundEffects_Volume; // Default sound effects volume
+
+        _audioManager.SetMusic(_music_Volume);
+        _audioManager.SetSoundEffects(_soundEffects_Volume);
+
+        StartCoroutine(DelayedAudioSliderSetup());
+    }
+
+    private IEnumerator DelayedAudioSliderSetup()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GamesSettingsEvents.SoundSetup_Start(_music_Volume, _soundEffects_Volume);
+        GamesSettingsEvents.InformAudioChanged();
     }
     
     public void ResetData(bool resetData)
@@ -64,18 +79,6 @@ public class GameSettings_manager : MonoBehaviour
         {
             // Leave "Are you sure" screen.
         }
-    }
-
-    private void SetDefaultValues()
-    {
-        _music_Volume = _default_Music_Volume; // Default music volume
-        _soundEffects_Volume = _default_SoundEffects_Volume; // Default sound effects volume
-
-        _audioManager.SetMusic(_music_Volume);
-        _audioManager.SetSoundEffects(_soundEffects_Volume);
-
-        GamesSettingsEvents.SoundSetup_Start(_music_Volume, _soundEffects_Volume);
-        GamesSettingsEvents.InformAudioChanged();
     }
 
     public void UpdateSoundLevels(float Volume, SoundOptionType SentFrom)

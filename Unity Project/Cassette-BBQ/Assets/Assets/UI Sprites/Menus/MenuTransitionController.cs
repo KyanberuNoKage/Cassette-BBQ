@@ -5,10 +5,10 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuTransitionController : MonoBehaviour
 {
-    [SerializeField] Animator _trasitionAnimator;
     [SerializeField] Camera _mainCamera;
 
     [Space, Header("Main Menu Croups")]
@@ -21,6 +21,13 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] CanvasGroup _cassettesMenu_Group;
 
     private CanvasGroup[] _mainMenuGroups;
+
+    [Space, Header("BoomBox Animation")]
+    [SerializeField] Image _trasitionImage;
+    [SerializeField] float _timeBetweenFrames;
+    [SerializeField] Sprite[] _boomBox_FlipAnim;
+    [SerializeField] Sprite _boomboxHitFloor_Frame;
+    [SerializeField] Sprite _boomBoxClick_Frame;
 
     [Space, Header("Cassette Transforms")]
     [SerializeField] Transform _cassette_One;
@@ -190,44 +197,33 @@ public class MenuTransitionController : MonoBehaviour
 
     private void StartTransition()
     {
-        Sequence _transitionSequence = DOTween.Sequence();
-
-        _transitionSequence.AppendCallback(() =>
-        {
-            // Set the transition animator to the BoomBox animation.
-            _trasitionAnimator.SetTrigger("BoomBox");
-        });
-
-        // Delay before the transition starts to let the animation play.
-        _transitionSequence.SetDelay(0.15f); 
-        _transitionSequence.Append
-        (
-            // Add shake to the part of the animation where the BoomBox 'lands' to add impact.
-            _mainCamera.transform.DOShakePosition(3f, 0.5f, 10, 70f, false, true)
-        );
-        // Play the BoomBox landing sound effect.;
-        _transitionSequence.JoinCallback(() => AudioEvents.PlayEffect(SoundEffects.Impact_Plate));
-        
-        _transitionSequence.Play()
-            .OnComplete(() =>
-            {
-                StartCoroutine(WaitForAnimation(_trasitionAnimator, "BoomBox"));
-            });
+        StartCoroutine(PlayFlipAnimation_Boombox());
     }
 
-    private IEnumerator WaitForAnimation(Animator animator, string stateName)
+    private IEnumerator PlayFlipAnimation_Boombox()
     {
-        // Wait until the animation starts playing
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
-            yield return null;
+        Sequence _transitionSequence = DOTween.Sequence();
 
-        // Wait until it's done playing
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.98f)
-            yield return null;
+        foreach(Sprite sprite in _boomBox_FlipAnim)
+        {
+            _trasitionImage.sprite = sprite;
+
+            if (sprite == _boomboxHitFloor_Frame)
+            {
+                _mainCamera.transform.DOShakePosition(2f, 0.5f, 10, 70f, false, true);
+                AudioEvents.PlayEffect(SoundEffects.Impact_Plate);
+            }
+
+            if (sprite == _boomBoxClick_Frame)
+            {
+                AudioEvents.PlayEffect(SoundEffects.Click_1);
+            }
+
+            yield return new WaitForSeconds(_timeBetweenFrames);
+        }
 
         MoveToGamePlayScreen();
     }
-
 
     private void MoveToGamePlayScreen()
     {
@@ -358,7 +354,7 @@ public class MenuTransitionController : MonoBehaviour
 
     public void EndToMainMenu()
     {
-        RectTransform rect = _mainMenu_Group.GetComponent<RectTransform>();
+        RectTransform menuRect = _mainMenu_Group.GetComponent<RectTransform>();
         Sequence sequence = DOTween.Sequence();
 
         sequence.AppendCallback(() =>
@@ -376,24 +372,23 @@ public class MenuTransitionController : MonoBehaviour
 
         sequence.AppendCallback(() =>
         {
-            rect.SetAsLastSibling();
-            rect.DOAnchorPos(new Vector2(0, 1098.66f), 1f).SetEase(Ease.InCubic);
+            menuRect.SetAsLastSibling();
+            menuRect.DOAnchorPos(new Vector2(0, 1098.66f), 1f).SetEase(Ease.InCubic);
         });
 
         sequence.AppendCallback(() =>
         {
-            rect.DOAnchorPos(new Vector2(0, -80f), 1f).SetEase(Ease.OutCubic);
+            menuRect.DOAnchorPos(new Vector2(0, -80f), 1f).SetEase(Ease.OutCubic);
         });
 
         sequence.AppendCallback(() =>
         {
-            rect.DOAnchorPos(new Vector2(0, 0f), 1f).SetEase(Ease.OutCubic);
+            menuRect.DOAnchorPos(new Vector2(0, 0f), 1f).SetEase(Ease.OutCubic);
         });
 
-        sequence.Play();
+        sequence.Play().OnComplete(() => { AudioEvents.StartMainMenuMusic(); });
 
         MoveMenuScreen(MenuScreens.MainMenu);
-
     }
 
     public enum MenuScreens
@@ -409,14 +404,14 @@ public class MenuTransitionController : MonoBehaviour
     }
 }
 
-    // A message broker for talking between the Cassette_Anim_Control buttons and the MenuTransitionController.
-    public static class TransitionEvents
-    {
-        public static event Action<Cassette_Anim_Control> CassetteSelected;
+// A message broker for talking between the Cassette_Anim_Control buttons and the MenuTransitionController.
+public static class TransitionEvents
+{
+    public static event Action<Cassette_Anim_Control> CassetteSelected;
 
-        public static void RaiseCassetteSelected(Cassette_Anim_Control selectedCassette)
-        {
+    public static void RaiseCassetteSelected(Cassette_Anim_Control selectedCassette)
+    {
             CassetteSelected?.Invoke(selectedCassette);
-        }
     }
+}
 

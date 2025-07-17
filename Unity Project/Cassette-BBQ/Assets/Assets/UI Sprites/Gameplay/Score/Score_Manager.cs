@@ -35,8 +35,6 @@ public class Score_Manager : MonoBehaviour
     #region UI
     [SerializeField] TextMeshProUGUI _scoreText;
 
-    [SerializeField] float _scoreClimbSpeed = 0.001f;
-
     private Tween _scoreShakeTween;
     #endregion
 

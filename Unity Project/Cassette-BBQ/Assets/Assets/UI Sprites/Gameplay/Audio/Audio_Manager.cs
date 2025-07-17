@@ -25,10 +25,10 @@ public class Audio_Manager : MonoBehaviour
     [Space, Header("Sound Effects")]
     [SerializeField] AudioClip[] _soundEffects_List;
 
-    private float _music_Volume; 
+    [SerializeField] private float _music_Volume; 
     public void SetMusic(float volume) { _music_Volume = volume; }
 
-    private float _soundEffects_Volume; 
+    [SerializeField] private float _soundEffects_Volume; 
     public void SetSoundEffects(float volume) { _soundEffects_Volume = volume; }
 
     private void OnEnable()
@@ -102,9 +102,14 @@ public class Audio_Manager : MonoBehaviour
 
     private void PlayMusic(AudioClip musicClip, bool isLooped = false)
     {
+        // Start with music volume at 0 to fade in.
+        _audioMixer.SetFloat("Music", 0);
+
         _music_AudioSource.loop = isLooped;
         _music_AudioSource.clip = musicClip;
         _music_AudioSource.Play();
+
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, 1f);
     }
 
     float mutedVolume_Level = 0.0001f; //0.0001f is -80db which is effectively silent.
@@ -126,33 +131,41 @@ public class Audio_Manager : MonoBehaviour
         }
         _audioMixer.SetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20);
 
-        // Background sounds slightly quieter than other sound effects.
         _audioMixer.SetFloat("Grill Sound", Mathf.Log10(_soundEffects_Volume) * 20);
     }
 
     private void ResetAudio()
     {
         // Fade out pooled effects
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(mutedVolume_Level) * 20, 1f);
         foreach (AudioSource source in _effects_AudioSourcePool)
         {
-            source.DOFade(0, 1f).OnComplete(() =>
-            {
-                source.Stop();
-                source.clip = null;
-            });
-        }
+            source.Stop();
+            source.clip = null;
+        } // Make the audio sources in the pool active again, ready for the next run.
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
+
+
+        _audioMixer.DOSetFloat("Grill Sound", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
+        {
+            _grillBackground_SoundEffect.Stop();
+            _grillBackground_SoundEffect.clip = null;
+        }); // Make the audio group is active again, ready for the next run.
+        _audioMixer.DOSetFloat("Grill Sound", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
 
         // Fade out main SFX
-        _soundEffects_AudioSource.DOFade(0, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
         {
             _soundEffects_AudioSource.Stop();
             _soundEffects_AudioSource.clip = null;
         });
+        // Make the main SFX group is active again, ready for the next run.
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
     }
 
     private void FadeOutMusic()
     {
-        _music_AudioSource.DOFade(0, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
         {
             _music_AudioSource.Stop();
             _music_AudioSource.clip = null;
@@ -161,12 +174,12 @@ public class Audio_Manager : MonoBehaviour
 
     private void MoveToNewSong()
     {
-        _music_AudioSource.DOFade(0, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
         {
             _music_AudioSource.Stop();
             _music_AudioSource.clip = null;
             PlayMusic(_music_List[Random.Range(0, _music_List.Length)]);
-            _music_AudioSource.DOFade(_music_Volume, 1f);
+            _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, 1f);
         });
     }
 
@@ -175,7 +188,8 @@ public class Audio_Manager : MonoBehaviour
         // First track in the music list is the menu music.
         if (_music_AudioSource.isPlaying)
         {
-            _music_AudioSource.DOFade(0, 1f).OnComplete(() => PlayMusic(_music_List[0], true));
+            FadeOutMusic();
+            PlayMusic(_music_List[0], true);
         }
         else
         {
