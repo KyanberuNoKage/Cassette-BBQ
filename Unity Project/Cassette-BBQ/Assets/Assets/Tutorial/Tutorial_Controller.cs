@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Totorial_Controller : MonoBehaviour
+public class Tutorial_Controller : MonoBehaviour
 {
     [Header("Tutorial State Data")]
     [SerializeField] private TutorialPositions[] _positionsData;
@@ -23,7 +24,6 @@ public class Totorial_Controller : MonoBehaviour
     [Space, Header("Tutorial Background Images")]
     [SerializeField] Image _tutorialBackgroundPanel;
     [SerializeField] CanvasGroup _tutorialCanvasGroup;
-    [SerializeField] bool tutorialActive = true;
 
     [Space, Header("Burger Guy")]
     [SerializeField] Image _burgerGuyImage;
@@ -36,14 +36,24 @@ public class Totorial_Controller : MonoBehaviour
     TextMeshProUGUI _ScoreText; // Needed for score tutorial. Implement later.
     [SerializeField] TextMeshProUGUI _pressEnterText;
 
+    bool _tutorialCompleted = false;
 
     private void Awake()
     {
         // convert the array set up in editor into a dictionary for easy access.
         _positionsByStep = _positionsData.ToDictionary(step => step.step);
+
+        TutorialEvents.OnStartTutorial += StartTutorial;
+        TutorialEvents.OnSkipTutorial += MoveFromTutorialToMenu;
     }
 
-    private void Start()
+    private void OnDisable()
+    {
+        TutorialEvents.OnStartTutorial -= StartTutorial;
+        TutorialEvents.OnSkipTutorial -= MoveFromTutorialToMenu;
+    }
+
+    private void StartTutorial()
     {
         // Set the initial state of the tutorial.
         _currentTutorialState = TutorialPageState.Start;
@@ -55,7 +65,7 @@ public class Totorial_Controller : MonoBehaviour
     private void Update()
     {
         // Check for input to change the tutorial text.
-        if (tutorialActive && Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             MoveTutorialPage();
         }
@@ -76,15 +86,19 @@ public class Totorial_Controller : MonoBehaviour
         else
         {
             // Reached the last tutorial page.
-            tutorialActive = false;
-            _tutorialCanvasGroup.alpha = 0f;
-            _tutorialCanvasGroup.interactable = false;
-            _tutorialCanvasGroup.blocksRaycasts = false;
-
-            MenuTransitionEvents.MoveToStartMenu();
-
-            tutorialActive = false;
+            MoveFromTutorialToMenu();
         }
+    }
+
+    private void MoveFromTutorialToMenu()
+    {
+        _tutorialCanvasGroup.alpha = 0f;
+        _tutorialCanvasGroup.interactable = false;
+        _tutorialCanvasGroup.blocksRaycasts = false;
+
+        _tutorialCompleted = true;
+
+        MenuTransitionEvents.MoveToStartMenu();
     }
 
     private void SetUpPage()
@@ -180,4 +194,21 @@ public struct TutorialPositions
     public Vector2 pressEnterTextPosition;
     public string thisPagesMessage;
     public bool isScoreVisible;
+}
+
+public static class TutorialEvents
+{
+    public static Action OnStartTutorial;
+
+    public static void StartTutorial()
+    {
+        OnStartTutorial?.Invoke();
+    }
+
+    public static Action OnSkipTutorial;
+
+    public static void SkipTutorial()
+    {
+        OnSkipTutorial?.Invoke();
+    }
 }

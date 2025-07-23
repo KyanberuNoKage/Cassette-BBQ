@@ -32,21 +32,25 @@ public class SaveData_Controller : MonoBehaviour
     private void OnEnable()
     {
         SaveDataEvents.OnTryLoadGameData += LoadAndSetupGame;
+        GamesSettingsEvents.OnGameQuit += SaveAndQuit;
     }
 
     private void OnDisable()
     {
         SaveDataEvents.OnTryLoadGameData -= LoadAndSetupGame;
+        GamesSettingsEvents.OnGameQuit -= SaveAndQuit;
     }  
 
-    private void OnApplicationQuit()
+    private void SaveAndQuit()
     {
-        SaveGame();
+        StartCoroutine(SaveGame());
     }
 
-    public void SaveGame()
+    public IEnumerator SaveGame()
     {
         RequestData();
+
+        yield return null;
 
         // Create serializable object to save data.
         GameData dataToSave = new GameData();
@@ -59,8 +63,16 @@ public class SaveData_Controller : MonoBehaviour
                 _highScores
             );
 
+
         string json = JsonUtility.ToJson( dataToSave );
         File.WriteAllText(path, json);
+
+        Debug.Log("Game data saved to: " + path);
+
+        // To ensure write time is complete before quitting.
+        yield return new WaitForSeconds(0.1f);
+
+        Application.Quit();
     }
 
     public bool DoesSaveExist()
@@ -88,6 +100,11 @@ public class SaveData_Controller : MonoBehaviour
 
         GamesSettingsEvents.SoundSetup_Start(_musicVolume, _soundEffectsVolume);
         GamesSettingsEvents.InformAudioChanged();
+
+        yield return null;
+
+        // Save data exists and is now set up, skip the tutorial.
+        TutorialEvents.SkipTutorial();
     }
 
     private IEnumerator LoadSaveData()
@@ -120,6 +137,8 @@ public class SaveData_Controller : MonoBehaviour
         SaveData_MessageBus.SetIsOneHanded( _isOneHanded );//connected
         SaveData_MessageBus.SetRevealedCassettes( _revealedCassettes );//connected
         SaveData_MessageBus.SetHighScoreDict( _highScores );//connected
+
+
 
         yield return null;
     }
@@ -259,7 +278,7 @@ public static class SaveDataEvents
 {
     public static event Action OnTryLoadGameData;
 
-    public static void TryLoadGameData()
+    public static void TryLoadGameData_Event()
     {
         OnTryLoadGameData?.Invoke();
     }

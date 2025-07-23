@@ -46,11 +46,11 @@ public class GameSettings_manager : MonoBehaviour
         }
         else
         {
-            SetDefaultValues();
+            StartCoroutine(SetDefaultValues());
         }
     }
 
-    private void SetDefaultValues()
+    private IEnumerator SetDefaultValues()
     {
         _music_Volume = _default_Music_Volume; // Default music volume
         _soundEffects_Volume = _default_SoundEffects_Volume; // Default sound effects volume
@@ -58,7 +58,10 @@ public class GameSettings_manager : MonoBehaviour
         _audioManager.SetMusic(_music_Volume);
         _audioManager.SetSoundEffects(_soundEffects_Volume);
 
-        StartCoroutine(DelayedAudioSliderSetup());
+        yield return DelayedAudioSliderSetup();
+
+        // Start the tutorial after set-up.
+        TutorialEvents.StartTutorial();
     }
 
     private IEnumerator DelayedAudioSliderSetup()
@@ -106,7 +109,7 @@ public class GameSettings_manager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        GamesSettingsEvents.QuitGame();
     }
 }
 
@@ -150,5 +153,12 @@ public static class  GamesSettingsEvents
     public static void InformAudioChanged()
     {
         OnAudioChanged?.Invoke();
+    }
+
+    public static event Action OnGameQuit;
+
+    public static void QuitGame()
+    {
+        OnGameQuit?.Invoke();
     }
 }       
