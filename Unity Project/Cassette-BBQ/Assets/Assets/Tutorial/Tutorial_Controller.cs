@@ -114,7 +114,7 @@ public class Tutorial_Controller : MonoBehaviour
         _pressEnterText.rectTransform.anchoredPosition = GetPressEnterTextPosition(_currentTutorialState);
 
         // Type the text in the box.
-        _typeText.Type(_tutorialText, GetPageMessage(_currentTutorialState));
+        _typeText.Type(_tutorialText, GetPageMessage(_currentTutorialState), 0.01f);
     }
 
     private Sprite GetBurgerGuySprite_ByState(BurgerGuyStates state)
