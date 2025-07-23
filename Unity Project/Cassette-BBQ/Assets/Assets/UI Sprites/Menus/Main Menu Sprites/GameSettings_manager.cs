@@ -78,10 +78,6 @@ public class GameSettings_manager : MonoBehaviour
             // If player is sure.
             _saveData_Controller.ResetData();
         }
-        else
-        {
-            // Leave "Are you sure" screen.
-        }
     }
 
     public void UpdateSoundLevels(float Volume, SoundOptionType SentFrom)

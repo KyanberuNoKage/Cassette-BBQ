@@ -5,6 +5,7 @@ public class Cassette_Anim_Control : MonoBehaviour
     [SerializeField] Cassette_Anim_Obj _thisCassette_Anim_Obj;
     public string thisCassettesName;
     [SerializeField] Animator _thisCassette_Animator;
+    [SerializeField] 
 
 
     private void Start()
@@ -54,7 +55,7 @@ public class Cassette_Anim_Control : MonoBehaviour
         }
         else
         {
-            // If the cassette is not revealed, we set it to Silhouette.
+            // If the cassette is not revealed, it's set to Silhouette.
             _thisCassette_Animator.SetTrigger("Silhouette");
         }
     }

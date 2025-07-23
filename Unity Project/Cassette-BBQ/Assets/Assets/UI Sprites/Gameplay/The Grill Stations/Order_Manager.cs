@@ -60,7 +60,12 @@ public class Order_Manager : MonoBehaviour
     }
 
     #endregion
+
+    private bool AreOrderTypesRandom = true;
+    private bool AreOrders_Burgers = true;
+
     private Coroutine _ordersCoroutine;
+
 
     private void OnEnable()
     {
@@ -68,6 +73,14 @@ public class Order_Manager : MonoBehaviour
         OrderEvents.RemoveOrder += SmoothlyReOrder_OrderListGame;
         OrderEvents.OnStartGame += StartGame;
         TimerEvents.OnTimerFinished += EndOrders;
+
+        CassetteEvents.OnCassetteSelected += SetCassetteValues;
+    }
+
+    private void SetCassetteValues(CassetteGameValues newValues)
+    {
+        AreOrderTypesRandom = newValues.AreOrderTypesRandom;
+        AreOrders_Burgers = newValues.AreOrders_Burgers;
     }
 
     private void OnDisable()
@@ -76,6 +89,8 @@ public class Order_Manager : MonoBehaviour
         OrderEvents.RemoveOrder -= SmoothlyReOrder_OrderListGame;
         OrderEvents.OnStartGame -= StartGame;
         TimerEvents.OnTimerFinished -= EndOrders;
+
+        CassetteEvents.OnCassetteSelected -= SetCassetteValues;
     }
 
     private void StartGame()
@@ -158,15 +173,30 @@ public class Order_Manager : MonoBehaviour
 
                 var newOrder_Data = newOrder.GetComponent<Order_Class>();
 
-                newOrder_Data.Set_OrderClass_Data
+                if (AreOrderTypesRandom)
+                {
+                    newOrder_Data.Set_OrderClass_Data
                     (
-                        Random.Range(0, 2) == 0, 
+                        Random.Range(0, 2) == 0,
                         Random.Range
                         (
-                            _minNumOfItems, 
+                            _minNumOfItems,
                             _maxNumOfItems + 1
                         )
                     );
+                }
+                else // Random between burgers and sausages.
+                {
+                    newOrder_Data.Set_OrderClass_Data
+                    (
+                        AreOrders_Burgers, // If not random, are they all burgers? (false = Sausage)
+                        Random.Range
+                        (
+                            _minNumOfItems,
+                            _maxNumOfItems + 1 // +1 ensures that the range is inclusive.
+                        )
+                    );
+                }
 
                 ListOfOrders.Add(newOrder_Data);
                 RepositionOrders();

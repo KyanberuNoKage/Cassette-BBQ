@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,3 +56,14 @@ public class Cassette_Controller : MonoBehaviour
         }
     }
 }
+
+public static class CassetteEvents
+{
+    public static event Action<CassetteGameValues> OnCassetteSelected;
+
+    public static void CassetteSelected(CassetteGameValues selectedCassetteValues)
+    {
+        OnCassetteSelected?.Invoke(selectedCassetteValues);
+    }
+}
+

@@ -7,17 +7,20 @@ public class OilTimer : MonoBehaviour
 {
     [SerializeField, Header("Timer UI")] Image _timerImage;
     [Space]
-    [SerializeField, Header("Timer Data")] int timerDuration;
+    [Header("Timer Data")] 
+    [SerializeField] int timerDuration; public void SetTimerDuration(int value) { timerDuration = value; }
     [SerializeField] int currentTime = 0;
 
     private void OnEnable()
     {
         OrderEvents.OnStartGame += StartTimer;
+        CassetteEvents.OnCassetteSelected += SetCassetteValues;
     }
 
     private void OnDisable()
     {
         OrderEvents.OnStartGame -= StartTimer;
+        CassetteEvents.OnCassetteSelected -= SetCassetteValues;
         StopAllCoroutines();
     }
 
@@ -33,6 +36,11 @@ public class OilTimer : MonoBehaviour
         StopAllCoroutines();
         currentTime = 0;
         UpdateTimerUI();
+    }
+
+    private void SetCassetteValues(CassetteGameValues newValues)
+    {
+        SetTimerDuration(newValues.TimerDuration);
     }
 
     private IEnumerator TimerCoroutine()

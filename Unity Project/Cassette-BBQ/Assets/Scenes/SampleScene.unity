@@ -2617,7 +2617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder (5)
+      value: Cassette_DoubleOrNothing
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x
@@ -2712,13 +2712,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: thisCassettesName
+      value: DoubleOrNothing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _thisCassette_Anim_Obj
       value: 
-      objectReference: {fileID: 11400000, guid: f4495291f37ad7f4eacf54bd9a59fea9, type: 2}
+      objectReference: {fileID: 11400000, guid: d75b3221b83e2e84d9c5c2526844035b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4216,6 +4220,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865454112}
   m_CullTransparentMesh: 1
+--- !u!114 &871263447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 4748854895286070861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &875495654
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,7 +4636,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d7691346641e447a5fb7063346953f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cassettes: []
+  Cassettes:
+  - {fileID: 871263447}
+  - {fileID: 2016171641}
+  - {fileID: 1567632233}
+  - {fileID: 2069626360}
+  - {fileID: 1398311267}
+  - {fileID: 1964602098}
   _activatedCassettes: []
 --- !u!4 &997967191
 Transform:
@@ -6623,7 +6644,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder (4)
+      value: Cassette_HotDawg
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x
@@ -6718,13 +6739,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: thisCassettesName
+      value: HotDawg
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _thisCassette_Anim_Obj
       value: 
-      objectReference: {fileID: 11400000, guid: f4495291f37ad7f4eacf54bd9a59fea9, type: 2}
+      objectReference: {fileID: 11400000, guid: 90e07eaadf31c8447b641abe147d562a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6735,6 +6760,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
   m_PrefabInstance: {fileID: 1398311265}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1398311267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 1398311265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1425259632
 GameObject:
   m_ObjectHideFlags: 0
@@ -7993,7 +8029,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder (2)
+      value: Cassette_RushHour
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x
@@ -8088,13 +8124,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: thisCassettesName
+      value: RushHour
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _thisCassette_Anim_Obj
       value: 
-      objectReference: {fileID: 11400000, guid: f4495291f37ad7f4eacf54bd9a59fea9, type: 2}
+      objectReference: {fileID: 11400000, guid: f25be1aa5e575ec438ddd593fe39f274, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8105,6 +8145,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
   m_PrefabInstance: {fileID: 1567632231}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1567632233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 1567632231}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1576525810
 GameObject:
   m_ObjectHideFlags: 0
@@ -10535,7 +10586,6 @@ MonoBehaviour:
   _currentTutorialState: 0
   _tutorialBackgroundPanel: {fileID: 11439925}
   _tutorialCanvasGroup: {fileID: 1935339081}
-  tutorialActive: 1
   _burgerGuyImage: {fileID: 740621668}
   _burgerGuySprites:
   - {fileID: 651991031, guid: b0c18677c43e3a64491da7436015f58f, type: 3}
@@ -10836,6 +10886,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960187816}
   m_CullTransparentMesh: 1
+--- !u!114 &1964602098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 557881121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2016171639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10846,7 +10907,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder (1)
+      value: Cassette_SlowShift
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x
@@ -10941,13 +11002,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: thisCassettesName
+      value: SlowShift
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _thisCassette_Anim_Obj
       value: 
-      objectReference: {fileID: 11400000, guid: f4495291f37ad7f4eacf54bd9a59fea9, type: 2}
+      objectReference: {fileID: 11400000, guid: cde00424fe8ba4d4496b6a6ae8870750, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10958,6 +11023,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
   m_PrefabInstance: {fileID: 2016171639}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2016171641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 2016171639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032423132
 GameObject:
   m_ObjectHideFlags: 0
@@ -11019,7 +11095,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder (3)
+      value: Cassette_BunVoyage
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x
@@ -11114,13 +11190,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: thisCassettesName
+      value: BunVoyage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _thisCassette_Anim_Obj
       value: 
-      objectReference: {fileID: 11400000, guid: f4495291f37ad7f4eacf54bd9a59fea9, type: 2}
+      objectReference: {fileID: 11400000, guid: 8166eca5f59b152478a274876f2152bf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11131,6 +11211,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
   m_PrefabInstance: {fileID: 2069626358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2069626360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+  m_PrefabInstance: {fileID: 2069626358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e1fba8d24faa4d946a52554a14a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2083985067
 GameObject:
   m_ObjectHideFlags: 0
@@ -11252,7 +11343,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
-      value: Cassette_Placeholder
+      value: Cassette_SummerTime
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Pivot.x

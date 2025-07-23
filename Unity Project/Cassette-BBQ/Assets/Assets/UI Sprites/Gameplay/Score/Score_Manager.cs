@@ -44,6 +44,15 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnFoodWasted_ScoreDecreased += CalculateFoodWaste_Score;
         ScoreEvents.OnRequestScoreData += ReturnScoreData;
         OrderEvents.OnStartGame += ResetScore;
+
+        CassetteEvents.OnCassetteSelected += SetCassetteValues;
+    }
+
+    private void SetCassetteValues(CassetteGameValues newValues)
+    {
+        baseScore = newValues.OrderScore_BaseValue;
+        decayRate = newValues.OrderScore_DecayRate;
+        _foodWastePenalty = newValues.WastedFoodPenalty;
     }
 
     private void OnDisable()
@@ -52,6 +61,8 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnFoodWasted_ScoreDecreased -= CalculateFoodWaste_Score;
         ScoreEvents.OnRequestScoreData -= ReturnScoreData;
         OrderEvents.OnStartGame -= ResetScore;
+
+        CassetteEvents.OnCassetteSelected -= SetCassetteValues;
     }
 
     void Start()
