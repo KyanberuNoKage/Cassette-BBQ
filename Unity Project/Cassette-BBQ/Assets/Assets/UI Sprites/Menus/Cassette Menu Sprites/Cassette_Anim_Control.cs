@@ -75,7 +75,7 @@ public class Cassette_Anim_Control : MonoBehaviour
         if (_thisCassette_Anim_Obj.GetAnim() != CassetteAnimation.Silhouette)
         {
             Debug.Log("Cassette Selected: " + _thisCassette_Anim_Obj.ThisCassetteName);
-            TransitionEvents.RaiseCassetteSelected(this); // Event to notify transition when a cassette is selected.
+            MenuTransitionEvents.RaiseCassetteSelected(this); // Event to notify transition when a cassette is selected.
 
             // Then the specific Cassette is set up.
             _thisCassette_Anim_Obj.OnThisCassetteSelected();

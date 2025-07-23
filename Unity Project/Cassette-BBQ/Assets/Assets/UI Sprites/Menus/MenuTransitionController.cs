@@ -52,14 +52,16 @@ public class MenuTransitionController : MonoBehaviour
 
     private void OnEnable()
     {
-        TransitionEvents.CassetteSelected += StartTransition;
+        MenuTransitionEvents.CassetteSelected += StartTransition;
         TimerEvents.OnTimerFinished += EnableEndScreen;
+        MenuTransitionEvents.OnMenuStarted += TutorialToMenu;
     }
 
     private void OnDisable()
     {
-        TransitionEvents.CassetteSelected -= StartTransition;
+        MenuTransitionEvents.CassetteSelected -= StartTransition;
         TimerEvents.OnTimerFinished -= EnableEndScreen;
+        MenuTransitionEvents.OnMenuStarted -= TutorialToMenu;
     }
 
     private void Start()
@@ -284,6 +286,11 @@ public class MenuTransitionController : MonoBehaviour
         );
     }
 
+    private void TutorialToMenu()
+    {
+        MoveMenuScreen(MenuScreens.MainMenu);
+    }
+
     private void EnableEndScreen()
     {
         // Disable all menu screens.
@@ -405,13 +412,20 @@ public class MenuTransitionController : MonoBehaviour
 }
 
 // A message broker for talking between the Cassette_Anim_Control buttons and the MenuTransitionController.
-public static class TransitionEvents
+public static class MenuTransitionEvents
 {
     public static event Action<Cassette_Anim_Control> CassetteSelected;
 
     public static void RaiseCassetteSelected(Cassette_Anim_Control selectedCassette)
     {
             CassetteSelected?.Invoke(selectedCassette);
+    }
+
+    public static event Action OnMenuStarted;
+
+    public static void MoveToStartMenu()
+    {
+        OnMenuStarted?.Invoke();
     }
 }
 

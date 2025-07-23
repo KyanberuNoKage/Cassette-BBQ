@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 11439922}
   - component: {fileID: 11439926}
   - component: {fileID: 11439925}
-  - component: {fileID: 11439924}
   m_Layer: 5
   m_Name: BurgerGuyBackground_Group
   m_TagString: Untagged
@@ -154,21 +153,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15.75}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 1440.0001, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &11439924
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11439921}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &11439925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3666,7 +3653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: -122}
+  m_AnchoredPosition: {x: 18, y: -18}
   m_SizeDelta: {x: 512, y: 352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &740621668
@@ -5241,7 +5228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.1, y: 28.700005}
+  m_AnchoredPosition: {x: -9, y: 245}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227447220
@@ -5264,7 +5251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Hello!\nAnd Welcome to the tutorial!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7816a1251900f0a4488109e26a9c200d, type: 2}
   m_sharedMaterial: {fileID: -9001327412992485161, guid: 7816a1251900f0a4488109e26a9c200d, type: 2}
@@ -5299,7 +5286,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5329,7 +5316,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -149.45815, y: -51.01601, z: -128.45827, w: 0}
+  m_margin: {x: -274.4101, y: -283.79913, z: -293.3257, w: -418.488}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5743,6 +5730,142 @@ RectTransform:
   m_AnchoredPosition: {x: -6.3199997, y: 0}
   m_SizeDelta: {x: -17.24, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1297054721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297054722}
+  - component: {fileID: 1297054724}
+  - component: {fileID: 1297054723}
+  m_Layer: 5
+  m_Name: Tutorial  Press Enter Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1297054722
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297054721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1935339080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9, y: -483}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1297054723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297054721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press enter to continue...
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7816a1251900f0a4488109e26a9c200d, type: 2}
+  m_sharedMaterial: {fileID: -9001327412992485161, guid: 7816a1251900f0a4488109e26a9c200d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 32
+  m_fontSizeBase: 32
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -272.65457, y: -51.01601, z: -294.57495, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1297054724
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297054721}
+  m_CullTransparentMesh: 1
 --- !u!1 &1298163860
 GameObject:
   m_ObjectHideFlags: 0
@@ -10036,25 +10159,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1445583163}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1445583164}
+        m_TargetAssemblyTypeName: Audio_Manager, Assembly-CSharp
+        m_MethodName: UI_Button_Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2032423132}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2032423134}
+        m_TargetAssemblyTypeName: GameSettings_manager, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10279,20 +10402,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93e89b455c61604a98397c7e667fbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _positionsData:
+  - PageBackground: {fileID: 21300000, guid: c52af5d1257fef14d9d84054037d4c70, type: 3}
+    step: 0
+    burgerGuysState: 0
+    burgerGuyPosition: {x: 18, y: -18}
+    textPosition: {x: -9, y: 245}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: Hello!\nAnd Welcome to the tutorial!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 22aef576f3b6fce4494b039b62a70e4c, type: 3}
+    step: 1
+    burgerGuysState: 2
+    burgerGuyPosition: {x: 135, y: 334}
+    textPosition: {x: 0, y: 15}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: When you start a run of the game you'll be met by a list of
+      cassettes\n\nonly one is unlocked before your first run but more unlock later
+      and give you special effects that change your experience!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 0389bcbc2baab6e47befcd98cf31b720, type: 3}
+    step: 2
+    burgerGuysState: 0
+    burgerGuyPosition: {x: -542, y: 402}
+    textPosition: {x: 0, y: 466}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: This is your grill and where you'll be spending a lot of time
+      cooking delicious meats!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 315eab14c86678b4ab3833036663286a, type: 3}
+    step: 3
+    burgerGuysState: 1
+    burgerGuyPosition: {x: -18, y: 242}
+    textPosition: {x: 11, y: -30}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: This is where you can see your score\n\nYou earn points by
+      cooking food perfectly and lose points from food waste!
+    isScoreVisible: 1
+  - PageBackground: {fileID: 21300000, guid: 1b8dbafe08d70ba4ca5fa30fac156da0, type: 3}
+    step: 4
+    burgerGuysState: 2
+    burgerGuyPosition: {x: -65, y: 299}
+    textPosition: {x: -225, y: 32}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: This is what an order looks like\n\nthis is a sausage order\n\nIn
+      this case you'd need to cook two sausages to fufill the order!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 5191d8f70ef959542a013ce25568b9ad, type: 3}
+    step: 5
+    burgerGuysState: 0
+    burgerGuyPosition: {x: -65, y: 299}
+    textPosition: {x: -225, y: 32}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: and in this case you'd need to cook two burgers to fulfill
+      the order\n\nYou gain points on completion of an order based on how quickly
+      you complete it
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 9b5f5bfe3ad2c444e901fd8fdd6e4d2a, type: 3}
+    step: 6
+    burgerGuysState: 1
+    burgerGuyPosition: {x: 231, y: 417}
+    textPosition: {x: 295, y: 21}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: The amount of cooking oil left in this bottle tells you how
+      much time is left until the end of you're run!\n\nOnce the oil has run out,
+      your final score is calculated and you're sent back to the menu!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 5e3bd2cb50701494aab586a987d779ea, type: 3}
+    step: 7
+    burgerGuysState: 4
+    burgerGuyPosition: {x: 231, y: 417}
+    textPosition: {x: 295, y: 21}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: Your current top four high scores are displayed in the scoreboard
+      section of the menu\n\nNow lets move to the raw meat menu!\n\nDo this with
+      the A key\nthe D key brings you back to the grill!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: fb2716b85c413364684c94e8e5959b25, type: 3}
+    step: 8
+    burgerGuysState: 0
+    burgerGuyPosition: {x: -482, y: -395}
+    textPosition: {x: 0, y: -335}
+    pressEnterTextPosition: {x: -9, y: 472}
+    thisPagesMessage: Simply click whichever meat you want to cook and the selected
+      meat item is placed on the grill
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: fb05f55e1c100cd4c9e6529738ff18bc, type: 3}
+    step: 9
+    burgerGuysState: 0
+    burgerGuyPosition: {x: -397, y: 295}
+    textPosition: {x: 174, y: 335}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: Once the meat is on the grill it will start to cook!\n\nafter
+      a little while it will go from looking pink to a more cooked colour!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 245c2c4547d9a254dae68376367b3fe2, type: 3}
+    step: 10
+    burgerGuysState: 1
+    burgerGuyPosition: {x: -397, y: 295}
+    textPosition: {x: 174, y: 335}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: When the burger is halfway through cooking it'll need to be
+      flipped\n\n(as indicated by the smoke)\n\nTo flip it simply give it a click!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: ac6b90239b5b90148a0d92d8b46d4c9d, type: 3}
+    step: 11
+    burgerGuysState: 3
+    burgerGuyPosition: {x: -189, y: -132}
+    textPosition: {x: -10, y: 328}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: After you've flipped it, wait a little longer and it will start
+      sparkling!\n\nthis means that its ready and you can click it to finalise it
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: 1ce4e0345fea63e4d9b9531723f14b39, type: 3}
+    step: 12
+    burgerGuysState: 5
+    burgerGuyPosition: {x: -189, y: -132}
+    textPosition: {x: 0, y: 359}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: but wait too long to flip it or wait too long to collect it
+      once its done\n\nand it burns! Nooooo!!
+    isScoreVisible: 0
+  - PageBackground: {fileID: 21300000, guid: c52af5d1257fef14d9d84054037d4c70, type: 3}
+    step: 13
+    burgerGuysState: 6
+    burgerGuyPosition: {x: 0, y: -154}
+    textPosition: {x: 0, y: 235}
+    pressEnterTextPosition: {x: -9, y: -483}
+    thisPagesMessage: Remember!\n\nCompleting orders is good\nFood waste  is bad\n\nGet
+      cooking and stay summery
+    isScoreVisible: 0
+  _currentTutorialState: 0
   _tutorialBackgroundPanel: {fileID: 11439925}
-  _tutorialBackgroundSprites:
-  - {fileID: 21300000, guid: 1b8dbafe08d70ba4ca5fa30fac156da0, type: 3}
-  - {fileID: 21300000, guid: fb2716b85c413364684c94e8e5959b25, type: 3}
-  - {fileID: 21300000, guid: 1ce4e0345fea63e4d9b9531723f14b39, type: 3}
-  - {fileID: 21300000, guid: ac6b90239b5b90148a0d92d8b46d4c9d, type: 3}
-  - {fileID: 21300000, guid: fb05f55e1c100cd4c9e6529738ff18bc, type: 3}
-  - {fileID: 21300000, guid: 245c2c4547d9a254dae68376367b3fe2, type: 3}
-  - {fileID: 21300000, guid: 315eab14c86678b4ab3833036663286a, type: 3}
-  - {fileID: 21300000, guid: 0389bcbc2baab6e47befcd98cf31b720, type: 3}
-  - {fileID: 21300000, guid: 5191d8f70ef959542a013ce25568b9ad, type: 3}
-  - {fileID: 21300000, guid: 9b5f5bfe3ad2c444e901fd8fdd6e4d2a, type: 3}
-  - {fileID: 21300000, guid: 5e3bd2cb50701494aab586a987d779ea, type: 3}
-  - {fileID: 21300000, guid: c9748653a3671634385730de960632d1, type: 3}
+  _tutorialCanvasGroup: {fileID: 1935339081}
+  tutorialActive: 1
   _burgerGuyImage: {fileID: 740621668}
   _burgerGuySprites:
   - {fileID: 651991031, guid: b0c18677c43e3a64491da7436015f58f, type: 3}
@@ -10305,6 +10548,7 @@ MonoBehaviour:
   DebugTestString: Hello!\nAnd Wellcome to the tutorial!
   _tutorialText: {fileID: 1227447220}
   _typeText: {fileID: 1901566696}
+  _pressEnterText: {fileID: 1297054723}
 --- !u!114 &1901566696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10403,7 +10647,7 @@ GameObject:
   - component: {fileID: 1935339080}
   - component: {fileID: 1935339079}
   - component: {fileID: 1935339078}
-  - component: {fileID: 1935339077}
+  - component: {fileID: 1935339081}
   m_Layer: 5
   m_Name: Tutorial_Canvas
   m_TagString: Untagged
@@ -10411,23 +10655,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1935339077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935339076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1935339078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10489,6 +10716,7 @@ RectTransform:
   - {fileID: 11439922}
   - {fileID: 740621667}
   - {fileID: 1227447219}
+  - {fileID: 1297054722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10496,6 +10724,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1935339081
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935339076}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1960187816
 GameObject:
   m_ObjectHideFlags: 0
