@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using KyanberuGames.Utilities;
 
 public class Burger_Obj : MonoBehaviour
 {
@@ -39,15 +40,15 @@ public class Burger_Obj : MonoBehaviour
             #region Debugging
             if (_burgerImage == null)
             {
-                Debug.LogError("_burgerImage is not set in the Burger_Obj script!");
+                DebugEvents.AddDebugError("_burgerImage is not set in the Burger_Obj script!");
             }
             if (_globalBurgerData == null)
             {
-                Debug.LogError("Base_Burger_Data is not set in the Burger_Obj script!");
+                DebugEvents.AddDebugError("Base_Burger_Data is not set in the Burger_Obj script!");
             }
             if (_burgerButton == null)
             {
-                Debug.LogError("Burger button is not set in the Burger_Obj script!");
+                DebugEvents.AddDebugError("Burger button is not set in the Burger_Obj script!");
             }
             #endregion
         }

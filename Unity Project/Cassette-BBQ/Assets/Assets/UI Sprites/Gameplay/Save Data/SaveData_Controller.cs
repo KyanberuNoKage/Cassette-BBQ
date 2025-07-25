@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Collections;
 using UnityEditor;
+using CustomInspector;
+using KyanberuGames.Utilities;
 
 public class SaveData_Controller : MonoBehaviour
 {
@@ -24,8 +26,16 @@ public class SaveData_Controller : MonoBehaviour
 
     [Space, Header("Default Values")]
     [SerializeField] float _defaultSound_Volume = 0.8f;
-    [SerializeField] bool _default_isOneHandedMode = false;
 
+    #region Print Persistent Data Path
+    [SerializeField, Button(nameof(PrintPersistentDataPath), tooltip = "Prints Application.persistentDataPath to the console")]
+    [HideField] bool _printPersistentDataPath = false;
+
+    private void PrintPersistentDataPath()
+    {
+        DebugEvents.AddDebugLog($"Current Persistent Data Path:\n{Application.persistentDataPath}");
+    }
+    #endregion
 
     private void Awake()
     {
@@ -72,7 +82,7 @@ public class SaveData_Controller : MonoBehaviour
         string json = JsonUtility.ToJson( dataToSave );
         File.WriteAllText(path, json);
 
-        Debug.Log("Game data saved to: " + path);
+        DebugEvents.AddDebugLog("Game data saved to: " + path);
 
         // To ensure write time is complete before quitting.
         yield return new WaitForSeconds(0.1f);
@@ -159,7 +169,7 @@ public class SaveData_Controller : MonoBehaviour
     {
         if (!File.Exists(path))
         {
-            Debug.LogWarning("No previous save game");
+            DebugEvents.AddDebugWarning("No previous save game");
             return null;
         }
         else
@@ -236,7 +246,7 @@ public class SaveData_Controller : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No save file found to delete.");
+            DebugEvents.AddDebugWarning("No save file found to delete.");
         }
     }
 }

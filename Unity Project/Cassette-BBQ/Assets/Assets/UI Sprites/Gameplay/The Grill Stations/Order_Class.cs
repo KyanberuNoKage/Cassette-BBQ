@@ -2,6 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using KyanberuGames.Utilities;
 
 public class Order_Class : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class Order_Class : MonoBehaviour
         if (_orderSize <= _currentOrderSizeFuffilled)
         {
             _orderSize = 1;
-            Debug.LogError("Order size required must be greater than 0, setting Order size to 1");
+            DebugEvents.AddDebugError("Order size required must be greater than 0, setting Order size to 1");
         }
 
         UpdateUI();

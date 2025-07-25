@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using KyanberuGames.Utilities;
 
 public class Score_Manager : MonoBehaviour
 {
@@ -116,7 +117,7 @@ public class Score_Manager : MonoBehaviour
         float effectiveTime = Mathf.Max(0, timeTaken - gracePeriod);
         float score = baseScore - (effectiveTime * decayRate);
 
-        Debug.Log($"Time taken: {timeTaken}\nAfter grace period/Effective Time: {timeTaken - gracePeriod} / {effectiveTime}\nEnd Score: {score}");
+        DebugEvents.AddDebugLog($"Food Order Score Calculation:\nTime taken: {timeTaken}\nAfter grace period/Effective Time: {timeTaken - gracePeriod} / {effectiveTime}\nEnd Score: {score}");
 
         int finalScore = Mathf.Max(minScore, Mathf.RoundToInt(score));
 

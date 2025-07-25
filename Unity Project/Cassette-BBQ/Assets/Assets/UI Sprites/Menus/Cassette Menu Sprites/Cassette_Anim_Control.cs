@@ -1,5 +1,6 @@
 using CustomInspector;
 using UnityEngine;
+using KyanberuGames.Utilities;
 
 public class Cassette_Anim_Control : MonoBehaviour
 {
@@ -13,18 +14,20 @@ public class Cassette_Anim_Control : MonoBehaviour
     {
         if (_thisCassette_Anim_Obj == null)
         {
-            Debug.LogError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
+            DebugEvents.AddDebugError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
             return;
         }
 
         thisCassettesName = _thisCassette_Anim_Obj.ThisCassetteName;
     }
 
-
+    #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
     [Button(nameof(RevealCassette), true, label = "Reveal This Cassette", size = Size.small)]
     [SerializeField, HideField] private bool RevealCassette_true = true;
+    #pragma warning restore CS0414
 
-    public void RevealCassette(bool RevealTheCassette) // reveals or hides the cassette in menu.
+    // reveals the cassette in the cassette menu by changing its animation.
+    public void RevealCassette(bool RevealTheCassette)
     {
         if (RevealTheCassette)
         {
@@ -36,7 +39,7 @@ public class Cassette_Anim_Control : MonoBehaviour
 
             if (_thisCassette_Anim_Obj == null)
             {
-                Debug.LogError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
+                DebugEvents.AddDebugError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
                 return;
             }
             else
@@ -48,7 +51,7 @@ public class Cassette_Anim_Control : MonoBehaviour
                 {
                     case CassetteAnimation.Silhouette:
                         _thisCassette_Animator.SetTrigger("Silhouette");
-                        Debug.LogError("Cassette is not supposed to be set to Silhouette in Scriptable Object!!");
+                    DebugEvents.AddDebugError("Cassette is not supposed to be set to Silhouette in Scriptable Object!!");
                         break;
                     case CassetteAnimation.SummerTime:
                         _thisCassette_Animator.SetTrigger("SummerTime");
@@ -69,7 +72,7 @@ public class Cassette_Anim_Control : MonoBehaviour
                         _thisCassette_Animator.SetTrigger("DOR");
                         break;
                     default:
-                        Debug.LogError("Unknown cassette animation type: " + _thisCassette_Anim_Obj.GetAnim());
+                    DebugEvents.AddDebugError("Unknown cassette animation type: " + _thisCassette_Anim_Obj.GetAnim());
                         break;
                 }
         }
@@ -88,14 +91,14 @@ public class Cassette_Anim_Control : MonoBehaviour
         // Cant select the cassette if it is not unlocked yet.
         if (_thisCassette_Anim_Obj.IsUnlocked == false) 
         {
-            Debug.LogWarning("Cassette is not unlocked yet: " + _thisCassette_Anim_Obj.ThisCassetteName);
+            DebugEvents.AddDebugWarning("Cassette is not unlocked yet: " + _thisCassette_Anim_Obj.ThisCassetteName);
             return;
         }
 
         // Cant select the cassette if it is a Silhouette.
         if (_thisCassette_Anim_Obj.GetAnim() != CassetteAnimation.Silhouette)
         {
-            Debug.Log("Cassette Selected: " + _thisCassette_Anim_Obj.ThisCassetteName);
+            DebugEvents.AddDebugLog("Cassette Selected: " + _thisCassette_Anim_Obj.ThisCassetteName);
             MenuTransitionEvents.RaiseCassetteSelected(this); // Event to notify transition when a cassette is selected.
 
             // Then the specific Cassette is set up.

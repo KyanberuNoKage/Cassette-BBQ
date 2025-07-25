@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using KyanberuGames.Utilities;
 
 public class Order_Manager : MonoBehaviour
 {
@@ -150,7 +151,7 @@ public class Order_Manager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Null reference passed into RemoveOrderFromList method in Order_Manager");
+            DebugEvents.AddDebugError("Null reference passed into RemoveOrderFromList method in Order_Manager");
             yield break;
         }
 

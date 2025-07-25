@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using KyanberuGames.Utilities;
 
 public class MenuTransitionController : MonoBehaviour
 {
@@ -129,7 +130,7 @@ public class MenuTransitionController : MonoBehaviour
                 ScreenToEnable = _gameOverScreen_Group;
                 break;
             default:
-                Debug.LogError("Invalid screen type: " + newScreen);
+                DebugEvents.AddDebugError("Invalid screen type: " + newScreen);
                 ScreenToEnable = null;
                 break;
         }
@@ -154,7 +155,7 @@ public class MenuTransitionController : MonoBehaviour
 
     private void StartTransition(Cassette_Anim_Control selectedCassette)
     {
-        Debug.Log("Cassette selected: " + selectedCassette.name);
+        DebugEvents.AddDebugLog("Cassette selected: " + selectedCassette.name);
 
         MoveCassettesOffScreen();
     }
@@ -311,7 +312,7 @@ public class MenuTransitionController : MonoBehaviour
 
         if (scoreData.CurrentScore == 0 && scoreData.AverageOrderCompleteTime == 0)
         {
-            Debug.LogError("SOMETHING IS WRONG - ScoreData not returned correctly, values all 0");
+            DebugEvents.AddDebugError("SOMETHING IS WRONG - ScoreData not returned correctly, values all 0");
         }
 
         _ordersCompleted_Count.text = scoreData.NumberOfCompletedOrders.ToString();

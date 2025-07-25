@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using KyanberuGames.Utilities;
 
 public class Sausage_Obj : MonoBehaviour
 {
@@ -39,15 +40,15 @@ public class Sausage_Obj : MonoBehaviour
             #region Debugging
             if (_sausageImage == null)
             {
-                Debug.LogError("_SausageImage is not set in the Sausage_Obj script!");
+                DebugEvents.AddDebugError("_SausageImage is not set in the Sausage_Obj script!");
             }
             if (_globalSausageData == null)
             {
-                Debug.LogError("Base_Sausage_Data is not set in the Sausage_Obj script!");
+                DebugEvents.AddDebugError("Base_Sausage_Data is not set in the Sausage_Obj script!");
             }
             if (_sausageButton == null)
             {
-                Debug.LogError("Sausage button is not set in the Sausage_Obj script!");
+                DebugEvents.AddDebugError("Sausage button is not set in the Sausage_Obj script!");
             }
             #endregion
         }

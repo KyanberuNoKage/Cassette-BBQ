@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using KyanberuGames.Utilities;
 
 public class Cassette_Controller : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class Cassette_Controller : MonoBehaviour
 
     private void SetActiveCassettes(List<string> activeCassetteList)
     {
-        Debug.Log("Active cassettes list: " + string.Join(", ", activeCassetteList));
+        DebugEvents.AddDebugLog("Setting active cassettes list: \n" + string.Join(", ", activeCassetteList));
 
         foreach (var cassette in _cassettesList)
         {
@@ -78,7 +79,7 @@ public class Cassette_Controller : MonoBehaviour
         {
             if (cassette.thisCassettesName == unlockedCassetteName)
             {
-                Debug.Log("Cassette " + unlockedCassetteName + " is already unlocked.");
+                DebugEvents.AddDebugWarning("Cassette " + unlockedCassetteName + " is already unlocked.");
                 return; // Exit whole method early.
             }
         }
@@ -89,7 +90,7 @@ public class Cassette_Controller : MonoBehaviour
             {
                 cassette.RevealCassette(true);
                 _activatedCassettes.Add(cassette);
-                Debug.Log("Unlocked cassette: " + unlockedCassetteName);
+                DebugEvents.AddDebugLog("Unlocked cassette:\n" + unlockedCassetteName);
                 return; // Exit whole method once found.
             }
         }

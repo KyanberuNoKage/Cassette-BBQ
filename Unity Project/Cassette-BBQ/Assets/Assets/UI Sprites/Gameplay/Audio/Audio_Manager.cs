@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using KyanberuGames.Utilities;
 using Random = UnityEngine.Random;
 
 public class Audio_Manager : MonoBehaviour
@@ -213,7 +214,7 @@ public class Audio_Manager : MonoBehaviour
                 PlaySoundEffect(SoundEffects.Switch_7);
                 break;
             default:
-                Debug.LogWarning("Random index out of range, defaulting to Switch_2 sound effect.");
+                DebugEvents.AddDebugWarning("Random index out of range, defaulting to Switch_2 sound effect.");
                 PlaySoundEffect(SoundEffects.Switch_2);
                 break;
         }
@@ -278,7 +279,7 @@ public class Audio_Manager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"No available audio sources in _effects_AudioSourcePool to play sound effect {effectClip.name}");
+            DebugEvents.AddDebugError($"No available audio sources in _effects_AudioSourcePool to play sound effect {effectClip.name}");
         }
     }
 
@@ -338,7 +339,7 @@ public class Audio_Manager : MonoBehaviour
                 PlaySoundEffect(SoundEffects.fast_woosh);
                 break;
             default:
-                Debug.LogWarning("Random index out of range, defaulting to whoosh sound effect.");
+                DebugEvents.AddDebugWarning("Random index out of range, defaulting to whoosh sound effect.");
                 PlaySoundEffect(SoundEffects.woosh);
                 break;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using KyanberuGames.Utilities;
 
 public class Tutorial_Controller : MonoBehaviour
 {
@@ -143,7 +144,7 @@ public class Tutorial_Controller : MonoBehaviour
                 break;
             default:
                 sprite = _burgerGuySprites[0];
-                Debug.LogWarning("Burger Guy State not found, defaulting to Inform state.");
+                DebugEvents.AddDebugWarning("Burger Guy State not found, defaulting to Inform state.");
                 break;
         }
 

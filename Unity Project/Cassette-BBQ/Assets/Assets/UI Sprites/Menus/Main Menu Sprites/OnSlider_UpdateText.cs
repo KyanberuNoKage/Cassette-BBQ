@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using KyanberuGames.Utilities;
 
 public class OnSlider_UpdateText : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class OnSlider_UpdateText : MonoBehaviour
     {
         if (_slider == null)
         {
-            Debug.LogWarning("Slider not assigned.");
+            DebugEvents.AddDebugWarning("Slider not assigned.");
             return;
         }
 
@@ -57,7 +58,7 @@ public class OnSlider_UpdateText : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Number display or slider is not assigned.");
+            DebugEvents.AddDebugWarning("Number display or slider is not assigned.");
         }
     }
 }

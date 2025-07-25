@@ -6817,7 +6817,7 @@ MonoBehaviour:
   _revealedCassettes: []
   _defaultCassette: {fileID: 871263447}
   _defaultSound_Volume: 0.8
-  _default_isOneHandedMode: 0
+  _printPersistentDataPath: 0
 --- !u!4 &1425259634
 Transform:
   m_ObjectHideFlags: 0
@@ -11058,6 +11058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032423133}
   - component: {fileID: 2032423134}
+  - component: {fileID: 2032423135}
   m_Layer: 0
   m_Name: GameSetting_Manager
   m_TagString: Untagged
@@ -11099,6 +11100,19 @@ MonoBehaviour:
   _default_Music_Volume: 0.9
   _default_SoundEffects_Volume: 0.9
   _audioManager: {fileID: 1445583164}
+--- !u!114 &2032423135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032423132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d8311b47cab354d89cf01403ba3b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printPersistentDataPath: 0
 --- !u!1001 &2069626358
 PrefabInstance:
   m_ObjectHideFlags: 0
