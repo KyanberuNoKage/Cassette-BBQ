@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: HotDawg
   m_EditorClassIdentifier: 
   _thisCassettesName: HotDawg
-  _thisCassettesAnim: 0
+  _thisCassettesAnim: 5
   _isUnlocked: 0
-  _thisCassetteType: 4
+  _thisCassetteType: 5
+  _thisCassetteGameValues:
+    timerDuration: 90
+    orderScore_BaseValue: 1750
+    orderScore_DecayRate: 8
+    wastedFoodPenalty: 80
+    areOrderTypesRandom: 0
+    areOrders_Burgers: 0

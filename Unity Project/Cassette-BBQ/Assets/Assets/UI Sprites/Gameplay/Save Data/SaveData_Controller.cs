@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
+using UnityEditor;
 
 public class SaveData_Controller : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SaveData_Controller : MonoBehaviour
 
     [Header("Cassettes")]
     [SerializeField] List<string> _revealedCassettes;
+    [SerializeField] private Cassette_Anim_Control _defaultCassette;
 
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
@@ -23,6 +25,7 @@ public class SaveData_Controller : MonoBehaviour
     [Space, Header("Default Values")]
     [SerializeField] float _defaultSound_Volume = 0.8f;
     [SerializeField] bool _default_isOneHandedMode = false;
+
 
     private void Awake()
     {
@@ -32,12 +35,14 @@ public class SaveData_Controller : MonoBehaviour
     private void OnEnable()
     {
         SaveDataEvents.OnTryLoadGameData += LoadAndSetupGame;
+        ReceiptStateHolder.OnDeleteData += ResetData;
         GamesSettingsEvents.OnGameQuit += SaveAndQuit;
     }
 
     private void OnDisable()
     {
         SaveDataEvents.OnTryLoadGameData -= LoadAndSetupGame;
+        ReceiptStateHolder.OnDeleteData -= ResetData;
         GamesSettingsEvents.OnGameQuit -= SaveAndQuit;
     }  
 
@@ -72,7 +77,11 @@ public class SaveData_Controller : MonoBehaviour
         // To ensure write time is complete before quitting.
         yield return new WaitForSeconds(0.1f);
 
-        Application.Quit();
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public bool DoesSaveExist()
@@ -120,6 +129,9 @@ public class SaveData_Controller : MonoBehaviour
             _isOneHanded = newGameData.isOneHanded;
 
             _revealedCassettes = newGameData.revealedCassettes;
+
+            // Ensure default cassette is on there if no cassettes have been revealed yet.
+            if (_revealedCassettes.Count == 0) { _revealedCassettes.Add(_defaultCassette.thisCassettesName); }
 
             // Revert List of high scores back to Dict of high scores.
             _highScores = newGameData.highScores
@@ -180,31 +192,47 @@ public class SaveData_Controller : MonoBehaviour
             // Delete current save file.
             File.Delete(path);
 
+            /** SIMPLY DON@T CREATE NEW BASE DATA, JUST DELETE THE FILE AND LET THE GAME SETUP THE DEFAULTS ON STARTUP.
             // Create new serializable data for saving.
             GameData newSaveData = new GameData();
+
+            List<string> newCassetteList = new List<string>();
+            newCassetteList.Add(_defaultCassette.thisCassettesName);
+
             // Give it all the default values.
             newSaveData.AddData
                 (
                     _musicVolume: _defaultSound_Volume, 
                     _soundEffectsVolume: _defaultSound_Volume, 
                     _isOneHanded: _default_isOneHandedMode, 
-                    _revealedCassettes: new List<string>(), 
+                    _revealedCassettes: newCassetteList, 
                     _highScores: new Dictionary<int, string>()
                 );
+
             // Endure the values in the SaveData_Controller are
             // also at their default values.
             _musicVolume = newSaveData.musicVolume;
             _soundEffectsVolume= newSaveData.soundEffectsVolume;
             _isOneHanded = newSaveData.isOneHanded;
-            _revealedCassettes = new List<string>();
+            _revealedCassettes = newCassetteList;
             _highScores = new Dictionary<int, string>();
 
             // Send this data out to all areas of the game to be reset.
-            SendData();
+            StartCoroutine(SendData());
 
             // Save the new default info as to ensure defaults have stuck.
             string json = JsonUtility.ToJson(newSaveData);
             File.WriteAllText(path, json);
+            **/
+
+            // Quit application to ensure the game restarts with the new data, rather than saving data on exit.
+
+
+            #if UNITY_EDITOR
+                EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         }
         else
         {

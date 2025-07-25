@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: BunVoyage
   m_EditorClassIdentifier: 
   _thisCassettesName: BunVoyage
-  _thisCassettesAnim: 0
+  _thisCassettesAnim: 4
   _isUnlocked: 0
-  _thisCassetteType: 3
+  _thisCassetteType: 4
+  _thisCassetteGameValues:
+    timerDuration: 70
+    orderScore_BaseValue: 3000
+    orderScore_DecayRate: 15
+    wastedFoodPenalty: 1000
+    areOrderTypesRandom: 0
+    areOrders_Burgers: 1

@@ -116,12 +116,12 @@ public static class ReceiptStateHolder
     #region Events
     public static event Action OnDeleteData;
 
-    public static event Action OnPrintData;
-
     public static void DeleteGameData()
     {
         OnDeleteData?.Invoke();
     }
+
+    public static event Action OnPrintData;
 
     public static void PrintGameData()
     {

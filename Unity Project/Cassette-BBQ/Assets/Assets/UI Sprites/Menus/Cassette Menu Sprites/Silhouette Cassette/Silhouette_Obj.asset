@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisCassettesName: Silhouette
   _thisCassettesAnim: 0
-  _isUnlocked: 0
+  _isUnlocked: 1
+  _thisCassetteType: 0
+  _thisCassetteGameValues:
+    timerDuration: 90
+    orderScore_BaseValue: 2000
+    orderScore_DecayRate: 25
+    wastedFoodPenalty: 250
+    areOrderTypesRandom: 1
+    areOrders_Burgers: 0

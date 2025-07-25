@@ -36,7 +36,6 @@ public class Tutorial_Controller : MonoBehaviour
     TextMeshProUGUI _ScoreText; // Needed for score tutorial. Implement later.
     [SerializeField] TextMeshProUGUI _pressEnterText;
 
-    bool _tutorialCompleted = false;
 
     private void Awake()
     {
@@ -95,8 +94,6 @@ public class Tutorial_Controller : MonoBehaviour
         _tutorialCanvasGroup.alpha = 0f;
         _tutorialCanvasGroup.interactable = false;
         _tutorialCanvasGroup.blocksRaycasts = false;
-
-        _tutorialCompleted = true;
 
         MenuTransitionEvents.MoveToStartMenu();
     }

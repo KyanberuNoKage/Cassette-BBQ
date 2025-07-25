@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: RushHour
   m_EditorClassIdentifier: 
   _thisCassettesName: RushHour
-  _thisCassettesAnim: 0
-  _isUnlocked: 0
-  _thisCassetteType: 2
+  _thisCassettesAnim: 3
+  _isUnlocked: 1
+  _thisCassetteType: 3
+  _thisCassetteGameValues:
+    timerDuration: 45
+    orderScore_BaseValue: 6000
+    orderScore_DecayRate: 220
+    wastedFoodPenalty: 400
+    areOrderTypesRandom: 1
+    areOrders_Burgers: 0

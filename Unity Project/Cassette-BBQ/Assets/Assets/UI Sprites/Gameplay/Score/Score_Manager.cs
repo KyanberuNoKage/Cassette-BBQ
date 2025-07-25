@@ -31,6 +31,7 @@ public class Score_Manager : MonoBehaviour
     [SerializeField] float _averageTimeTaken_PerOrder = 0;
     [SerializeField] List<float> _listOf_timeTaken_PerOrder = new List<float>();
 
+    private bool _isDOubleOrNothingActive = false;
 
     #region UI
     [SerializeField] TextMeshProUGUI _scoreText;
@@ -53,6 +54,7 @@ public class Score_Manager : MonoBehaviour
         baseScore = newValues.OrderScore_BaseValue;
         decayRate = newValues.OrderScore_DecayRate;
         _foodWastePenalty = newValues.WastedFoodPenalty;
+        _isDOubleOrNothingActive = newValues.IsDoubleOrNothing;
     }
 
     private void OnDisable()
@@ -68,6 +70,25 @@ public class Score_Manager : MonoBehaviour
     void Start()
     {
         SetUpScore();
+    }
+
+    private void CheckCassetteUnlocks()
+    {
+        // Whenever the score changes, check if cassette should be unlocked.
+        if (_currentScore >= 12000)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.SlowShift);
+        }
+
+        if (_currentScore >= 18000)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.RushHour);
+        }
+
+        if (_currentScore >= 28666)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.DoubleOrNothing);
+        }
     }
 
     private void SetUpScore()
@@ -105,6 +126,18 @@ public class Score_Manager : MonoBehaviour
     private void CalculateFoodWaste_Score()
     {
         _numberOfWastedFoodItems++;
+
+        if (_isDOubleOrNothingActive)
+        {
+
+            // Resets the timer, resets the score and ends the game.
+            _currentScore = 0;
+            TimerEvents.OrNothing();
+
+            // Stops method early due to round ending.
+            return;
+        }
+
         int scoreDecrease = _foodWastePenalty * _numberOfWastedFoodItems;
 
         IncreaseScore(scoreDecrease, isDecrease: true);
@@ -144,6 +177,8 @@ public class Score_Manager : MonoBehaviour
         }
 
         _scoreText.text = to.ToString("D4");
+
+        CheckCassetteUnlocks();
 
         if (IsDecrease)
         {

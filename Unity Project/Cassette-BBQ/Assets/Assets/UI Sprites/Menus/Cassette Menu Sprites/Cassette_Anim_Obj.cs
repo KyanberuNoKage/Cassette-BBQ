@@ -1,4 +1,5 @@
 
+using CustomInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Cassette_Anim_Obj", menuName = "Scriptable Objects/Cassette_Anim_Obj")]
@@ -18,12 +19,24 @@ public class Cassette_Anim_Obj : ScriptableObject
 
     public CassetteAnimation GetAnim()
     {
-        return _thisCassettesAnim;
+        if (_isUnlocked)
+        {
+            return _thisCassettesAnim;
+        }
+        else
+        {
+            return CassetteAnimation.Silhouette; // Default animation when not unlocked.
+        }
     }
 
     public void OnThisCassetteSelected()
     {
         CassetteEvents.CassetteSelected(_thisCassetteGameValues);
+    }
+
+    public void UnlockCassette()
+    {
+        _isUnlocked = true;
     }
 }
 
@@ -31,10 +44,16 @@ public enum CassetteAnimation
 {
     Silhouette,
     SummerTime,
+    SlowShift,
+    RushHour,
+    BunVoyage,
+    HotDawg,
+    DoubleOrNothing,
 }
 
 public enum CassetteType
 {
+    Silhouette,
     SummerTime,
     SlowShift,
     RushHour,
@@ -47,6 +66,8 @@ public enum CassetteType
 public class CassetteGameValues
 {
     // These private fields are edited using unity's inspector, and are read-only from other scripts.
+    [SerializeField] private bool _isDoubleOrNothing;
+    public bool IsDoubleOrNothing => _isDoubleOrNothing;
 
     // For OilTimer.cs
     [SerializeField] private int timerDuration;
@@ -62,7 +83,9 @@ public class CassetteGameValues
     
     // For Order_Manager.cs
     [SerializeField] private bool areOrderTypesRandom;
-    [SerializeField] private bool areOrders_Burgers;
+    // Shows only if orders aren't random.
+    [SerializeField, ShowIf(nameof(IsNotRandom), style = DisabledStyle.Invisible, indent = 0)] 
+    private bool areOrders_Burgers; private bool IsNotRandom() { return !areOrderTypesRandom; }
     public bool AreOrderTypesRandom => areOrderTypesRandom;
     public bool AreOrders_Burgers => areOrders_Burgers;
 }

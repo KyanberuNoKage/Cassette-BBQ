@@ -15,12 +15,17 @@ public class OilTimer : MonoBehaviour
     {
         OrderEvents.OnStartGame += StartTimer;
         CassetteEvents.OnCassetteSelected += SetCassetteValues;
+        
+        TimerEvents.OnOrNothing += ResetTimer_OrNothing;
     }
 
     private void OnDisable()
     {
         OrderEvents.OnStartGame -= StartTimer;
         CassetteEvents.OnCassetteSelected -= SetCassetteValues;
+       
+        TimerEvents.OnOrNothing -= ResetTimer_OrNothing;
+        
         StopAllCoroutines();
     }
 
@@ -36,6 +41,19 @@ public class OilTimer : MonoBehaviour
         StopAllCoroutines();
         currentTime = 0;
         UpdateTimerUI();
+    }
+
+    /// <summary>
+    /// Resets the timer and ends round.
+    /// </summary>
+    private void ResetTimer_OrNothing()
+    {
+        StopAllCoroutines();
+        currentTime = 0;
+        UpdateTimerUI();
+
+        TimerEvents.TimerFinished();
+        ScoreEvents.AddHighScore();
     }
 
     private void SetCassetteValues(CassetteGameValues newValues)
@@ -70,5 +88,13 @@ public static class TimerEvents
     public static void TimerFinished()
     {
         OnTimerFinished?.Invoke();
+    }
+
+    // Event for DoubleOrNothing Fail.
+    public static event Action OnOrNothing;
+
+    public static void OrNothing()
+    {
+        OnOrNothing?.Invoke();
     }
 }

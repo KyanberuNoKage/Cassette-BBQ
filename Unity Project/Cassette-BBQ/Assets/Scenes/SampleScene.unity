@@ -2124,9 +2124,7 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 0}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects: []
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions: []
 --- !u!114 &468239603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2615,6 +2613,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_DoubleOrNothing
@@ -3950,15 +3952,19 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 538844247}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects:
-  - {fileID: 135757662}
-  - {fileID: 2016171640}
-  - {fileID: 1567632232}
-  - {fileID: 2069626359}
-  - {fileID: 1398311266}
-  - {fileID: 557881122}
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions:
+  - thisCassettesRectTransform: {fileID: 135757662}
+    thisCassettesStartingPosition: {x: 0, y: 0}
+  - thisCassettesRectTransform: {fileID: 2016171640}
+    thisCassettesStartingPosition: {x: 0, y: 0}
+  - thisCassettesRectTransform: {fileID: 1567632232}
+    thisCassettesStartingPosition: {x: 0, y: 0}
+  - thisCassettesRectTransform: {fileID: 2069626359}
+    thisCassettesStartingPosition: {x: 0, y: 0}
+  - thisCassettesRectTransform: {fileID: 1398311266}
+    thisCassettesStartingPosition: {x: 0, y: 0}
+  - thisCassettesRectTransform: {fileID: 557881122}
+    thisCassettesStartingPosition: {x: 0, y: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4295,8 @@ MonoBehaviour:
   _spacing: 68
   _isHorizontalLayout: 1
   _reorderDuration: 0.3
+  _hotDawgUnlockThreshhold: 8
+  _bunVoyageUnlockThreshhold: 8
 --- !u!1 &877237009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,7 +4644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d7691346641e447a5fb7063346953f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cassettes:
+  _cassettesList:
   - {fileID: 871263447}
   - {fileID: 2016171641}
   - {fileID: 1567632233}
@@ -4644,6 +4652,7 @@ MonoBehaviour:
   - {fileID: 1398311267}
   - {fileID: 1964602098}
   _activatedCassettes: []
+  _defaultCassette: {fileID: 871263447}
 --- !u!4 &997967191
 Transform:
   m_ObjectHideFlags: 0
@@ -6125,9 +6134,7 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 0}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects: []
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions: []
 --- !u!114 &1303795810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6642,6 +6649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_HotDawg
@@ -6804,6 +6815,7 @@ MonoBehaviour:
   _soundEffectsVolume: 0.8
   _isOneHanded: 0
   _revealedCassettes: []
+  _defaultCassette: {fileID: 871263447}
   _defaultSound_Volume: 0.8
   _default_isOneHandedMode: 0
 --- !u!4 &1425259634
@@ -6950,9 +6962,7 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 0}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects: []
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions: []
 --- !u!114 &1429471425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8015,9 +8025,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560000236}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1001 &1567632231
 PrefabInstance:
@@ -8027,6 +8037,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_RushHour
@@ -8287,9 +8301,7 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 0}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects: []
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions: []
 --- !u!114 &1591347534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9663,9 +9675,7 @@ MonoBehaviour:
   _mainMenu_Group: {fileID: 128290257}
   _cassettesMenu_Group: {fileID: 1560000238}
   _casetteBackground: {fileID: 0}
-  _trasitionAnimator: {fileID: 0}
-  _cassetteObjects: []
-  _cassetteStartingPositions: []
+  _cassetteDefaultPositions: []
 --- !u!114 &1801827099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10905,6 +10915,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_SlowShift
@@ -11093,6 +11107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_BunVoyage
@@ -11341,6 +11359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538844243}
     m_Modifications:
+    - target: {fileID: 150410891976707114, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1751983718, guid: 8c5f0647d6b45574abd7fd2049ecd66c, type: 3}
     - target: {fileID: 2008071559868682893, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_Name
       value: Cassette_SummerTime

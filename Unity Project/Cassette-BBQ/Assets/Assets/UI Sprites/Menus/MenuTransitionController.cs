@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class MenuTransitionController : MonoBehaviour
 {
@@ -88,7 +89,11 @@ public class MenuTransitionController : MonoBehaviour
 
     public void LeaveGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
     #endregion
 
@@ -279,8 +284,16 @@ public class MenuTransitionController : MonoBehaviour
                 _cassettesMenu_Group.blocksRaycasts = false;
 
                 OrderEvents.StartGameSystem(); // Start the order system for the grill gameplay.
+
+                ResetTransitionScreen();
             }
         );
+    }
+
+    private void ResetTransitionScreen()
+    {
+        // Reset the boombox image to the first frame. (So its invisible)
+        _trasitionImage.sprite = _boomBox_FlipAnim[0]; 
     }
 
     private void TutorialToMenu()
@@ -369,7 +382,6 @@ public class MenuTransitionController : MonoBehaviour
                 _grill_Group.blocksRaycasts = false;
             };
             AudioEvents.SetGrillScreen(false);
-            AudioEvents.StartMainMenuMusic();
         });
 
         sequence.AppendInterval(0.5f);

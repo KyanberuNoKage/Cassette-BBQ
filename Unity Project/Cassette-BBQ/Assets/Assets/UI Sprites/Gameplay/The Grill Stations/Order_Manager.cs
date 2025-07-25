@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
 using Random = UnityEngine.Random;
 
 public class Order_Manager : MonoBehaviour
@@ -39,6 +38,10 @@ public class Order_Manager : MonoBehaviour
     [SerializeField] private bool _isHorizontalLayout = true;
     [SerializeField] private float _reorderDuration = 0.3f; // How long it takes to animate
 
+    [Space, Header("Cassette Unlocks")]
+    [SerializeField] private int _hotDawgUnlockThreshhold;
+    [SerializeField] private int _bunVoyageUnlockThreshhold;
+
     private void RepositionOrders()
     {
         for (int i = 0; i < ListOfOrders.Count; i++)
@@ -65,6 +68,9 @@ public class Order_Manager : MonoBehaviour
     private bool AreOrders_Burgers = true;
 
     private Coroutine _ordersCoroutine;
+
+    private int _burgerOrdersCompleted = 0;
+    private int _sausageOrdersCompleted = 0;
 
 
     private void OnEnable()
@@ -148,6 +154,8 @@ public class Order_Manager : MonoBehaviour
             yield break;
         }
 
+        CheckCassetteUnlock(OrderToRemove);
+
         if (OrderToRemove != null && ListOfOrders.Contains(OrderToRemove))
         {
             ListOfOrders.Remove(OrderToRemove);
@@ -157,8 +165,34 @@ public class Order_Manager : MonoBehaviour
         _areOrdersActive = true; // Re-enable order spawning.
     }
 
+    private void CheckCassetteUnlock(Order_Class OrderToCheck)
+    {
+        // For cassette Unlocks
+        if (OrderToCheck.IsBurger)
+        {
+            _burgerOrdersCompleted++;
+        }
+        else if (!OrderToCheck.IsBurger)
+        {
+            _sausageOrdersCompleted++;
+        }
+
+        if (_burgerOrdersCompleted >= _bunVoyageUnlockThreshhold)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.BunVoyage);
+        }
+
+        if (_sausageOrdersCompleted >= _hotDawgUnlockThreshhold)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.HotDawg);
+        }
+    }
+
     private IEnumerator Start_RandomOrders()
     {
+        _burgerOrdersCompleted = 0;
+        _sausageOrdersCompleted = 0;
+
         while (true)
         {
             if (_areOrdersActive && ListOfOrders.Count < _maxNumOfOrders)
@@ -226,6 +260,9 @@ public class Order_Manager : MonoBehaviour
 
     private void EndOrders()
     {
+        _burgerOrdersCompleted = 0;
+        _sausageOrdersCompleted = 0;
+
         if (_ordersCoroutine != null) 
         {
             StopCoroutine(_ordersCoroutine); 

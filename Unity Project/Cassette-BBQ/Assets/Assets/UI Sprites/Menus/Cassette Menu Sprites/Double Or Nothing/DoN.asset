@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: DoN
   m_EditorClassIdentifier: 
   _thisCassettesName: DoubleOrNothing
-  _thisCassettesAnim: 0
+  _thisCassettesAnim: 6
   _isUnlocked: 0
-  _thisCassetteType: 5
+  _thisCassetteType: 6
+  _thisCassetteGameValues:
+    _isDoubleOrNothing: 1
+    timerDuration: 180
+    orderScore_BaseValue: 7000
+    orderScore_DecayRate: 30
+    wastedFoodPenalty: 9999999
+    areOrderTypesRandom: 1
+    areOrders_Burgers: 0

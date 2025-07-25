@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: SlowShift
   m_EditorClassIdentifier: 
   _thisCassettesName: SlowShift
-  _thisCassettesAnim: 0
-  _isUnlocked: 0
-  _thisCassetteType: 1
+  _thisCassettesAnim: 2
+  _isUnlocked: 1
+  _thisCassetteType: 2
+  _thisCassetteGameValues:
+    timerDuration: 180
+    orderScore_BaseValue: 1250
+    orderScore_DecayRate: 12
+    wastedFoodPenalty: 250
+    areOrderTypesRandom: 1
+    areOrders_Burgers: 0

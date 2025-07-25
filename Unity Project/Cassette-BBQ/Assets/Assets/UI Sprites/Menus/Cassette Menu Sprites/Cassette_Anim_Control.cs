@@ -1,3 +1,4 @@
+using CustomInspector;
 using UnityEngine;
 
 public class Cassette_Anim_Control : MonoBehaviour
@@ -16,18 +17,12 @@ public class Cassette_Anim_Control : MonoBehaviour
             return;
         }
 
-        thisCassettesName = _thisCassette_Animator.name;
-
-        if (_thisCassette_Anim_Obj.IsUnlocked == true)
-        {
-            RevealCassette(true);
-        }
-        else
-        {
-            RevealCassette(false);
-        }
+        thisCassettesName = _thisCassette_Anim_Obj.ThisCassetteName;
     }
 
+
+    [Button(nameof(RevealCassette), true, label = "Reveal This Cassette", size = Size.small)]
+    [SerializeField, HideField] private bool RevealCassette_true = true;
 
     public void RevealCassette(bool RevealTheCassette) // reveals or hides the cassette in menu.
     {
@@ -39,19 +34,44 @@ public class Cassette_Anim_Control : MonoBehaviour
              * for whichever Cassette type it is set as in its Scriptable Object.
             **/
 
-            switch (_thisCassette_Anim_Obj.GetAnim())
+            if (_thisCassette_Anim_Obj == null)
             {
-                case CassetteAnimation.Silhouette:
-                    _thisCassette_Animator.SetTrigger("Silhouette");
-                    Debug.LogWarning("Cassette is not supposed to be set to Silhouette in Scriptable Object!!");
-                    break;
-                case CassetteAnimation.SummerTime:
-                    _thisCassette_Animator.SetTrigger("SummerTime");
-                    break;
-                default:
-                    Debug.LogError("Unknown cassette animation type: " + _thisCassette_Anim_Obj.GetAnim());
-                    break;
+                Debug.LogError("Cassette_Anim_Obj is not assigned in " + gameObject.name);
+                return;
             }
+            else
+            {
+                _thisCassette_Anim_Obj.UnlockCassette(); // Unlock the cassette if it is revealed.
+            }
+
+                switch (_thisCassette_Anim_Obj.GetAnim())
+                {
+                    case CassetteAnimation.Silhouette:
+                        _thisCassette_Animator.SetTrigger("Silhouette");
+                        Debug.LogError("Cassette is not supposed to be set to Silhouette in Scriptable Object!!");
+                        break;
+                    case CassetteAnimation.SummerTime:
+                        _thisCassette_Animator.SetTrigger("SummerTime");
+                        break;
+                    case CassetteAnimation.SlowShift:
+                        _thisCassette_Animator.SetTrigger("SlowShift");
+                        break;
+                    case CassetteAnimation.RushHour:
+                        _thisCassette_Animator.SetTrigger("RushHour");
+                        break;
+                    case CassetteAnimation.BunVoyage:
+                        _thisCassette_Animator.SetTrigger("BunVoyage");
+                        break;
+                    case CassetteAnimation.HotDawg:
+                        _thisCassette_Animator.SetTrigger("HotDawg");
+                        break;
+                    case CassetteAnimation.DoubleOrNothing:
+                        _thisCassette_Animator.SetTrigger("DOR");
+                        break;
+                    default:
+                        Debug.LogError("Unknown cassette animation type: " + _thisCassette_Anim_Obj.GetAnim());
+                        break;
+                }
         }
         else
         {

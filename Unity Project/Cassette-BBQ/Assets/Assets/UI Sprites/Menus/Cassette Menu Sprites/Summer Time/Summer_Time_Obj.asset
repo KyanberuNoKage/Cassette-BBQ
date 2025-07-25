@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17787c72bfa5c3f4889fcb53f54a8fc1, type: 3}
   m_Name: Summer_Time_Obj
   m_EditorClassIdentifier: 
-  _thisCassettesName: SummerTime
+  _thisCassettesName: Silhouette
   _thisCassettesAnim: 1
   _isUnlocked: 1
-  _thisCassetteType: 0
+  _thisCassetteType: 1
   _thisCassetteGameValues:
     timerDuration: 90
     orderScore_BaseValue: 2000

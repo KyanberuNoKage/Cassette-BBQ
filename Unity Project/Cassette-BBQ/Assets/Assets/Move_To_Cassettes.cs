@@ -1,16 +1,21 @@
-using Unity.VisualScripting;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Move_To_Cassettes : MonoBehaviour
 {
     [SerializeField] CanvasGroup _mainMenu_Group;
     [SerializeField] CanvasGroup _cassettesMenu_Group;
     [SerializeField] CanvasGroup _casetteBackground;
-    [SerializeField] Animator _trasitionAnimator;
 
-    [SerializeField] RectTransform[] _cassetteObjects;
-    [SerializeField] Vector3[] _cassetteStartingPositions;
+    [Serializable]
+    public class CassetteDefaultPositions
+    {
+        public RectTransform thisCassettesRectTransform;
+        public Vector2 thisCassettesStartingPosition;
+    }
+
+    [SerializeField] List<CassetteDefaultPositions> _cassetteDefaultPositions;
 
     private void OnEnable()
     {
@@ -22,14 +27,11 @@ public class Move_To_Cassettes : MonoBehaviour
         TimerEvents.OnTimerFinished -= ResetCassette_Screen;
     }
 
-    private void Start()
+    private void Awake()
     {
-        _cassetteStartingPositions = new Vector3[_cassetteObjects.Length];
-
-        for (int i = 0; i < _cassetteObjects.Length; i++)
+        foreach(CassetteDefaultPositions cassette in _cassetteDefaultPositions)
         {
-            // Store the starting positions of each cassette object.
-            _cassetteStartingPositions[i] = _cassetteObjects[i].position;
+            cassette.thisCassettesStartingPosition = cassette.thisCassettesRectTransform.anchoredPosition;
         }
     }
 
@@ -52,23 +54,9 @@ public class Move_To_Cassettes : MonoBehaviour
 
     private void ResetCassette_Screen()
     {
-        if (_trasitionAnimator != null)
+        foreach (CassetteDefaultPositions cassette in _cassetteDefaultPositions)
         {
-            // Reset animation.
-            _trasitionAnimator.Rebind();
-            _trasitionAnimator.Update(0f);
+            cassette.thisCassettesRectTransform.anchoredPosition = cassette.thisCassettesStartingPosition;
         }
-        else
-        {
-            Debug.LogWarning("Transition Animator is not assigned. Skipping animation reset.");
-            return;
-        }
-
-
-            for (int i = 0; i < _cassetteObjects.Length; i++)
-            {
-                // Reset each cassette to its starting position.
-                _cassetteObjects[i].position = _cassetteStartingPositions[i];
-            }
     }
 }
