@@ -12,7 +12,7 @@ public class GameSettings_manager : MonoBehaviour
     [Header("Options Menu Settings")]
     [SerializeField] private float _music_Volume;
     [SerializeField] private float _soundEffects_Volume;
-    [SerializeField] private bool _isOneHanded = false;
+    [SerializeField] private bool _isOneHanded = false; public bool GetIsOneHanded() { return _isOneHanded; }
 
     [Header("Default Game Settings")]
     [SerializeField, Range(0, 1)] private float _default_Music_Volume = 0.9f;
@@ -25,6 +25,8 @@ public class GameSettings_manager : MonoBehaviour
     {
         GamesSettingsEvents.OnSoundLevelChanged += UpdateSoundLevels;
         SaveData_MessageBus.OnSetIsOneHanded += SetIsOneHanded_FromSaveData;
+
+        SaveData_MessageBus.OnRequestIsOneHanded += GetIsOneHanded;
     }
 
     private void SetIsOneHanded_FromSaveData(bool isOneHanded)
@@ -36,6 +38,8 @@ public class GameSettings_manager : MonoBehaviour
     {
         GamesSettingsEvents.OnSoundLevelChanged -= UpdateSoundLevels;
         SaveData_MessageBus.OnSetIsOneHanded -= SetIsOneHanded_FromSaveData;
+
+        SaveData_MessageBus.OnRequestIsOneHanded -= GetIsOneHanded;
     }
 
     private void Start()
@@ -157,4 +161,4 @@ public static class  GamesSettingsEvents
     {
         OnGameQuit?.Invoke();
     }
-}       
+}    
