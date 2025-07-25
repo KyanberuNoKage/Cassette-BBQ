@@ -10,6 +10,7 @@ namespace KyanberuGames.Utilities
 {
     public class DebugEvents_Manager : MonoBehaviour
     {
+#if UNITY_EDITOR
         #region Unity Editor Inspector
         #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
         [SerializeField, Button(nameof(PrintPersistentDebugLogPath), tooltip = "Prints the persistent path to the debug_log Markdown file to the console and the log.")]
@@ -22,13 +23,14 @@ namespace KyanberuGames.Utilities
             DebugEvents.AddDebugLog($"Current Persistent Debug-Log Path\n({_logPath})\nwas printed to the unity debug console.");
         }
         #endregion
+#endif
 
         #region Log Set-Up
         string _logPath;
 
         private void Awake()
         {
-            _logPath = Path.Combine(Application.persistentDataPath, "/debug_log.md");
+            _logPath = Path.Combine(Application.persistentDataPath, "/Debug_Log.md");
 
             StringBuilder _logHeader_Builder = new StringBuilder();
 

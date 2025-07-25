@@ -24,18 +24,19 @@ public class SaveData_Controller : MonoBehaviour
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
 
-    [Space, Header("Default Values")]
-    [SerializeField] float _defaultSound_Volume = 0.8f;
-
+#if UNITY_EDITOR
     #region Print Persistent Data Path
+    #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
     [SerializeField, Button(nameof(PrintPersistentDataPath), tooltip = "Prints Application.persistentDataPath to the console")]
     [HideField] bool _printPersistentDataPath = false;
+    #pragma warning restore CS0414
 
     private void PrintPersistentDataPath()
     {
         DebugEvents.AddDebugLog($"Current Persistent Data Path:\n{Application.persistentDataPath}");
     }
     #endregion
+#endif
 
     private void Awake()
     {
@@ -246,7 +247,7 @@ public class SaveData_Controller : MonoBehaviour
         }
         else
         {
-            DebugEvents.AddDebugWarning("No save file found to delete.");
+            DebugEvents.AddDebugWarning("No save file found to 'Reset'.");
         }
     }
 }

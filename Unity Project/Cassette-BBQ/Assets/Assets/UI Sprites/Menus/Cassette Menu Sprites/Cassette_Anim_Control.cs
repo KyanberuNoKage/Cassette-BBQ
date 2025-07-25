@@ -21,10 +21,12 @@ public class Cassette_Anim_Control : MonoBehaviour
         thisCassettesName = _thisCassette_Anim_Obj.ThisCassetteName;
     }
 
+#if UNITY_EDITOR
     #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
     [Button(nameof(RevealCassette), true, label = "Reveal This Cassette", size = Size.small)]
     [SerializeField, HideField] private bool RevealCassette_true = true;
     #pragma warning restore CS0414
+#endif
 
     // reveals the cassette in the cassette menu by changing its animation.
     public void RevealCassette(bool RevealTheCassette)
@@ -91,14 +93,18 @@ public class Cassette_Anim_Control : MonoBehaviour
         // Cant select the cassette if it is not unlocked yet.
         if (_thisCassette_Anim_Obj.IsUnlocked == false) 
         {
+#if UNITY_EDITOR // To reduce unnecessary logs in build.
             DebugEvents.AddDebugWarning("Cassette is not unlocked yet: " + _thisCassette_Anim_Obj.ThisCassetteName);
+#endif
             return;
         }
 
         // Cant select the cassette if it is a Silhouette.
         if (_thisCassette_Anim_Obj.GetAnim() != CassetteAnimation.Silhouette)
         {
+#if UNITY_EDITOR // To reduce unnecessary logs in build.
             DebugEvents.AddDebugLog("Cassette Selected: " + _thisCassette_Anim_Obj.ThisCassetteName);
+#endif
             MenuTransitionEvents.RaiseCassetteSelected(this); // Event to notify transition when a cassette is selected.
 
             // Then the specific Cassette is set up.

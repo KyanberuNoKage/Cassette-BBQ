@@ -79,7 +79,9 @@ public class Cassette_Controller : MonoBehaviour
         {
             if (cassette.thisCassettesName == unlockedCassetteName)
             {
+#if UNITY_EDITOR // To reduce unnecessary logs in build.
                 DebugEvents.AddDebugWarning("Cassette " + unlockedCassetteName + " is already unlocked.");
+#endif
                 return; // Exit whole method early.
             }
         }
