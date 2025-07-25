@@ -315,6 +315,9 @@ public class MenuTransitionController : MonoBehaviour
             DebugEvents.AddDebugError("SOMETHING IS WRONG - ScoreData not returned correctly, values all 0");
         }
 
+        // Enureses the screen is on the grilling screen before the meat screen is disabled (prevents black screen).
+        MenuTransitionEvents.EnsureGrillingScreen();
+
         _ordersCompleted_Count.text = scoreData.NumberOfCompletedOrders.ToString();
         _ordersCompleted_Count.alpha = 0f;
         _ordersCompleted_Count.gameObject.transform.localScale = Vector3.zero;
@@ -436,6 +439,13 @@ public static class MenuTransitionEvents
     public static void MoveToStartMenu()
     {
         OnMenuStarted?.Invoke();
+    }
+
+    public static event Action OnEnsureGrillingScreen;
+
+    public static void EnsureGrillingScreen()
+    {
+        OnEnsureGrillingScreen?.Invoke();
     }
 }
 

@@ -7,15 +7,24 @@ public class Screen_Manager : MonoBehaviour
 
     [SerializeField] private bool _oneHandedMode = false;
 
+    bool _canChangeScreens = false;
+
     private void OnEnable()
     {
         SaveData_MessageBus.OnRequestIsOneHanded += () => _oneHandedMode;
+        MenuTransitionEvents.OnEnsureGrillingScreen += EnsureOnGrillScreen; // Ensures the player starts on the grill screen.
         GamesSettingsEvents.OnOneHandedToggled += SetOneHanded;
+
+        // Ensure the grill/meat screens cannot change until the round starts.
+        OrderEvents.OnStartGame += () => _canChangeScreens = true;
+        // Ensures the grill/meat screens cannot change after the round ends.
+        TimerEvents.OnTimerFinished += () => _canChangeScreens = false;
     }
 
     private void OnDisable()
     {
         SaveData_MessageBus.OnRequestIsOneHanded -= () => _oneHandedMode;
+        MenuTransitionEvents.OnEnsureGrillingScreen -= EnsureOnGrillScreen;
         GamesSettingsEvents.OnOneHandedToggled -= SetOneHanded;
     }
 
@@ -38,6 +47,8 @@ public class Screen_Manager : MonoBehaviour
 
     private void HandleInput()
     {
+        if (!_canChangeScreens) { return; }
+
         if (_oneHandedMode)
         {
             if (Input.GetMouseButtonDown(1)) // Right-click to toggle
@@ -109,6 +120,14 @@ public class Screen_Manager : MonoBehaviour
         }
 
         bumpSequence.Play();
+    }
+
+    private void EnsureOnGrillScreen()
+    {
+        if (!_grillManager._isGrillingActive)
+        {
+            SwitchStation(toGrill: true);
+        }
     }
 }
 
