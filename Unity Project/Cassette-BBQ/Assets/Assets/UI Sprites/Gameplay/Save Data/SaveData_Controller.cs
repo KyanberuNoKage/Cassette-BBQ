@@ -33,6 +33,7 @@ public class SaveData_Controller : MonoBehaviour
 
     private void PrintPersistentDataPath()
     {
+        Debug.Log($"Current Persistent Data Path:\n{Application.persistentDataPath}");
         DebugEvents.AddDebugLog($"Current Persistent Data Path:\n{Application.persistentDataPath}");
     }
     #endregion

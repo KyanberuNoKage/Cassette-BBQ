@@ -28,6 +28,10 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] Sprite[] _boomBox_FlipAnim;
     [SerializeField] Sprite _boomboxHitFloor_Frame;
     [SerializeField] Sprite _boomBoxClick_Frame;
+    [SerializeField] RectTransform _pickMode_Text;
+    Vector2 _pickMode_Text_OriginalPosition;
+    [SerializeField] RectTransform _backButton;
+    private Vector2 _backButton_OriginalPosition;
 
     [Space, Header("Cassette Transforms")]
     [SerializeField] Transform _cassette_One;
@@ -77,6 +81,9 @@ public class MenuTransitionController : MonoBehaviour
             _cassettesMenu_Group,
             _gameOverScreen_Group
         };
+
+        _pickMode_Text_OriginalPosition = _pickMode_Text.anchoredPosition;
+        _backButton_OriginalPosition = _backButton.anchoredPosition;
     }
 
     #region Button Connectors
@@ -165,39 +172,42 @@ public class MenuTransitionController : MonoBehaviour
         float _offscreenX = 250f;
         float _moveDuration = 0.25f;
 
-        Sequence _exitSequence;
+        Sequence _exitSequence_One = DOTween.Sequence();
+        Sequence _exitSequence_Two = DOTween.Sequence();
 
-        _exitSequence = DOTween.Sequence();
+        #region label and button
+        // Prepare to move.
+        _exitSequence_One.Append(_backButton.DOAnchorPos(new Vector2(4, -390), 0.25f));
+        _exitSequence_One.Join(_pickMode_Text.DOAnchorPos(new Vector2(-39, 433), 0.25f));
+        // Moves off screen.
+        _exitSequence_One.Append(_backButton.DOAnchorPos(new Vector2(4, -736), 0.75f));
+        _exitSequence_One.Join(_pickMode_Text.DOAnchorPos(new Vector2(1400, 433), 0.75f));
+        #endregion
 
-        // half‑delay so second row starts when first is 50% done,
-        // etc.
-        float halfDelay = _moveDuration * 0.5f;
+        #region Cassettes
+        // half‑delay so second row starts when first is 50% done, used for each row.
+        _exitSequence_Two.Append(_cassette_One.DOMoveX(_cassette_One.position.x - _offscreenX, _moveDuration));
+        _exitSequence_Two.Join(_cassette_Two.DOMoveX(_cassette_Two.position.x + _offscreenX, _moveDuration));
 
-        // Row 1: One & Two, at t = 0
-        _exitSequence.Insert(0f,
-            _cassette_One.DOMoveX(_cassette_One.position.x - _offscreenX, _moveDuration));
-        _exitSequence.Insert(0f,
-            _cassette_Two.DOMoveX(_cassette_Two.position.x + _offscreenX, _moveDuration));
+        _exitSequence_Two.AppendInterval(_moveDuration * 0.5f); // delay before next pair
 
-        // Row 2: Three & Four, at t = halfDelay
-        _exitSequence.Insert(halfDelay,
-            _cassette_Three.DOMoveX(_cassette_Three.position.x - _offscreenX, _moveDuration));
-        _exitSequence.Insert(halfDelay,
-            _cassette_Four.DOMoveX(_cassette_Four.position.x + _offscreenX, _moveDuration));
+        _exitSequence_Two.Append(_cassette_Three.DOMoveX(_cassette_Three.position.x - _offscreenX, _moveDuration));
+        _exitSequence_Two.Join(_cassette_Four.DOMoveX(_cassette_Four.position.x + _offscreenX, _moveDuration));
 
-        // Row 3: Five & Six, at t = 2 * halfDelay
-        float thirdStartTime = 2f * halfDelay;
-        _exitSequence.Insert(thirdStartTime,
-            _cassette_Five.DOMoveX(_cassette_Five.position.x - _offscreenX, _moveDuration));
-        _exitSequence.Insert(thirdStartTime,
-            _cassette_Six.DOMoveX(_cassette_Six.position.x + _offscreenX, _moveDuration));
+        _exitSequence_Two.AppendInterval(_moveDuration * 0.5f);
 
-        // Fire your Transition() right when the last pair starts:
-        _exitSequence.InsertCallback(thirdStartTime, () => StartTransition());
+        _exitSequence_Two.Append(_cassette_Five.DOMoveX(_cassette_Five.position.x - _offscreenX, _moveDuration));
+        _exitSequence_Two.Join(_cassette_Six.DOMoveX(_cassette_Six.position.x + _offscreenX, _moveDuration));
 
-        // Finally play it
-        _exitSequence.Play();
+        // Fires Transition() right when the last pair starts:
+        _exitSequence_Two.OnComplete(() => StartTransition());
+        #endregion
 
+        // Play sequence for label and button first, then the cassettes.
+        _exitSequence_One.Play().OnComplete(() => 
+        {
+            _exitSequence_Two.Play();
+        });
     }
 
     private void StartTransition()
@@ -207,9 +217,7 @@ public class MenuTransitionController : MonoBehaviour
 
     private IEnumerator PlayFlipAnimation_Boombox()
     {
-        Sequence _transitionSequence = DOTween.Sequence();
-
-        foreach(Sprite sprite in _boomBox_FlipAnim)
+        foreach (Sprite sprite in _boomBox_FlipAnim)
         {
             _trasitionImage.sprite = sprite;
 
@@ -294,7 +302,11 @@ public class MenuTransitionController : MonoBehaviour
     private void ResetTransitionScreen()
     {
         // Reset the boombox image to the first frame. (So its invisible)
-        _trasitionImage.sprite = _boomBox_FlipAnim[0]; 
+        _trasitionImage.sprite = _boomBox_FlipAnim[0];
+
+        // Reset the pick mode text and back button to its original position.
+        _pickMode_Text.anchoredPosition = _pickMode_Text_OriginalPosition;
+        _backButton.anchoredPosition = _backButton_OriginalPosition;
     }
 
     private void TutorialToMenu()
