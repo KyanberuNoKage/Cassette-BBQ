@@ -104,9 +104,14 @@ private static extern void ReloadPage();
 
 
         string json = JsonUtility.ToJson( dataToSave );
-        File.WriteAllText(path, json);
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+        PlayerPrefs.SetString("saveData", json);
+        PlayerPrefs.Save();
+#else
+        File.WriteAllText(path, json);
         DebugEvents.AddDebugLog("Game data saved to: " + path);
+#endif
 
         // To ensure write time is complete before quitting.
         yield return new WaitForSeconds(0.1f);
@@ -122,14 +127,11 @@ private static extern void ReloadPage();
 
     public bool DoesSaveExist()
     {
-        if (File.Exists(path))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+#if UNITY_WEBGL && !UNITY_EDITOR
+        return PlayerPrefs.HasKey("saveData");
+#else
+        return File.Exists(path);
+#endif
     }
 
     public void LoadAndSetupGame() 
@@ -159,10 +161,24 @@ private static extern void ReloadPage();
     private IEnumerator LoadSaveData()
     {
         Debug.Log("LoadSaveData started...");
-        GameData newGameData = TryLoadGameData();
+        GameData newGameData = null;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (PlayerPrefs.HasKey("saveData"))
+        {
+            string json = PlayerPrefs.GetString("saveData");
+            newGameData = JsonUtility.FromJson<GameData>(json);
+        }
+#else
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            newGameData = JsonUtility.FromJson<GameData>(json);
+        }
+#endif
 
         // Gets the saved data if there is any, then updates the other scripts.
-        if (newGameData != null && File.Exists(path))
+        if (newGameData != null)
         {
             _musicVolume = newGameData.musicVolume;
             _soundEffectsVolume = newGameData.soundEffectsVolume;
@@ -244,22 +260,6 @@ private static extern void ReloadPage();
         yield return null;
     }
 
-    private static GameData TryLoadGameData()
-    {
-        if (!File.Exists(path))
-        {
-            DebugEvents.AddDebugWarning("No previous save game");
-            return null;
-        }
-        else
-        {
-            string json = File.ReadAllText(path);
-            GameData data = JsonUtility.FromJson<GameData>(json);
-
-            return data;
-        }
-    }
-
     private void RequestData()
     {
         // Sends requests to the message bus to get data from different scripts.
@@ -276,63 +276,29 @@ private static extern void ReloadPage();
 
     public void ResetData()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // On WebGL, clear PlayerPrefs and reload the page.
+        if (PlayerPrefs.HasKey("saveData"))
+        {
+            PlayerPrefs.DeleteKey("saveData");
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            DebugEvents.AddDebugWarning("No PlayerPrefs key \"saveData\" found to reset.");
+        }
+    ReloadPage();
+#else
         if (File.Exists(path))
         {
-            // Delete current save file.
             File.Delete(path);
-
-            // --------------------------------------------------------------------------------------------------------
-            // SIMPLY DO NOT CREATE NEW BASE DATA, JUST DELETE THE FILE AND LET THE GAME SETUP THE DEFAULTS ON STARTUP.
-            // --------------------------------------------------------------------------------------------------------
-            #region Old Code
-            /**
-            // Create new serializable data for saving.
-            GameData newSaveData = new GameData();
-
-            List<string> newCassetteList = new List<string>();
-            newCassetteList.Add(_defaultCassette.thisCassettesName);
-
-            // Give it all the default values.
-            newSaveData.AddData
-                (
-                    _musicVolume: _defaultSound_Volume, 
-                    _soundEffectsVolume: _defaultSound_Volume, 
-                    _isOneHanded: _default_isOneHandedMode, 
-                    _revealedCassettes: newCassetteList, 
-                    _highScores: new Dictionary<int, string>()
-                );
-
-            // Endure the values in the SaveData_Controller are
-            // also at their default values.
-            _musicVolume = newSaveData.musicVolume;
-            _soundEffectsVolume= newSaveData.soundEffectsVolume;
-            _isOneHanded = newSaveData.isOneHanded;
-            _revealedCassettes = newCassetteList;
-            _highScores = new Dictionary<int, string>();
-
-            // Send this data out to all areas of the game to be reset.
-            StartCoroutine(SendData());
-
-            // Save the new default info as to ensure defaults have stuck.
-            string json = JsonUtility.ToJson(newSaveData);
-            File.WriteAllText(path, json);
-            **/
-
-            // Quit application to ensure the game restarts with the new data, rather than saving data on exit.
-            #endregion
-
-            #if UNITY_EDITOR
-                EditorApplication.isPlaying = false;
-            #elif UNITY_WEBGL && !UNITY_EDITOR
-                ReloadPage();
-            #else
-                Application.Quit();
-            #endif
+            Application.Quit();
         }
         else
         {
             DebugEvents.AddDebugError("No save file found to 'Reset'.");
         }
+#endif
     }
 }
 
