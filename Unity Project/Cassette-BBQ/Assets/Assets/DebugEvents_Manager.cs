@@ -19,8 +19,8 @@ namespace KyanberuGames.Utilities
 
         private void PrintPersistentDebugLogPath()
         {
-            Debug.Log($"Persistent Debug-Log Path: \n{_logPath}");
-            DebugEvents.AddDebugLog($"Current Persistent Debug-Log Path\n({_logPath})\nwas printed to the unity debug console.");
+            Debug.Log($"Persistent Debug-Log Path: \n{Path.Combine(Application.persistentDataPath, "Debug_Log.md")}");
+            DebugEvents.AddDebugLog($"Current Persistent Debug-Log Path\n({Path.Combine(Application.persistentDataPath, "Debug_Log.md")})\nwas printed to the unity debug console.");
         }
         #endregion
 #endif
@@ -30,7 +30,7 @@ namespace KyanberuGames.Utilities
 
         private void Awake()
         {
-            _logPath = Path.Combine(Application.persistentDataPath, "/Debug_Log.md");
+            _logPath = Path.Combine(Application.persistentDataPath, "Debug_Log.md");
 
             StringBuilder _logHeader_Builder = new StringBuilder();
 

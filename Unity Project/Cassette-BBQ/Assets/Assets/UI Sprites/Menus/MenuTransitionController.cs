@@ -4,7 +4,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using KyanberuGames.Utilities;
 
 public class MenuTransitionController : MonoBehaviour

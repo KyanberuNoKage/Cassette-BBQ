@@ -4,12 +4,22 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using CustomInspector;
 using KyanberuGames.Utilities;
+using System.Text;
+using System.Runtime.InteropServices;
 
 public class SaveData_Controller : MonoBehaviour
 {
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+[DllImport("__Internal")]
+private static extern void ReloadPage();
+#endif
+
     private static string path;
 
     // Data to save:
@@ -19,7 +29,8 @@ public class SaveData_Controller : MonoBehaviour
 
     [Header("Cassettes")]
     [SerializeField] List<string> _revealedCassettes;
-    [SerializeField] private Cassette_Anim_Control _defaultCassette;
+    [SerializeField] CassetteType _defaultCassette_Type = CassetteType.SummerTime; // SumerTime is default, in-case inspector default doesn't work.
+    string _defaultCassette_Name;
 
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
@@ -51,6 +62,7 @@ public class SaveData_Controller : MonoBehaviour
 
     private void Start()
     {
+        _defaultCassette_Name = _defaultCassette_Type.ToString();
         SaveDataEvents.TryLoadGameData_Event();
     }
 
@@ -101,6 +113,8 @@ public class SaveData_Controller : MonoBehaviour
 
         #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
+        #elif UNITY_WEBGL && !UNITY_EDITOR
+            ReloadPage();
         #else
             Application.Quit();
         #endif
@@ -125,6 +139,7 @@ public class SaveData_Controller : MonoBehaviour
 
     private IEnumerator StartUpGame()
     {
+        Debug.Log("LoadAndStartup Coroutine started...");
         yield return LoadSaveData(); // Load it.
 
         yield return SendData(); // Send it. :emoji_sunglasses:
@@ -143,19 +158,20 @@ public class SaveData_Controller : MonoBehaviour
 
     private IEnumerator LoadSaveData()
     {
+        Debug.Log("LoadSaveData started...");
         GameData newGameData = TryLoadGameData();
 
         // Gets the saved data if there is any, then updates the other scripts.
-        if (newGameData != null)
+        if (newGameData != null && File.Exists(path))
         {
             _musicVolume = newGameData.musicVolume;
             _soundEffectsVolume = newGameData.soundEffectsVolume;
             _isOneHanded = newGameData.isOneHanded;
-            _revealedCassettes = newGameData.revealedCassettes ?? new List<string>();
+            _revealedCassettes = newGameData.revealedCassettes;
 
-            if (_revealedCassettes.Count == 0)
+            if (_revealedCassettes == null || _revealedCassettes.Count == 0)
             {
-                _revealedCassettes.Add(_defaultCassette.thisCassettesName);
+                _revealedCassettes.Add(_defaultCassette_Name);
             }
 
             if (newGameData.highScores != null)
@@ -169,15 +185,47 @@ public class SaveData_Controller : MonoBehaviour
                 _highScores = new Dictionary<int, string>();
             }
         }
-        else
+        else // If no data is found:
         {
+            if (newGameData == null && File.Exists(path))
+            {
+                Debug.LogWarning("No previous save data found, but file exists. Initializing defaults.");
+            }
+            if (newGameData != null && !File.Exists(path))
+            {
+                Debug.LogWarning("No previous save data found, but data exists. Initializing defaults.");
+            }
+
             // --- FIRST‑TIME PLAYER, DEFAULTS ARE SET HERE ---
+            Debug.Log("Setting up default game data...");
+            StringBuilder defaultDataBuilder = new StringBuilder();
+
+            defaultDataBuilder.AppendLine("NO SAVE DATA FOUND, SETTING UP DEFAULTS.");
             _musicVolume = _defaultSound_Volume;
+            defaultDataBuilder.AppendLine($"MUSIC VOLUME:\nDefault: {_defaultSound_Volume}\nCurrent:{_musicVolume}");
             _soundEffectsVolume = _defaultSound_Volume;
+            defaultDataBuilder.AppendLine($"SOUND EFFECTS VOLUME:\nDefault: {_defaultSound_Volume}\nCurrent:{_soundEffectsVolume}");
             _isOneHanded = _default_isOneHandedMode;
-            _revealedCassettes = new List<string>();
-            _revealedCassettes.Add(_defaultCassette.thisCassettesName);
+            defaultDataBuilder.AppendLine($"ONE HANDED MODE:\nDefault: {_default_isOneHandedMode}\nCurrent:{_isOneHanded}");
             _highScores = new Dictionary<int, string>();
+            defaultDataBuilder.AppendLine($"HIGH SCORES:\nDefault: Empty\nCurrent: Empty");
+
+            _revealedCassettes = new List<string>();
+            _revealedCassettes.Add(_defaultCassette_Name);
+
+            if (_revealedCassettes != null && _revealedCassettes.Count > 0)
+            {
+                defaultDataBuilder.AppendLine($"REVEALED CASSETTES:\nDefault: {_defaultCassette_Name}\nCurrent: {_revealedCassettes[0].ToString()}");
+            }
+            else
+            {
+                defaultDataBuilder.AppendLine($"REVEALED CASSETTES:\nDefault: {_defaultCassette_Name}\nCurrent: Empty or Null");
+            }
+
+            DebugEvents.AddDebugLog(defaultDataBuilder.ToString());
+#if UNITY_EDITOR
+            Debug.Log(defaultDataBuilder.ToString());
+#endif
         }
 
 
@@ -186,13 +234,12 @@ public class SaveData_Controller : MonoBehaviour
 
     private IEnumerator SendData()
     {
+        Debug.Log("SendData started...");
         SaveData_MessageBus.SetMusicVolume( _musicVolume );//connected
         SaveData_MessageBus.SetSoundEffectsVolume( _soundEffectsVolume );//connected
         SaveData_MessageBus.SetIsOneHanded( _isOneHanded );//connected
         SaveData_MessageBus.SetRevealedCassettes( _revealedCassettes );//connected
         SaveData_MessageBus.SetHighScoreDict( _highScores );//connected
-
-
 
         yield return null;
     }
@@ -274,8 +321,10 @@ public class SaveData_Controller : MonoBehaviour
             // Quit application to ensure the game restarts with the new data, rather than saving data on exit.
             #endregion
 
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+            #if UNITY_EDITOR
+                EditorApplication.isPlaying = false;
+            #elif UNITY_WEBGL && !UNITY_EDITOR
+                ReloadPage();
             #else
                 Application.Quit();
             #endif

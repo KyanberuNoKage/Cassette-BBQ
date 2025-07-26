@@ -10,7 +10,7 @@ public class Cassette_Anim_Control : MonoBehaviour
     [SerializeField] 
 
 
-    private void Start()
+    private void Awake()
     {
         if (_thisCassette_Anim_Obj == null)
         {
