@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -24,9 +24,14 @@ public class SaveData_Controller : MonoBehaviour
     [Header("Scores")]/**     Score, Date/Time        **/
     [SerializeField] Dictionary<int, string> _highScores;
 
+    // DEFAULT VALUES
+    float _defaultSound_Volume = 0.9f;
+    bool _default_isOneHandedMode = false;
+
+
 #if UNITY_EDITOR
     #region Print Persistent Data Path
-    #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
+#pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
     [SerializeField, Button(nameof(PrintPersistentDataPath), tooltip = "Prints Application.persistentDataPath to the console")]
     [HideField] bool _printPersistentDataPath = false;
     #pragma warning restore CS0414
@@ -42,6 +47,11 @@ public class SaveData_Controller : MonoBehaviour
     private void Awake()
     {
         path = Path.Combine(Application.persistentDataPath, "saveData.json");
+    }
+
+    private void Start()
+    {
+        SaveDataEvents.TryLoadGameData_Event();
     }
 
     private void OnEnable()
@@ -115,41 +125,61 @@ public class SaveData_Controller : MonoBehaviour
 
     private IEnumerator StartUpGame()
     {
-        yield return LoadSaveData();
+        yield return LoadSaveData(); // Load it.
 
-        yield return SendData();
+        yield return SendData(); // Send it. :emoji_sunglasses:
 
         GamesSettingsEvents.SoundSetup_Start(_musicVolume, _soundEffectsVolume);
         GamesSettingsEvents.InformAudioChanged();
 
         yield return null;
 
-        // Save data exists and is now set up, skip the tutorial.
-        TutorialEvents.SkipTutorial();
+        if (DoesSaveExist())
+        {
+            // Save data exists and is now set up, skip the tutorial.
+            TutorialEvents.SkipTutorial();
+        }
     }
 
     private IEnumerator LoadSaveData()
     {
         GameData newGameData = TryLoadGameData();
 
-        // Logs the saved data, if there is any,
-        // then updates the required systems with the retrieved information.
+        // Gets the saved data if there is any, then updates the other scripts.
         if (newGameData != null)
         {
             _musicVolume = newGameData.musicVolume;
             _soundEffectsVolume = newGameData.soundEffectsVolume;
             _isOneHanded = newGameData.isOneHanded;
+            _revealedCassettes = newGameData.revealedCassettes ?? new List<string>();
 
-            _revealedCassettes = newGameData.revealedCassettes;
+            if (_revealedCassettes.Count == 0)
+            {
+                _revealedCassettes.Add(_defaultCassette.thisCassettesName);
+            }
 
-            // Ensure default cassette is on there if no cassettes have been revealed yet.
-            if (_revealedCassettes.Count == 0) { _revealedCassettes.Add(_defaultCassette.thisCassettesName); }
-
-            // Revert List of high scores back to Dict of high scores.
-            _highScores = newGameData.highScores
-            .OrderByDescending(p => p.score)
-            .ToDictionary(p => p.score, p => p.dateTime);
+            if (newGameData.highScores != null)
+            {
+                _highScores = newGameData.highScores
+                    .OrderByDescending(p => p.score)
+                    .ToDictionary(p => p.score, p => p.dateTime);
+            }
+            else
+            {
+                _highScores = new Dictionary<int, string>();
+            }
         }
+        else
+        {
+            // --- FIRST‑TIME PLAYER, DEFAULTS ARE SET HERE ---
+            _musicVolume = _defaultSound_Volume;
+            _soundEffectsVolume = _defaultSound_Volume;
+            _isOneHanded = _default_isOneHandedMode;
+            _revealedCassettes = new List<string>();
+            _revealedCassettes.Add(_defaultCassette.thisCassettesName);
+            _highScores = new Dictionary<int, string>();
+        }
+
 
         yield return null;
     }
@@ -204,7 +234,11 @@ public class SaveData_Controller : MonoBehaviour
             // Delete current save file.
             File.Delete(path);
 
-            /** SIMPLY DON@T CREATE NEW BASE DATA, JUST DELETE THE FILE AND LET THE GAME SETUP THE DEFAULTS ON STARTUP.
+            // --------------------------------------------------------------------------------------------------------
+            // SIMPLY DO NOT CREATE NEW BASE DATA, JUST DELETE THE FILE AND LET THE GAME SETUP THE DEFAULTS ON STARTUP.
+            // --------------------------------------------------------------------------------------------------------
+            #region Old Code
+            /**
             // Create new serializable data for saving.
             GameData newSaveData = new GameData();
 
@@ -238,17 +272,17 @@ public class SaveData_Controller : MonoBehaviour
             **/
 
             // Quit application to ensure the game restarts with the new data, rather than saving data on exit.
+            #endregion
 
-
-            #if UNITY_EDITOR
-                EditorApplication.isPlaying = false;
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
             #else
                 Application.Quit();
             #endif
         }
         else
         {
-            DebugEvents.AddDebugWarning("No save file found to 'Reset'.");
+            DebugEvents.AddDebugError("No save file found to 'Reset'.");
         }
     }
 }

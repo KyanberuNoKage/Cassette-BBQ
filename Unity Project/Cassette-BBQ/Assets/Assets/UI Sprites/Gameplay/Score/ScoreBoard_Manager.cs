@@ -1,3 +1,4 @@
+using KyanberuGames.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,12 @@ public class ScoreBoard_Manager : MonoBehaviour
     {
         _highScores.Clear();
 
-        // Put each pair from saved dictionary into the sorted dictionary.
+        if (highScores == null)
+        {
+            DebugEvents.AddDebugWarning("SetScoreDictionary_FromSaveData received null highScores dictionary");
+            return;
+        }
+
         foreach (var entry in highScores.OrderByDescending(e => e.Key))
         {
             _highScores.Add(entry.Key, entry.Value);

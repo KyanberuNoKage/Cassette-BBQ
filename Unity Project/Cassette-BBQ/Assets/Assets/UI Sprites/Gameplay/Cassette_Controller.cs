@@ -41,32 +41,15 @@ public class Cassette_Controller : MonoBehaviour
 
     private void SetActiveCassettes(List<string> activeCassetteList)
     {
-        DebugEvents.AddDebugLog("Setting active cassettes list: \n" + string.Join(", ", activeCassetteList));
+        _activatedCassettes.Clear();
 
         foreach (var cassette in _cassettesList)
         {
-            if (activeCassetteList.Contains(cassette.thisCassettesName))
+            bool shouldShow = activeCassetteList.Contains(cassette.thisCassettesName);
+            cassette.RevealCassette(shouldShow);
+            if (shouldShow)
             {
-                cassette.RevealCassette(true);
                 _activatedCassettes.Add(cassette);
-            }
-            else
-            {
-                cassette.RevealCassette(false);
-
-                List<Cassette_Anim_Control> removalList = new List<Cassette_Anim_Control>();
-                foreach (var activeCassette in _activatedCassettes)
-                {
-                    if (activeCassette.thisCassettesName == cassette.thisCassettesName)
-                    {
-                        removalList.Add(activeCassette);
-                    }
-                }
-
-                foreach (var removal in removalList)
-                {
-                    _activatedCassettes.Remove(removal);
-                }
             }
         }
     }
