@@ -93,8 +93,6 @@ This License and the rights granted hereunder will terminate **immediately** and
 2. **Destroy** all copies (source and binary) of the Code.  
 3. **Remove** any distributions of the Code from public or private repositories.
 
-> 
-
 ---
 
 ## 9. Governing Law
@@ -111,21 +109,9 @@ The Code may incorporate third‑party components (e.g., Unity engine, Unity ass
 
 ## Audio Credits
 
-*(List your audio credits here, as in your existing document.)*  
+The credits pertaining to audio used in this product are stated below.
 
-<br>
-
----
-
-<br>
-
-## Audio Credits
-
-The credits for audio used in this product are stated below.
-
-
-
-#### **<u>Music:</u>**
+### **<u>Music:</u>**
 
 - ##### **Good Night - Lofi Cozy Chill Music**
   
@@ -213,7 +199,7 @@ The credits for audio used in this product are stated below.
   
   <br>
 
-#### **<u>Sound Effects:</u>**
+### **<u>Sound Effects:</u>**
 
 - ##### **bacon sizzle 2**
   
