@@ -14,7 +14,7 @@ You can download the built game on its **[Itch.io page](https://kyanberunokage.i
 
 
 
-**(*Credits for the music  can be found in the LICENCE file*)**
+**(*Credits for the music can be found in the LICENCE file*)**
 
 
 
