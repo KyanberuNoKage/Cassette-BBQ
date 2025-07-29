@@ -1,7 +1,5 @@
 # Repository License
 
-# Repository License
-
 _Last updated: July 26, 2025_
 
 ---
