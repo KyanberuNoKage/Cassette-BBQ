@@ -14,7 +14,7 @@ You can download the built game on its **[Itch.io page](https://kyanberunokage.i
 
 
 
-**(*Credits for the music  can be found in the LICENCE file*)**
+**(*Credits for the music can be found in the LICENCE file*)**
 
 
 
@@ -26,18 +26,20 @@ You can download the built game on its **[Itch.io page](https://kyanberunokage.i
 
 - **Pause menu for when the player is currently playing a round and wishes to exit without losing save data.**
 
-- **Two more cassette powers/modes to change the way you play.**
-
 - **Further balancing the unlock requirements for the cassette powers/modes.**
+
+I will also be creating a "Premium" version of the game with;
+
+- **Two more cassette powers/modes to change the way you play.**
 
 - **GUI for displaying what each cassette does when hovered over** *(although I do like the idea that players aren't fully aware of what each cassette does before they use them)*
 
 - **Achievements/Challenges** *(Maybe)*
 
-- **Feel free to leave a message on the Itch.io page for the game if you have suggestions for what I should add.**
+- **Feel free to leave a message on the Itch.io page for the game if you have suggestions for what I should add to both the Jam version after the jam is finished, and the 'premium' version.**
   
   
 
 ### Will I be building for Mac in the future?
 
-Not likely. The Apple licensing is far too much for me to pay since game dev is only a hobby of mine, and I don't feel like going through the hassle to push my game to Mac.
+Not likely. The Apple licensing is far too much for me to pay since game dev is only a hobby of mine, and quite frankly, I don't feel like going through the hassle to push my game to Mac. Plus, the browser version can be used on Mac, so it's still 'playable' on Mac.
