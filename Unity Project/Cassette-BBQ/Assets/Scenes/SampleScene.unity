@@ -2820,7 +2820,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: 1321589145, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -382229755, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -2828,7 +2828,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: 2046514320, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: 1841779973, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: 'Required:  Score Big!'
@@ -7272,7 +7272,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: 943816692, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -1120417956, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -7280,7 +7280,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: 1138937930, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -325230230, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: Finish 8 sausage orders in one shift
@@ -8705,7 +8705,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: -875995395, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: 1348457066, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -8713,7 +8713,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: -1180900035, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: 825267047, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: Not unlocked
@@ -11696,7 +11696,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: -875995395, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: 1348457066, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -11704,7 +11704,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: 1708919734, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -1011949886, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: Not unlocked
@@ -11946,7 +11946,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: 2100431380, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -672291961, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -11954,7 +11954,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: -2112879383, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -300171559, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: Finish 8 burger orders in one shift
@@ -12238,7 +12238,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _lockedPopUp_Sprite
       value: 
-      objectReference: {fileID: -875995395, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: 1348457066, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _transitionAnimator
       value: 
@@ -12246,7 +12246,7 @@ PrefabInstance:
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _cassettePopUp_Sprite
       value: 
-      objectReference: {fileID: 845349920, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+      objectReference: {fileID: -766695698, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
     - target: {fileID: 8405974227592299374, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: _unlockCondition_Text
       value: NONE
