@@ -34,6 +34,11 @@ public class Score_Manager : MonoBehaviour
 
     private bool _isDOubleOrNothingActive = false;
 
+    // UNLOCK BOOLS
+    bool isRushHour_Unlocked = false;
+    bool isSlowShift_Unlocked = false;
+    bool isDoubleOrNothing_Unlocked = false;
+
     #region UI
     [SerializeField] TextMeshProUGUI _scoreText;
 
@@ -46,6 +51,8 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnFoodWasted_ScoreDecreased += CalculateFoodWaste_Score;
         ScoreEvents.OnRequestScoreData += ReturnScoreData;
         OrderEvents.OnStartGame += ResetScore;
+        // Removes visual score for when next round starts without resetting the score data that needs to be used.
+        TimerEvents.OnTimerFinished += ResetScore_VisualOnly; 
 
         CassetteEvents.OnCassetteSelected += SetCassetteValues;
     }
@@ -65,6 +72,8 @@ public class Score_Manager : MonoBehaviour
         ScoreEvents.OnRequestScoreData -= ReturnScoreData;
         OrderEvents.OnStartGame -= ResetScore;
 
+        TimerEvents.OnTimerFinished -= ResetScore_VisualOnly;
+
         CassetteEvents.OnCassetteSelected -= SetCassetteValues;
     }
 
@@ -76,19 +85,22 @@ public class Score_Manager : MonoBehaviour
     private void CheckCassetteUnlocks()
     {
         // Whenever the score changes, check if cassette should be unlocked.
-        if (_currentScore >= 12000)
-        {
-            CassetteEvents.UnlockCassette(CassetteType.SlowShift);
-        }
-
-        if (_currentScore >= 18000)
+        if (!isRushHour_Unlocked && _currentScore >= 19000)
         {
             CassetteEvents.UnlockCassette(CassetteType.RushHour);
+            isRushHour_Unlocked = true;
         }
 
-        if (_currentScore >= 28666)
+        if (!isSlowShift_Unlocked && _currentScore >= 23000)
+        {
+            CassetteEvents.UnlockCassette(CassetteType.SlowShift);
+            isSlowShift_Unlocked = true;
+        }
+
+        if (!isDoubleOrNothing_Unlocked && _currentScore >= 30000)
         {
             CassetteEvents.UnlockCassette(CassetteType.DoubleOrNothing);
+            isDoubleOrNothing_Unlocked = true;
         }
     }
 
@@ -107,6 +119,16 @@ public class Score_Manager : MonoBehaviour
         _numberOfWastedFoodItems = 0;
         _averageTimeTaken_PerOrder = 0;
         _listOf_timeTaken_PerOrder.Clear();
+
+        // Ensures round-only unlock checks are reset.
+        isRushHour_Unlocked = false;
+        isSlowShift_Unlocked = false;
+        isDoubleOrNothing_Unlocked = false;
+    }
+
+    private void ResetScore_VisualOnly()
+    {
+        _scoreText.text = "0000";
     }
 
     private void CalculateFoodOrder_Score(float timeTaken)
