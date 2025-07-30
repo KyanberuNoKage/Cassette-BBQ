@@ -1,6 +1,7 @@
 
 using CustomInspector;
 using UnityEngine;
+using KyanberuGames.Utilities;
 
 [CreateAssetMenu(fileName = "Cassette_Anim_Obj", menuName = "Scriptable Objects/Cassette_Anim_Obj")]
 public class Cassette_Anim_Obj : ScriptableObject
@@ -15,6 +16,13 @@ public class Cassette_Anim_Obj : ScriptableObject
     {
         // Ensure name is set/spelled correctly when the object is enabled.
         _thisCassettesName = _thisCassetteType.ToString();
+
+        ReceiptStateHolder.OnDeleteData += OnDataReset;
+    }
+
+    private void OnDisable()
+    {
+        ReceiptStateHolder.OnDeleteData -= OnDataReset;
     }
 
     public CassetteAnimation GetAnim()
@@ -37,6 +45,21 @@ public class Cassette_Anim_Obj : ScriptableObject
     public void UnlockCassette()
     {
         _isUnlocked = true;
+    }
+
+    private void OnDataReset()
+    {
+        // If it isn't a silhouette or summer time cassette, reset it to not unlocked.
+        if (_thisCassetteType != CassetteType.SummerTime)
+        {
+            DebugEvents.AddDebugLog("Cassette " + _thisCassettesName + " has been reset to 'locked'.");
+            _isUnlocked = false;
+        }
+        else if(_thisCassetteType == CassetteType.SummerTime)
+        {
+            DebugEvents.AddDebugLog("Cassette " + _thisCassettesName + " has been reset to 'unlocked'.");
+            _isUnlocked = true; // SummerTime cassette is always unlocked since it's the default cassette.
+        }
     }
 }
 

@@ -287,16 +287,24 @@ private static extern void ReloadPage();
         {
             DebugEvents.AddDebugWarning("No PlayerPrefs key \"saveData\" found to reset.");
         }
-    ReloadPage();
+
+        ReloadPage();
 #else
         if (File.Exists(path))
         {
             File.Delete(path);
             Application.Quit();
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false; // Stop play mode in the editor.
+#endif
         }
         else
         {
             DebugEvents.AddDebugError("No save file found to 'Reset'.");
+            Application.Quit();
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false; // Stop play mode in the editor.
+#endif
         }
 #endif
     }

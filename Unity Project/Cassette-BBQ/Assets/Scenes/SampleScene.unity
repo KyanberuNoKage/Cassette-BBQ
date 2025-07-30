@@ -389,7 +389,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2000622220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -875995395, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
+  m_Sprite: {fileID: 1348457066, guid: ac74e10eca910444195a98f6d0ef3c2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8562,9 +8562,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560000236}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1001 &1567632231
 PrefabInstance:
@@ -8676,7 +8676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -532
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11018,7 +11018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1901566694
 Transform:
   m_ObjectHideFlags: 0
@@ -11297,7 +11297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1935339078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11545,6 +11545,10 @@ MonoBehaviour:
   _thisToolTip_RectTransform: {fileID: 2000622220}
   _thisToolTip_TextBox: {fileID: 982068701}
   _thisToolTip_Image: {fileID: 61702021}
+  _defaultScale: 1
+  _maxScale: 1.1
+  _fadeInTime: 0.1
+  _bounceTime: 0.05
 --- !u!225 &2000622222
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11917,7 +11921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -532
+      value: -525
       objectReference: {fileID: 0}
     - target: {fileID: 3604925188204236944, guid: 1b51c055b2180df408b7be57c36d82fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
