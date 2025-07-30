@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisCassettesName: Silhouette
   _thisCassettesAnim: 0
-  _isUnlocked: 1
+  _isUnlocked: 0
   _thisCassetteType: 0
   _thisCassetteGameValues:
+    _isDoubleOrNothing: 0
     timerDuration: 90
     orderScore_BaseValue: 2000
     orderScore_DecayRate: 25

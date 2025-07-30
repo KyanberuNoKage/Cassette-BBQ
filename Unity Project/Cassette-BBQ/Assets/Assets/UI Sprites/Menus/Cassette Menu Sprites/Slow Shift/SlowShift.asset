@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisCassettesName: SlowShift
   _thisCassettesAnim: 2
-  _isUnlocked: 1
+  _isUnlocked: 0
   _thisCassetteType: 2
   _thisCassetteGameValues:
+    _isDoubleOrNothing: 0
     timerDuration: 180
     orderScore_BaseValue: 1250
     orderScore_DecayRate: 12

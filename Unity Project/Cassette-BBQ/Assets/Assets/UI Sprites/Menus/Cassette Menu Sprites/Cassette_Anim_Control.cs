@@ -1,13 +1,21 @@
 using CustomInspector;
 using UnityEngine;
 using KyanberuGames.Utilities;
+using UnityEngine.EventSystems;
 
-public class Cassette_Anim_Control : MonoBehaviour
+public class Cassette_Anim_Control : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Cassette_Anim_Obj _thisCassette_Anim_Obj;
     public string thisCassettesName;
     [SerializeField] Animator _thisCassette_Animator;
-    [SerializeField] 
+
+    [Header("Data For Pop-ups")]
+    [SerializeField] CassetteToolTip _cassettePopUp_Obj;
+    [SerializeField] string _cassettePopUp_Text;
+    [SerializeField] string _unlockCondition_Text;
+    [SerializeField] Sprite _cassettePopUp_Sprite;
+    [SerializeField] Sprite _lockedPopUp_Sprite;
+    [SerializeField] Vector2 _cassettePopUp_Position;
 
 
     private void Awake()
@@ -21,8 +29,27 @@ public class Cassette_Anim_Control : MonoBehaviour
         thisCassettesName = _thisCassette_Anim_Obj.ThisCassetteName;
     }
 
+    #region PopUp ToolTip
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_thisCassette_Anim_Obj.IsUnlocked)
+        {
+            _cassettePopUp_Obj.Show(_cassettePopUp_Position, _cassettePopUp_Sprite);
+        }
+        else
+        {
+            _cassettePopUp_Obj.Show(_cassettePopUp_Position, _lockedPopUp_Sprite);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _cassettePopUp_Obj.Hide();
+    }
+    #endregion
+
 #if UNITY_EDITOR
-    #pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
+#pragma warning disable CS0414 // Suppress: Field assigned but never used (its 'used' by CustomInspector Button)
     [Button(nameof(RevealCassette), true, label = "Reveal This Cassette", size = Size.small)]
     [SerializeField, HideField] private bool RevealCassette_true = true;
     #pragma warning restore CS0414

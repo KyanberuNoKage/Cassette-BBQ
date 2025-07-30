@@ -39,10 +39,6 @@ public class Order_Manager : MonoBehaviour
     [SerializeField] private bool _isHorizontalLayout = true;
     [SerializeField] private float _reorderDuration = 0.3f; // How long it takes to animate
 
-    [Space, Header("Cassette Unlocks")]
-    [SerializeField] private int _hotDawgUnlockThreshhold;
-    [SerializeField] private int _bunVoyageUnlockThreshhold;
-
     private void RepositionOrders()
     {
         for (int i = 0; i < ListOfOrders.Count; i++)
@@ -62,8 +58,11 @@ public class Order_Manager : MonoBehaviour
             orderRect.DOAnchorPos(targetPos, _reorderDuration).SetEase(Ease.OutQuad);
         }
     }
-
     #endregion
+
+    [Space, Header("Cassette Unlocks")]
+    [SerializeField] private int _hotDawgUnlockThreshhold;
+    [SerializeField] private int _bunVoyageUnlockThreshhold;
 
     private bool AreOrderTypesRandom = true;
     private bool AreOrders_Burgers = true;

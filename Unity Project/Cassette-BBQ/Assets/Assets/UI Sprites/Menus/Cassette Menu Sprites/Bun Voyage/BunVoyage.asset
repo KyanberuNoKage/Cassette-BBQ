@@ -17,6 +17,7 @@ MonoBehaviour:
   _isUnlocked: 0
   _thisCassetteType: 4
   _thisCassetteGameValues:
+    _isDoubleOrNothing: 0
     timerDuration: 70
     orderScore_BaseValue: 3000
     orderScore_DecayRate: 15

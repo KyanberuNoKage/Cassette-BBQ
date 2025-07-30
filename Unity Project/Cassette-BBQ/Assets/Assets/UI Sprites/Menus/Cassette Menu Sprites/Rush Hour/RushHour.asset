@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thisCassettesName: RushHour
   _thisCassettesAnim: 3
-  _isUnlocked: 1
+  _isUnlocked: 0
   _thisCassetteType: 3
   _thisCassetteGameValues:
+    _isDoubleOrNothing: 0
     timerDuration: 45
     orderScore_BaseValue: 6000
     orderScore_DecayRate: 220
