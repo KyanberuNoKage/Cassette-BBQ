@@ -41,7 +41,6 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect += PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped += StopLoopedEffect;
         AudioEvents.OnGrillScreen += GrillBackground;
-        AudioEvents.OnWhooshPlayed += PlayRandomWooshEffect;
         AudioEvents.OnStartMainMenuMusic += Start_MainMenuMusic;
 
         TimerEvents.OnTimerFinished += ResetAudio;
@@ -72,7 +71,6 @@ public class Audio_Manager : MonoBehaviour
         AudioEvents.OnPlayLoopedEffect -= PlaySoundEffect; //Looped Version
         AudioEvents.OnLoopedEffectStopped -= StopLoopedEffect;
         AudioEvents.OnGrillScreen -= GrillBackground;
-        AudioEvents.OnWhooshPlayed -= PlayRandomWooshEffect;
         AudioEvents.OnStartMainMenuMusic -= Start_MainMenuMusic;
 
         TimerEvents.OnTimerFinished -= ResetAudio;
@@ -179,7 +177,14 @@ public class Audio_Manager : MonoBehaviour
         {
             _music_AudioSource.Stop();
             _music_AudioSource.clip = null;
-            PlayMusic(_music_List[Random.Range(0, _music_List.Length)]);
+
+            PlayMusic
+            (
+                _music_List[Random.Range(0, _music_List.Length)], 
+                isLooped: true
+            );
+
+
             _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, 1f);
         });
     }
@@ -325,25 +330,6 @@ public class Audio_Manager : MonoBehaviour
             });
         }
     }
-
-    private void PlayRandomWooshEffect()
-    {
-        int randomIndex = Random.Range(0,2);
-
-        switch (randomIndex)
-        {
-            case 0:
-                PlaySoundEffect(SoundEffects.woosh);
-                break;
-            case 1:
-                PlaySoundEffect(SoundEffects.fast_woosh);
-                break;
-            default:
-                DebugEvents.AddDebugWarning("Random index out of range, defaulting to whoosh sound effect.");
-                PlaySoundEffect(SoundEffects.woosh);
-                break;
-        }
-    }
 }
 
 
@@ -426,4 +412,69 @@ public enum SoundEffects
     swoosh,
     woosh,
     fast_woosh,
+    Quick_Sizzle_High,
+    Quick_Sizzle_Low
+}
+
+public enum RandomSoundType
+{
+    Whoosh,
+    Quick_Sizzle,
+}
+
+public static class RandomEffect
+{
+    public static void GetRandomEffect(RandomSoundType typeToRandomize)
+    {
+        switch (typeToRandomize)
+        {
+            case RandomSoundType.Whoosh:
+                PlayRandomWooshEffect();
+                break;
+            case RandomSoundType.Quick_Sizzle:
+                PlayRandomEffect_QuickSizzle();
+                break;
+            default:
+                DebugEvents.AddDebugLog($"RandomEffect.GetRandomEffect: Unknown RandomSoundType {typeToRandomize}. Cannot Default with unknown effect, playing nothing.");
+                break;
+        }
+    }
+
+    private static void PlayRandomWooshEffect()
+    {
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                AudioEvents.PlayEffect(SoundEffects.woosh);
+                break;
+            case 1:
+                AudioEvents.PlayEffect(SoundEffects.fast_woosh);
+                break;
+            default:
+                DebugEvents.AddDebugWarning("Random woosh effect index out of range, setting sound to default whoosh sound effect.");
+                AudioEvents.PlayEffect(SoundEffects.woosh);
+                break;
+        }
+    }
+
+    private static void PlayRandomEffect_QuickSizzle()
+    {
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+                break;
+            case 1:
+                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle_High);
+                break;
+            case 2:
+                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle_Low);
+                break;
+            default:
+                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+                Debug.LogWarning($"Random Sizzle sound is outside of predicted value.\nFalling back to a default sizzle sound effect");
+                DebugEvents.AddDebugWarning($"Random Sizzle sound is outside of predicted value.\nFalling back to a default sizzle sound effect");
+                break;
+        }
+    }
 }

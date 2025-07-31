@@ -190,12 +190,12 @@ public class Sausage_Obj : MonoBehaviour
             if (flipAnimFrame == oilOnSprite)
             { 
                 FadeInOil(true);
-                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+                RandomEffect.GetRandomEffect(RandomSoundType.Quick_Sizzle);
             }
 
             if (flipAnimFrame == _wooshOnSprite)
             {
-                AudioEvents.PlayRandomWhoosh();
+                RandomEffect.GetRandomEffect(RandomSoundType.Whoosh);
             }
 
             _sausageImage.sprite = flipAnimFrame;

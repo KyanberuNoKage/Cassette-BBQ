@@ -7832,7 +7832,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 419e1eab8499d0c4885e0b76400f9f82, type: 3}
   _soundEffects_List:
   - {fileID: 8300000, guid: 1bd1a4a969dead642a3671175639cf1c, type: 3}
-  - {fileID: 8300000, guid: 7a00bde70988b2c42a6413a770918cec, type: 3}
+  - {fileID: 8300000, guid: 5282e560f37a4db48be47d682a46ae58, type: 3}
   - {fileID: 8300000, guid: e3d405bb494656e489500684573b112a, type: 3}
   - {fileID: 8300000, guid: 402ac45d8692b1d4b80e2c5591d8e274, type: 3}
   - {fileID: 8300000, guid: 8ccc5c484cd735c41b5b52d56e4feee2, type: 3}
@@ -7848,6 +7848,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 210b94d5e7ce2ae41a96f9bd572a8f43, type: 3}
   - {fileID: 8300000, guid: 1e255d6cb0d576e459bc144c35a9dd64, type: 3}
   - {fileID: 8300000, guid: 7d85431e4743f0f49896af6c3924ea1e, type: 3}
+  - {fileID: 8300000, guid: 9237cccd39beabf4db84c578136168a0, type: 3}
+  - {fileID: 8300000, guid: 4ddf4a4df60b6344b81e4ff5e96974d3, type: 3}
   _music_Volume: 0.9
   _soundEffects_Volume: 0.9
 --- !u!4 &1445583165

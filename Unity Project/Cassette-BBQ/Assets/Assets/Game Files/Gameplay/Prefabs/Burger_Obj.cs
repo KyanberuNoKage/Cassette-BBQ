@@ -189,12 +189,12 @@ public class Burger_Obj : MonoBehaviour
             else if (flipAnimFrame == oilOnSprite)
             {
                 FadeInOil(true);
-                AudioEvents.PlayEffect(SoundEffects.Quick_Sizzle);
+                RandomEffect.GetRandomEffect(RandomSoundType.Quick_Sizzle);
             }
 
             else if (flipAnimFrame == _wooshOnSprite)
             {
-                AudioEvents.PlayRandomWhoosh();
+                RandomEffect.GetRandomEffect(RandomSoundType.Whoosh);
             }
 
             _burgerImage.sprite = flipAnimFrame;
