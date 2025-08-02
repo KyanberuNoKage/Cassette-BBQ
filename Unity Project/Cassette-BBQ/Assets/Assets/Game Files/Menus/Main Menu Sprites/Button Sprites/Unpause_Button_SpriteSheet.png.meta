@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac74e10eca910444195a98f6d0ef3c2e
+guid: edf75ff4ccfac4f48948bdba97c8b31c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cassette_ToolTips_0
+      name: Unpause_Button_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 256
-        height: 128
+        y: 64
+        width: 65
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,64 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f119b295a9a2524cb945e7460a6cf58
-      internalID: -2070470635
+      spriteID: ae8cd91d9fc3d6247a8819f96f9b820c
+      internalID: -1534264082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 384
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ff299017a6140645922d8e20d649d67
-      internalID: -386913218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 384
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e25c4d778fcdf9f4b85a74b04925e50f
-      internalID: 1791420077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_3
+      name: Unpause_Button_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 128
+        y: 48
+        width: 65
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,64 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2491dd4ee0f502648abacd268638fb6b
-      internalID: 259577236
+      spriteID: f80c5279f9c53ce478b87fbaff788d8b
+      internalID: -460794544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21846f0a363752740946ca08a211bff1
-      internalID: -2098097653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_5
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82cbdd88556e79e4e8338d3038efc44c
-      internalID: -1147703224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_6
+      name: Unpause_Button_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 256
-        height: 128
+        y: 32
+        width: 65
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec3e1862f3f93594e95400ac8de3ea58
-      internalID: -1463443721
+      spriteID: 659ce4247f09f644da10db8e62d473fe
+      internalID: 880312190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_7
+      name: Unpause_Button_SpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
-        width: 256
-        height: 128
+        x: 0
+        y: 16
+        width: 65
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,42 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0a75be4c73c6d84aa98e6d5a1ce4084
-      internalID: -870003803
+      spriteID: 346789dcbaaaca545addddd2ed849f20
+      internalID: -494349189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_8
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 128
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 273bc1838c777f940bd4636efd85ad12
-      internalID: 1389393277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_9
+      name: Unpause_Button_SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 128
+        width: 65
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,8 +239,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3293c0e5fb1fca4a8416cb820892b4d
-      internalID: 893952746
+      spriteID: 954b93b4e17c3b64a9ec5175da6771f7
+      internalID: 1848487340
       vertices: []
       indices: 
       edges: []
@@ -359,7 +249,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c533a7e8b6eaff641804abcbbc754937
+    spriteID: 87bab0eabd1ee4f47916df277d153a39
     internalID: 0
     vertices: []
     indices: 
@@ -369,16 +259,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cassette_ToolTips_0: -2070470635
-      Cassette_ToolTips_1: -386913218
-      Cassette_ToolTips_2: 1791420077
-      Cassette_ToolTips_3: 259577236
-      Cassette_ToolTips_4: -2098097653
-      Cassette_ToolTips_5: -1147703224
-      Cassette_ToolTips_6: -1463443721
-      Cassette_ToolTips_7: -870003803
-      Cassette_ToolTips_8: 1389393277
-      Cassette_ToolTips_9: 893952746
+      Unpause_Button_SpriteSheet_0: -1534264082
+      Unpause_Button_SpriteSheet_1: 1399795100
+      Unpause_Button_SpriteSheet_2: -460794544
+      Unpause_Button_SpriteSheet_3: 1837144949
+      Unpause_Button_SpriteSheet_4: 880312190
+      Unpause_Button_SpriteSheet_5: -1067578603
+      Unpause_Button_SpriteSheet_6: -494349189
+      Unpause_Button_SpriteSheet_7: 261777987
+      Unpause_Button_SpriteSheet_8: 1848487340
+      Unpause_Button_SpriteSheet_9: 376594614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

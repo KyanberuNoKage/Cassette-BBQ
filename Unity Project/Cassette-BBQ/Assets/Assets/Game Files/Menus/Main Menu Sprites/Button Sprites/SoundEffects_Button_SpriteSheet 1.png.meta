@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac74e10eca910444195a98f6d0ef3c2e
+guid: daed2f1a1ae9cd14aa643edbec4dc10d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -107,19 +107,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -132,225 +119,128 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cassette_ToolTips_0
+      name: SoundEffects_Button_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
-        width: 256
-        height: 128
+        x: 51
+        y: 64
+        width: 64
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f119b295a9a2524cb945e7460a6cf58
-      internalID: -2070470635
+      spriteID: dccb0fc480888f6428633b439b3e991b
+      internalID: -896246630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_1
+      name: SoundEffects_Button_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
-        width: 256
-        height: 128
+        x: 51
+        y: 48
+        width: 64
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ff299017a6140645922d8e20d649d67
-      internalID: -386913218
+      spriteID: b037fb99a3f42e745bf9d11177fdb1e0
+      internalID: 303704515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_2
+      name: SoundEffects_Button_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 512
-        y: 384
-        width: 256
-        height: 128
+        x: 51
+        y: 32
+        width: 64
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e25c4d778fcdf9f4b85a74b04925e50f
-      internalID: 1791420077
+      spriteID: b48f00c50620acd4e9437e3cb3e00dc1
+      internalID: 1806765538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_3
+      name: SoundEffects_Button_SpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 128
+        x: 51
+        y: 16
+        width: 64
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2491dd4ee0f502648abacd268638fb6b
-      internalID: 259577236
+      spriteID: e13fa0fc418e30b428b94e667e21d84e
+      internalID: -1073969873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cassette_ToolTips_4
+      name: SoundEffects_Button_SpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21846f0a363752740946ca08a211bff1
-      internalID: -2098097653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_5
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82cbdd88556e79e4e8338d3038efc44c
-      internalID: -1147703224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec3e1862f3f93594e95400ac8de3ea58
-      internalID: -1463443721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_7
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0a75be4c73c6d84aa98e6d5a1ce4084
-      internalID: -870003803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_8
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 128
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 273bc1838c777f940bd4636efd85ad12
-      internalID: 1389393277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cassette_ToolTips_9
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 51
         y: 0
-        width: 256
-        height: 128
+        width: 64
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3293c0e5fb1fca4a8416cb820892b4d
-      internalID: 893952746
+      spriteID: 2ce0534f89eb262499e8ea446293812f
+      internalID: -442424511
       vertices: []
       indices: 
       edges: []
@@ -359,7 +249,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c533a7e8b6eaff641804abcbbc754937
+    spriteID: 000aa868ca9e7d44da39976a357550fd
     internalID: 0
     vertices: []
     indices: 
@@ -369,16 +259,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cassette_ToolTips_0: -2070470635
-      Cassette_ToolTips_1: -386913218
-      Cassette_ToolTips_2: 1791420077
-      Cassette_ToolTips_3: 259577236
-      Cassette_ToolTips_4: -2098097653
-      Cassette_ToolTips_5: -1147703224
-      Cassette_ToolTips_6: -1463443721
-      Cassette_ToolTips_7: -870003803
-      Cassette_ToolTips_8: 1389393277
-      Cassette_ToolTips_9: 893952746
+      SoundEffects_Button_SpriteSheet_0: -896246630
+      SoundEffects_Button_SpriteSheet_1: 810331992
+      SoundEffects_Button_SpriteSheet_2: 303704515
+      SoundEffects_Button_SpriteSheet_3: 1958128072
+      SoundEffects_Button_SpriteSheet_4: 1806765538
+      SoundEffects_Button_SpriteSheet_5: -690958665
+      SoundEffects_Button_SpriteSheet_6: -1073969873
+      SoundEffects_Button_SpriteSheet_7: 613262362
+      SoundEffects_Button_SpriteSheet_8: -442424511
+      SoundEffects_Button_SpriteSheet_9: -1030199131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
