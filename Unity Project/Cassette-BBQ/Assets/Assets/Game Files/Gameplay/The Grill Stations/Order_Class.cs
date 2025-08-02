@@ -30,6 +30,13 @@ public class Order_Class : MonoBehaviour
     [SerializeField] Image _filledOrderSprite;
     #endregion
 
+    private void OnDestroy()
+    {
+        // Kill all possible Tweens that are associated with this order.
+        DOTween.Kill(_filledOrderSprite);
+        DOTween.Kill(transform);
+    }
+
     public void Set_OrderClass_Data(bool isBurger = true, int orderSize = 1)
     {
         _isBurger = isBurger;
@@ -105,7 +112,7 @@ public class Order_Class : MonoBehaviour
                 .OnComplete(() =>
                 {
                     _filledOrderSprite.fillAmount = fillAmount;
-                });
+                }).SetAutoKill(true);
         }
     }
 

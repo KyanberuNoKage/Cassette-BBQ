@@ -6,7 +6,6 @@ using KyanberuGames.Utilities;
 
 public class Burger_Obj : MonoBehaviour
 {
-
     [SerializeField] Base_Burger_Data _globalBurgerData;
     [SerializeField] Image _burgerImage;
     [SerializeField] Button _burgerButton;
@@ -23,9 +22,11 @@ public class Burger_Obj : MonoBehaviour
     private GameObject _smokeEffect_Obj;
     private GameObject _sparkleEffect_Obj;
 
-    Sprite oilOffSprite;
-    Sprite oilOnSprite;
+    private Sprite oilOffSprite;
+    private Sprite oilOnSprite;
     private Sprite _wooshOnSprite;
+
+    private Tween _oilSplash_Tween;
 
     private void Start()
     {
@@ -52,6 +53,12 @@ public class Burger_Obj : MonoBehaviour
             }
             #endregion
         }
+    }
+
+    // Clean up any tweens on destroy,
+    private void OnDestroy()
+    {
+        DOTween.Kill(_oilSplash_Tween);
     }
 
     private void SetUpThisBurger()
@@ -209,13 +216,20 @@ public class Burger_Obj : MonoBehaviour
 
     private void FadeInOil(bool fadeIn = true)
     {
+        // Ensures there arn't multiple tweens running at once.
+        if (_oilSplash_Tween != null)
+        {
+            _oilSplash_Tween.Kill();
+            _oilSplash_Tween = null;
+        }
+
         if (fadeIn)
         {
-            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(1f, 0.03f);
+            _oilSplash_Tween = _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(1f, 0.03f);
         }
         else 
         {
-            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(0f, 0.20f);
+            _oilSplash_Tween = _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(0f, 0.20f);
         }
     }
 }

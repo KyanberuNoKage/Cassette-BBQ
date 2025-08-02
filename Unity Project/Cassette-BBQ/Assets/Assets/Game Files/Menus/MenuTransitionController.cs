@@ -56,6 +56,10 @@ public class MenuTransitionController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _AverageOrderTime_Text;
     [SerializeField] TextMeshProUGUI _totalScore_Text;
 
+    [Space, Header("DOTween CanvasGroups To Clear")]
+    [SerializeField] CanvasGroup _orders_CanvasGroup_ToClear;
+    [SerializeField] CanvasGroup _timer_CanvasGroup_ToClear;
+
     private void OnEnable()
     {
         MenuTransitionEvents.CassetteSelected += StartTransition;
@@ -375,7 +379,10 @@ public class MenuTransitionController : MonoBehaviour
         scoreRevealSequence.Append(_AverageOrderTime_Text.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
         scoreRevealSequence.Append(_totalScore_Text.transform.DOPunchScale(punch: new Vector2(1.1f, 1.1f), punchDuration, vibrato: 5, elasticity: 5));
 
-        scoreRevealSequence.Play();
+        scoreRevealSequence.Play().OnComplete(() => 
+        {
+            scoreRevealSequence = null; // Clear the sequence after it completes.
+        });
 
         // Disable meat_Table and score groups.
         _meat_Table_Group.alpha = 0;
@@ -389,6 +396,10 @@ public class MenuTransitionController : MonoBehaviour
 
     public void EndToMainMenu()
     {
+        KillTweensIn_(_orders_CanvasGroup_ToClear);
+        KillTweensIn_(_timer_CanvasGroup_ToClear);
+        KillTweensIn_(gameObject);
+
         RectTransform menuRect = _mainMenu_Group.GetComponent<RectTransform>();
         Sequence sequence = DOTween.Sequence();
 
@@ -423,6 +434,77 @@ public class MenuTransitionController : MonoBehaviour
         sequence.Play().OnComplete(() => { AudioEvents.StartMainMenuMusic(); });
 
         MoveMenuScreen(MenuScreens.MainMenu);
+    }
+
+    /// <summary>
+    /// Kills all DOTween RectTransform, Image and Text tweens in the given CanvasGroup and its children.
+    /// </summary>
+    /// <param name="canvasGroup_ToClear"></param>
+    private void KillTweensIn_(CanvasGroup canvasGroup_ToClear)
+    {
+        GameObject rootObject = canvasGroup_ToClear.gameObject;
+
+        // Kill all tweens on every CanvasGroup under the root object.
+        CanvasGroup[] canvasGroups = rootObject.GetComponentsInChildren<CanvasGroup>(true);
+        foreach (CanvasGroup CanvasGroups in canvasGroups)
+        {
+            CanvasGroups.DOKill();
+        }
+
+        // Kill all tweens on every RectTransform under the root object.
+        RectTransform[] rectTransforms = rootObject.GetComponentsInChildren<RectTransform>(true);
+        foreach (RectTransform childRectTransform in rectTransforms)
+        {
+            childRectTransform.DOKill();
+        }
+
+        // Kill all tweens on every Image under the root object.
+        Image[] images = rootObject.GetComponentsInChildren<Image>(true);
+        foreach (Image childImage in images)
+        {
+            childImage.DOKill();
+        }
+
+        // Finally, kill any tweens on the root CanvasGroup itself.
+        CanvasGroup rootOfCanvasGroup = rootObject.GetComponent<CanvasGroup>();
+        if (rootOfCanvasGroup != null)
+        {
+            rootOfCanvasGroup.DOKill();
+        }
+    }
+    /// <summary>
+    /// Kills all DOTween RectTransform, Image and Text tweens in the given GameObejct and its children.
+    /// </summary>
+    /// <param name="canvasGroup_ToClear"></param>
+    private void KillTweensIn_(GameObject object_ToClear)
+    {
+        // Kill all tweens on every CanvasGroup under the root object.
+        CanvasGroup[] canvasGroups = object_ToClear.GetComponentsInChildren<CanvasGroup>(true);
+        foreach (CanvasGroup CanvasGroups in canvasGroups)
+        {
+            CanvasGroups.DOKill();
+        }
+
+        // Kill all tweens on every RectTransform under the root object.
+        RectTransform[] rectTransforms = object_ToClear.GetComponentsInChildren<RectTransform>(true);
+        foreach (RectTransform childRectTransform in rectTransforms)
+        {
+            childRectTransform.DOKill();
+        }
+
+        // Kill all tweens on every Image under the root object.
+        Image[] images = object_ToClear.GetComponentsInChildren<Image>(true);
+        foreach (Image childImage in images)
+        {
+            childImage.DOKill();
+        }
+
+        // Finally, kill any tweens on the root CanvasGroup itself.
+        CanvasGroup rootOfCanvasGroup = object_ToClear.GetComponent<CanvasGroup>();
+        if (rootOfCanvasGroup != null)
+        {
+            rootOfCanvasGroup.DOKill();
+        }
     }
 
     public enum MenuScreens

@@ -6,7 +6,6 @@ using KyanberuGames.Utilities;
 
 public class Sausage_Obj : MonoBehaviour
 {
-
     [SerializeField] Base_Sausage_Data _globalSausageData;
     [SerializeField] Image _sausageImage;
     [SerializeField] Button _sausageButton;
@@ -26,6 +25,8 @@ public class Sausage_Obj : MonoBehaviour
     private Sprite oilOffSprite;
     private Sprite oilOnSprite;
     private Sprite _wooshOnSprite;
+
+    private Tween _oilSplash_Tween;
 
     private void Start()
     {
@@ -52,6 +53,12 @@ public class Sausage_Obj : MonoBehaviour
             }
             #endregion
         }
+    }
+
+    // Clean up tweens on destroy,
+    private void OnDestroy()
+    {
+        DOTween.Kill(_oilSplash_Tween);
     }
 
     private void SetUpThisSausage()
@@ -210,13 +217,20 @@ public class Sausage_Obj : MonoBehaviour
 
     private void FadeInOil(bool fadeIn = true)
     {
+        // Ensures there arn't multiple tweens running at once.
+        if (_oilSplash_Tween != null)
+        {
+            _oilSplash_Tween.Kill();
+            _oilSplash_Tween = null;
+        }
+
         if (fadeIn)
         {
-            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(1f, 0.03f);
+            _oilSplash_Tween = _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(1f, 0.03f);
         }
         else
         {
-            _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(0f, 0.20f);
+            _oilSplash_Tween = _oilSplash_Obj.GetComponent<CanvasGroup>().DOFade(0f, 0.20f);
         }
     }
 }
