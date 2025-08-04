@@ -24,21 +24,21 @@ You can download the built game on its **[Itch.io page](https://kyanberunokage.i
 
 ### Planned Features:
 
-- **Pause menu for when the player is currently playing a round and wishes to exit without losing save data.**
+- [x] **Pause menu for when the player is currently playing a round and wishes to exit without losing save data.**
 
-- **Further balancing the unlock requirements for the cassette powers/modes.**
+- [x] **Further balancing the unlock requirements for the cassette powers/modes.**
 
 I will also be creating a "Premium" version of the game with;
 
-- **Two more cassette powers/modes to change the way you play.**
+- [ ] **Two more cassette powers/modes to change the way you play.**
 
-- **GUI for displaying what each cassette does when hovered over** *(although I do like the idea that players aren't fully aware of what each cassette does before they use them)*
+- [ ] **GUI for displaying what each cassette does when hovered over** *(although I do like the idea that players aren't fully aware of what each cassette does before they use them)*
 
-- **Achievements/Challenges** *(Maybe)*
+- [ ] **Achievements/Challenges** *(Maybe)*
 
-- **Feel free to leave a message on the Itch.io page for the game if you have suggestions for what I should add to both the Jam version after the jam is finished, and the 'premium' version.**
+**Feel free to leave a message on the Itch.io page for the game if you have suggestions for what I should add to both the Jam version after the jam is finished, and the 'premium' version.**
   
-  
+  ---
 
 ### Will I be building for Mac in the future?
 
