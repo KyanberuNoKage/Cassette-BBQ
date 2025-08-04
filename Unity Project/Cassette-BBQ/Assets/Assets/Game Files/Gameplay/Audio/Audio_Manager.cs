@@ -108,7 +108,8 @@ public class Audio_Manager : MonoBehaviour
         _music_AudioSource.clip = musicClip;
         _music_AudioSource.Play();
 
-        _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, 1f);
+                                                    // Convert to db
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, duration: 1f);
     }
 
     float mutedVolume_Level = 0.0001f; //0.0001f is -80db which is effectively silent.
@@ -142,7 +143,7 @@ public class Audio_Manager : MonoBehaviour
             source.Stop();
             source.clip = null;
         } // Make the audio sources in the pool active again, ready for the next run.
-        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, duration: 1f);
 
 
         _audioMixer.DOSetFloat("Grill Sound", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
@@ -150,21 +151,21 @@ public class Audio_Manager : MonoBehaviour
             _grillBackground_SoundEffect.Stop();
             _grillBackground_SoundEffect.clip = null;
         }); // Make the audio group is active again, ready for the next run.
-        _audioMixer.DOSetFloat("Grill Sound", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
+        _audioMixer.DOSetFloat("Grill Sound", Mathf.Log10(_soundEffects_Volume) * 20, duration: 1f);
 
         // Fade out main SFX
-        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(mutedVolume_Level) * 20, duration: 1f).OnComplete(() =>
         {
             _soundEffects_AudioSource.Stop();
             _soundEffects_AudioSource.clip = null;
         });
         // Make the main SFX group is active again, ready for the next run.
-        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, 1f);
+        _audioMixer.DOSetFloat("Sound Effects", Mathf.Log10(_soundEffects_Volume) * 20, duration: 1f);
     }
 
     private void FadeOutMusic()
     {
-        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, duration: 1f).OnComplete(() =>
         {
             _music_AudioSource.Stop();
             _music_AudioSource.clip = null;
@@ -173,7 +174,7 @@ public class Audio_Manager : MonoBehaviour
 
     private void MoveToNewSong()
     {
-        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, 1f).OnComplete(() =>
+        _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, duration: 1f).OnComplete(() =>
         {
             _music_AudioSource.Stop();
             _music_AudioSource.clip = null;
@@ -185,7 +186,7 @@ public class Audio_Manager : MonoBehaviour
             );
 
 
-            _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, 1f);
+            _audioMixer.DOSetFloat("Music", Mathf.Log10(_music_Volume) * 20, duration: 1f);
         });
     }
 
@@ -194,8 +195,12 @@ public class Audio_Manager : MonoBehaviour
         // First track in the music list is the menu music.
         if (_music_AudioSource.isPlaying)
         {
-            FadeOutMusic();
-            PlayMusic(_music_List[0], true);
+            _audioMixer.DOSetFloat("Music", Mathf.Log10(mutedVolume_Level) * 20, duration: 1f).OnComplete(() =>
+            {
+                _music_AudioSource.Stop();
+                _music_AudioSource.clip = null;
+                PlayMusic(_music_List[0], true);
+            });
         }
         else
         {
