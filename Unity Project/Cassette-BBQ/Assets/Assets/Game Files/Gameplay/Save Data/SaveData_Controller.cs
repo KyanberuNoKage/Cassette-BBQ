@@ -106,7 +106,7 @@ private static extern void ReloadPage();
         string json = JsonUtility.ToJson( dataToSave );
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.SetString("saveData", json);
+        PlayerPrefs.SetString("cassetteSaveData", json);
         PlayerPrefs.Save();
 #else
         File.WriteAllText(path, json);
@@ -128,7 +128,7 @@ private static extern void ReloadPage();
     public bool DoesSaveExist()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        return PlayerPrefs.HasKey("saveData");
+        return PlayerPrefs.HasKey("cassetteSaveData");
 #else
         return File.Exists(path);
 #endif
@@ -164,9 +164,9 @@ private static extern void ReloadPage();
         GameData newGameData = null;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (PlayerPrefs.HasKey("saveData"))
+        if (PlayerPrefs.HasKey("cassetteSaveData"))
         {
-            string json = PlayerPrefs.GetString("saveData");
+            string json = PlayerPrefs.GetString("cassetteSaveData");
             newGameData = JsonUtility.FromJson<GameData>(json);
         }
 #else
@@ -278,14 +278,14 @@ private static extern void ReloadPage();
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         // On WebGL, clear PlayerPrefs and reload the page.
-        if (PlayerPrefs.HasKey("saveData"))
+        if (PlayerPrefs.HasKey("cassetteSaveData"))
         {
-            PlayerPrefs.DeleteKey("saveData");
+            PlayerPrefs.DeleteKey("cassetteSaveData");
             PlayerPrefs.Save();
         }
         else
         {
-            DebugEvents.AddDebugWarning("No PlayerPrefs key \"saveData\" found to reset.");
+            DebugEvents.AddDebugWarning("No PlayerPrefs key \"cassetteSaveData\" found to reset.");
         }
 
         ReloadPage();
