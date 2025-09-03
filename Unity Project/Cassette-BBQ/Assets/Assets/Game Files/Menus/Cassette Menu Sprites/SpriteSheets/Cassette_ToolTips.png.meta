@@ -151,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f119b295a9a2524cb945e7460a6cf58
-      internalID: -2070470635
+      spriteID: 54c748fe4da9e794db1b4ed6d56c4a10
+      internalID: 174154145
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ff299017a6140645922d8e20d649d67
-      internalID: -386913218
+      spriteID: f579cc61bb704284a94fa41c1b735fb0
+      internalID: -1848057701
       vertices: []
       indices: 
       edges: []
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e25c4d778fcdf9f4b85a74b04925e50f
-      internalID: 1791420077
+      spriteID: 530a9374045947942a2cb63f693cc8b5
+      internalID: 1510096133
       vertices: []
       indices: 
       edges: []
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2491dd4ee0f502648abacd268638fb6b
-      internalID: 259577236
+      spriteID: 965879750555dd64a84be4a12d347744
+      internalID: 1874645277
       vertices: []
       indices: 
       edges: []
@@ -239,8 +239,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21846f0a363752740946ca08a211bff1
-      internalID: -2098097653
+      spriteID: 9ce77d39961a00b4cb9f0171e7a4c241
+      internalID: 1386601774
       vertices: []
       indices: 
       edges: []
@@ -261,8 +261,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82cbdd88556e79e4e8338d3038efc44c
-      internalID: -1147703224
+      spriteID: 63d31075ed62a094cbfad8e49aa6c62f
+      internalID: -1266198267
       vertices: []
       indices: 
       edges: []
@@ -283,8 +283,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec3e1862f3f93594e95400ac8de3ea58
-      internalID: -1463443721
+      spriteID: de95c9e0067225c4fa1e2b2a3b3e378d
+      internalID: 2042245889
       vertices: []
       indices: 
       edges: []
@@ -305,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0a75be4c73c6d84aa98e6d5a1ce4084
-      internalID: -870003803
+      spriteID: 546a10be742aca645a56e07dcff7ff6d
+      internalID: 1929070419
       vertices: []
       indices: 
       edges: []
@@ -327,8 +327,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 273bc1838c777f940bd4636efd85ad12
-      internalID: 1389393277
+      spriteID: c14d4a5c3b207904497f8d1ab37bbb68
+      internalID: -593475552
       vertices: []
       indices: 
       edges: []
@@ -349,8 +349,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3293c0e5fb1fca4a8416cb820892b4d
-      internalID: 893952746
+      spriteID: 1f227f8f2c58f194faa8a451441b637d
+      internalID: -535544856
       vertices: []
       indices: 
       edges: []
@@ -359,7 +359,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c533a7e8b6eaff641804abcbbc754937
+    spriteID: 47dfd419ba875b84692871b07b5b8092
     internalID: 0
     vertices: []
     indices: 
@@ -369,16 +369,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cassette_ToolTips_0: -2070470635
-      Cassette_ToolTips_1: -386913218
-      Cassette_ToolTips_2: 1791420077
-      Cassette_ToolTips_3: 259577236
-      Cassette_ToolTips_4: -2098097653
-      Cassette_ToolTips_5: -1147703224
-      Cassette_ToolTips_6: -1463443721
-      Cassette_ToolTips_7: -870003803
-      Cassette_ToolTips_8: 1389393277
-      Cassette_ToolTips_9: 893952746
+      Cassette_ToolTips_0: 174154145
+      Cassette_ToolTips_1: -1848057701
+      Cassette_ToolTips_2: 1510096133
+      Cassette_ToolTips_3: 1874645277
+      Cassette_ToolTips_4: 1386601774
+      Cassette_ToolTips_5: -1266198267
+      Cassette_ToolTips_6: 2042245889
+      Cassette_ToolTips_7: 1929070419
+      Cassette_ToolTips_8: -593475552
+      Cassette_ToolTips_9: -535544856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
